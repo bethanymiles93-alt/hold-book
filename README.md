@@ -19,7 +19,7 @@ Hold is not primarily solving a writing problem. It is reducing **relationship e
 The common loop is:
 
 1. Capacity drops.
-2. A message feels too difficult.
+2. A message feels impossible.
 3. Silence begins.
 4. Guilt increases.
 5. Returning feels harder.
