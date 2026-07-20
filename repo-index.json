@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "file_count": 27,
+  "folders": [
+    "01-foundation",
+    "02-research",
+    "03-product",
+    "04-ux-content",
+    "05-design-system",
+    "06-privacy-security",
+    "07-business",
+    "08-decisions"
+  ],
+  "release_notes": [
+    "Added relationship continuity competitor analysis",
+    "Added wider competitor pricing landscape",
+    "Revised launch pricing hypothesis to \u00a32.99\u2013\u00a33.99 monthly and \u00a319.99\u2013\u00a324.99 yearly"
+  ]
+}
