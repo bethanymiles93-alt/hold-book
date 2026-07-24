@@ -19,7 +19,7 @@ Hold is not primarily solving a writing problem. It is reducing **relationship e
 The common loop is:
 
 1. Capacity drops.
-2. A message feels impossible.
+2. A message feels too difficult.
 3. Silence begins.
 4. Guilt increases.
 5. Returning feels harder.
@@ -30,12 +30,12 @@ The common loop is:
 
 - `01-foundation/` — mission, problem, principles and founder insight
 - `02-research/` — evidence and research implications
-- `03-product/` — users, MVP, roadmap and requirements
-- `04-ux-content/` — journeys, language and notifications
+- `03-product/` — users, MVP, roadmap (`05-roadmap.md`), requirements and Patterns
+- `04-ux-content/` — journeys, navigation architecture, onboarding/empty states, language and notifications
 - `05-design-system/` — accessibility, colour, typography and interaction
-- `06-privacy-security/` — privacy, AI and safeguarding
-- `07-business/` — positioning, pricing and launch
-- `08-decisions/` — decision log and rejected ideas
+- `06-privacy-security/` — privacy, AI, safeguarding and safety
+- `07-business/` — positioning, pricing, launch and business strategy
+- `08-decisions/` — decision log, rejected ideas, design experiments and open questions
 
 ## The Hold Test
 

@@ -1,5 +1,9 @@
 # Hold principles
 
+## Every screen works with one tap, but rewards users who have the energy to do more
+
+The North Star principle for the whole product. Someone at their lowest capacity can complete the whole journey with the bare minimum — tap Going Quiet, choose Circles, send. Someone with more energy can personalise messages, draft emails, manage Out of Office, or reconnect individually and in depth. The app adapts to the user's capacity in the moment rather than expecting the same effort every time. Every other principle below serves this one.
+
 ## We assume you care
 
 Silence is not treated as proof of indifference.

@@ -30,6 +30,10 @@ The person who has gone quiet may simultaneously think:
 7. Reduced trust
 8. Harder return
 
+## A second, more subtle cost
+
+Silence doesn't only risk losing a relationship outright — even relationships that survive can be quietly damaged. The other person's view of the user can shift ("unreliable," "flaky," "bad at replying," "selfish") even once contact resumes, and that changed perception can linger. A relationship that technically continues can still become shallower and less trusting than it was. Hold's job is not just to prevent silence being misread as rejection, but to prevent it from tarnishing how someone is seen by people who still, genuinely, matter to them.
+
 ## Opportunity
 
 Hold can create value at three moments.

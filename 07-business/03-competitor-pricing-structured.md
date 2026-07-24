@@ -6,9 +6,9 @@
 
 | Plan | Price |
 |---|---:|
-| Monthly | US$6.99 |
-| Yearly | US$29.99 |
-| Lifetime | US$99.99 |
+| Monthly | US$6.99 (≈ £5.25) |
+| Yearly | US$29.99 (≈ £22.50) |
+| Lifetime | US$99.99 (≈ £75.00) |
 
 Structured also reports:
 

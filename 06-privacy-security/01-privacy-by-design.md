@@ -6,6 +6,10 @@ This is a foundational requirement. Obtain specialist legal advice before launch
 
 Message drafts, relationship labels, contact data and reasons for reduced capacity may reveal sensitive and intimate information. Free text may contain health information even when Hold does not ask for it.
 
+## Plain-language summary
+
+Hold remembers: who you chose to message, where you are in your journey, your templates, and your completion status in Conversations. It does not read WhatsApp, texts or emails — the only exception is the optional Email out-of-office toggle, which uses official APIs the user explicitly connects, not general inbox reading. This is the plain-language version of the more detailed principles below; both should stay consistent.
+
 ## Principles
 
 - Define each purpose before collecting data.

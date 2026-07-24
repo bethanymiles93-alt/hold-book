@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "file_count": 27,
+  "version": "1.29",
+  "file_count": 35,
   "folders": [
     "01-foundation",
     "02-research",
@@ -12,8 +12,9 @@
     "08-decisions"
   ],
   "release_notes": [
-    "Added relationship continuity competitor analysis",
-    "Added wider competitor pricing landscape",
-    "Revised launch pricing hypothesis to \u00a32.99\u2013\u00a33.99 monthly and \u00a319.99\u2013\u00a324.99 yearly"
+    "Extended Conversations into three tiers: Send to everyone, per-Circle bulk send, per person",
+    "List now grouped by the Circles originally messaged at Going Quiet, not a flat list",
+    "New contacts added via '+ Add person' one at a time, appearing outside existing Circle groups unless the user assigns them",
+    "Confirm-step accidental-tap protection now applies to per-Circle sends as well as Send to everyone"
   ]
 }

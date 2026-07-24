@@ -13,19 +13,23 @@
 
 ## MVP journeys
 
-### Create a Hold
-- select recipients or circle
-- choose message intent
-- optionally personalise
-- review
-- share only after explicit action
+See `04-ux-content/01-core-journeys.md` for the full journey. Summary:
 
-### Return from Hold
-- choose recipients
-- choose how much to say
-- draft
+### Going Quiet (formerly "Create a Hold")
+- select one or more Circles (setup happens inline, not separate onboarding)
+- choose message intent
 - review
-- share
+- send (default: text/SMS to everyone; nothing else to do afterwards)
+
+### Reconnect (formerly "Return from Hold")
+- persists the audience from Going Quiet by default; add/remove individuals as needed
+- tapping Reconnect is a single action (symmetric with Going Quiet) leading into Conversations
+- Conversations: per-person, Quick message or Personalise (paste their message, get help wording a reply), tick/untick as complete
+
+### Taking Time
+- optional resting state between Going Quiet and Reconnect
+- "Send an update" lets the user reassure Circles without ending Taking Time
+- "Add to Going Quiet" handles the edge case of a new contact messaging while away
 
 ## Message anatomy
 

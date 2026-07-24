@@ -29,3 +29,12 @@ AI may help users reduce composition effort. It must remain an assistant, not an
 - The user sees and edits every draft.
 - Sensitive content should be minimised before sending to a model.
 - Retention and provider terms must be documented.
+
+## Implementation approach
+
+**Connect to an existing model via API, don't build or fine-tune one.** For a solo-built MVP, prompting a strong general model well gets nearly all the value of fine-tuning at a fraction of the cost and complexity, and fine-tuning needs a large curated dataset and ongoing upkeep that isn't worth it before real usage data exists.
+
+- **Separate system prompts per surface**, not one generic prompt behind every "AI Help" button — a Going Quiet prompt, a Reassurance prompt, a Reconnect prompt, a Conversations reply prompt, each carrying the relevant rules from this file and from `04-ux-content/02-voice-and-language.md` (never guilt, never diagnose, permission over pressure), plus the relevant Circle/relationship context and current journey stage.
+- **Model choice by task, not one model for everything:** a cheaper, fast model (e.g. Claude Haiku 4.5) for the safeguarding detection layer (`06-privacy-security/03-safeguarding.md`) — a classification task, not creative writing — and a stronger model (e.g. Claude Sonnet) for actual message drafting, where tone quality genuinely matters.
+- **Cost reality (checked July 2026, £ at ~$1.33/£1):** a typical short draft (roughly 800–1,500 input tokens, 200–400 output tokens) costs well under £0.01 on Sonnet-tier pricing (Sonnet intro rate ≈ £1.50 input / £7.50 output per million tokens through August 2026, rising to ≈ £2.25 / £11.25 after). A generous free-tier allowance of 20 drafts/month costs under £0.15 per active free user, and given episodic (not daily) usage, actual average cost per free user is lower still — this is what makes the generous free AI allowance in `07-business/02-pricing-principles.md` genuinely sustainable, not just optimistic.
+- **AI personalisation** (writing-style learning, saved-messages-as-context) should work by injecting a few of the user's own saved templates into the prompt as style examples at generation time, not by training or fine-tuning on them.
