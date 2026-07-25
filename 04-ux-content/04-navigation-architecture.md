@@ -44,6 +44,17 @@ Match Instagram's reference sizing for icon and label: compact, legible, not ove
 
 **Decided: pills**, specifically fully rounded/stadium-shaped pills (rounded ends, not just rounded corners) with generous horizontal padding, not rectangular chips. Circles are Hold's core visual motif and read as calmer in the abstract, but Circle names vary in length ("Close Circle" vs "Book Club" vs longer custom names), and cramming variable-length text into a fixed circle forces either tiny type or truncation — both read as *less* calm than a well-padded pill, not more. A generously rounded pill keeps most of the circle's softness while staying legible at any name length.
 
+## Circle picker layout — single scrollable row
+
+**Decided:** Circle pills sit in one horizontal row, scrollable left when there are more than fit on screen, rather than wrapping onto multiple rows. This scales cleanly now that Circles are unlimited on Free — a wrapped grid gets visually messy fast once someone has several Circles; a single scrollable row stays clean regardless of count.
+
+Selected pills carry a down-arrow to expand into a recipient box beneath the row — see the "Who needs to know?" step in `04-ux-content/01-core-journeys.md` for the full interaction, which deliberately mirrors Conversations' Tier 2 → Tier 3 dropdown so both screens share one expand-a-Circle pattern rather than two different mechanisms.
+
+- Close Circle stays first in the row and keeps its stronger fill/priority position, as already decided.
+- **"+ New Circle" sits outside the scrollable row entirely**, as a small round icon button (echoing Hold's circle motif — the same shape as the Home tab icon and main interaction circle), positioned at the right end of the "Who needs to know?" heading line rather than beside the pill row itself. This keeps the scrollable row purely about the Circles themselves, treats "+" as a heading-level action (a common pattern — a section title with an add-action at its end), and deliberately avoids two problems: putting "+" first inside the row (the Instagram Stories convention) would compete with Close Circle for the prime position; putting it last inside the row means someone with many Circles has to scroll the whole row to find it, undermining the "adding a Circle shouldn't feel like labour" principle from Going Quiet. Fixed, above the row, and always visible resolves both without stranding it awkwardly next to a horizontal scroll.
+- Where content extends beyond the visible row, the last visible pill should be **partially cut off at the edge**, not a hard stop — a visible cue that more exists to scroll to, rather than the row appearing to simply end.
+- "Manage your Circles" stays a separate line beneath the picker, unaffected by this layout change.
+
 ## Home naming and icon
 
 Label stays **"Home"** even though the content underneath changes by state (Normal / Taking Time / Post-Reconnect) — nav labels name the destination the user returns to, not the momentary state, and "a stable place to come back to whatever state you're in" fits Hold's ethos rather than contradicting it.
@@ -61,7 +72,7 @@ Panel order:
 3. **Manage Circles**
 4. **Notifications**
 5. **Connected Accounts**
-6. **Research** — the evidence base behind Hold's design and safety approach (accessibility research, safeguarding evidence, icon/label findings — see `02-research/`), surfaced honestly rather than left as internal documentation only
+6. **Research** — the evidence base behind Hold's design and safety approach (accessibility research, safeguarding evidence, icon/label findings, and the lived-experience guilt-spiral/supportive-language research that shaped Hold's voice — see `02-research/`), surfaced honestly rather than left as internal documentation only. Can state plainly that Hold looked to the lived experience of people who deal with the guilt spiral when designing how it speaks: gentle, short, genuine statements that validate; permission without pressure or commentary.
 7. **Feedback**
 8. **Share** — invite someone else to Hold
 
@@ -92,6 +103,8 @@ Circles are set up inline, during first use, as part of the natural Going Quiet 
 2. **Templates** (secondary section, below) — saved messages (Messages / Emails / OOO / Social), built up over time via the "Save as template?" prompt, not present during onboarding.
 
 Templates build up naturally over time: whenever the user edits an AI draft or writes their own message, Hold asks "Save as template?" — an explicit, opt-in prompt, not automatic capture. Over months this makes the section genuinely personalised without ever silently harvesting what someone writes.
+
+**Template/chip explanations live here, not in the live composition flow.** The Going Quiet chip suggestions (e.g. "unwell," "overwhelmed," "need time") are deliberately compact and unexplained in the moment, to keep composition fast for someone who already knows what they mean. The fuller explanation of what choosing a given template actually communicates (matching the description text the original option cards used to carry, e.g. "Say your capacity is lower than usual") lives in Library instead — somewhere to look something up occasionally, not something repeated every time someone goes quiet. This resolves the trade-off of moving from descriptive cards to compact chips: the context isn't lost, it just moves to where it's actually useful rather than adding friction to the fast path.
 
 A user opens Library because they need help communicating; Conversations is what they find immediately, Templates is what supports that once they're there.
 

@@ -33,11 +33,14 @@
 - No overdue language
 
 ### Conversations
-- Three tiers: Send to everyone (bulk, all Circles) → per-Circle bulk send (different message per Circle) → per person (Quick message or Personalise)
-- List grouped by the Circles originally messaged at Going Quiet, not a flat list
-- "+ Add person" for new contacts not part of the original Circles, added one at a time
-- Confirm step on any bulk action (Tier 1 or Tier 2) to prevent accidental sends
-- Tick/untick as complete, always reversible
+- Two dropdowns, not one progressively-revealing section: Quick message (top, bulk/instant) and Personalise/Conversations (second, per-person AI-assisted)
+- Quick message: Circle selection row ("All" first) plus shared message box by default; per-Circle boxes only once "All" breaks
+- Unticking someone from Quick message moves them to the Personalise/Conversations dropdown, not a third nested tier
+- Sent-state pill: soften/desaturate + checkmark, no selection halo; status label "Sent. They know you're thinking of them." immediately, becomes the date from the next calendar day onward
+- Reconnect screen has three actions (Send, Edit, Personalise); Conversations hidden until an instant message is sent or Personalise tapped, then "Want to reply to anyone properly? / Not now" gate
+- "+ Add person" for new contacts not part of the original Circles, added one at a time, lands in Personalise/Conversations
+- Confirm step on any Quick message bulk action to prevent accidental sends
+- Tick/untick as complete, always reversible, never auto-triggered by sending
 - Available standalone, not only after a Going Quiet journey
 - No counts, unread badges or "outstanding" language
 

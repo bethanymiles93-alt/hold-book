@@ -21,6 +21,17 @@
 
 ## Recurring language conventions
 
+- No em dashes in any drafted copy. Use commas, full stops, or a rewrite instead. Confirmed on-device with the finalised welcome screen copy.
+
+## Governing voice principle (research-backed)
+
+Informed by lived-experience research on the guilt spiral in chronic illness (see `02-research/06-guilt-spiral-and-supportive-language.md`), and applied everywhere in the app — welcome and first-launch copy, temporary/placeholder wording, transitions, status labels, prompts, notifications:
+
+- **Gentle, short, genuine statements that validate.** Brevity is a feature, not a compromise — short validating lines outperform lengthy reassurance.
+- **Permission without pressure, and without commentary.**
+- **Never praise the person for a basic act of communication** ("well done" for sending a message reframes communication as an achievement and adds pressure).
+- **Never name or narrate the person's psychology back to them** ("this helps your guilt spiral" explains someone to themselves and reads as clinical). Demonstrate understanding by being gentle and asking nothing, rather than stating that you understand.
+
 - Use "your circles" consistently, rather than switching between "your circle," "your people," "your contacts" — one term, used the same way everywhere.
 - "Keep your circles in the loop" is the recurring phrase for what Hold does — worth reusing across onboarding, marketing and in-app copy rather than rephrasing it differently each time.
 - Avoid copy that implies the user has, or should have, a large support network. "Your circles" should read naturally whether someone has one person in their Close Circle or many — never phrase things in a way that could make a small network feel inadequate.

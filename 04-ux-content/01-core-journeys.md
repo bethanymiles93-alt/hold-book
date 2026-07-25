@@ -55,6 +55,15 @@ Four emotionally distinct stages, kept separate on purpose:
 
 The **Conversations** destination is separate from Post-Reconnect and always available, independent of whether the user has gone quiet at all — it's for getting help with a specific reply at any time, not only after a Hold journey.
 
+### Circle text hierarchy — previously undocumented
+
+The main interaction circle carries a two-level text hierarchy in both its states, not a single line:
+
+- **Normal (Going Quiet available):** "Going quiet" as the bold/larger in-circle header, "Tap to let your people know" as the smaller subtitle beneath it.
+- **Taking Time (Reconnect available):** "Reconnect" as the bold/larger in-circle header, "Tap when you're ready" as the smaller subtitle beneath it.
+
+This was a decision made early on but never actually written into this book, which is why it was missed in the first build — "Tap when you're ready to reconnect" as a single undifferentiated line is the bug this corrects.
+
 ### Avoid
 - activity feeds
 - overdue tasks
@@ -65,8 +74,8 @@ The **Conversations** destination is separate from Post-Reconnect and always ava
 
 ## Going Quiet
 
-1. Who needs to know? — choose one or more Circles. Circle setup happens inline here, not as separate onboarding, so it doesn't feel like labour ("+ New Circle" available on this screen; full management lives in Settings). Within a selected Circle, the user can untick individual people (send to most of the Circle but not everyone) and split out one or two people for a personalised message while the rest get the default — the granularity is per-person, not locked to the whole Circle at once.
-2. What do you need them to understand? — select an intent or write your own.
+1. Who needs to know? — choose one or more Circles. Circle setup happens inline here, not as separate onboarding, so it doesn't feel like labour ("+ New Circle" available on this screen; full management lives in Settings). Once a Circle pill is selected, a small down-arrow appears on it — tapping it expands a box beneath the picker row (collapsing any other Circle's expanded box first, only one open at a time, matching the Personalise pattern in Conversations) showing that Circle's recipients. Within it, the user can untick individual people (send to most of the Circle but not everyone) and split out one or two people for a personalised message while the rest get the default — the granularity is per-person, not locked to the whole Circle at once. This is the same interaction as Conversations' down-arrow expand pattern (breaking a Circle down to individuals), just reached from Going Quiet's picker instead — one consistent expand-a-Circle pattern across both screens, not two different mechanisms that happen to do similar things.
+2. What do you need them to understand? — **first message to a given Circle only:** select an intent (chips: I'm unwell / I need some quiet / Feeling a little overwhelmed / Write my own) or write your own, edit if wanted, then tap **"Save to Library"** near the message box — with a short line beneath it, e.g. "This becomes your usual message for [Circle]. Edit it anytime in Library," so the mechanism is stated plainly rather than happening silently. This stores the message as that Circle's saved default. **Subsequent messages to the same Circle:** the chips don't reappear — the message box is pre-filled with the saved default, directly editable in place, with a small "Change template" link remaining available as a low-profile escape hatch (not full chips again) for the occasion someone wants to switch approach entirely. The same "Save" affordance stays available on every visit: editing the wording and tapping Save updates the stored default going forward; editing without tapping Save applies only to that one message, leaving the stored default unchanged — someone tweaking a message once shouldn't accidentally overwrite their usual default without meaning to. The default can also be changed any time in Library directly.
 3. Review recipients and message together.
 4. Send (default: text/SMS to everyone, no extra channel decisions required; optional "Choose different channels" for people with a preferred contact method, configured later, never mandatory here).
 5. Completion: nothing else to do. The person moves directly into Taking Time.
@@ -103,7 +112,7 @@ A future, optional gentle nudge may appear after a long quiet period: "You've be
 
 **Revised — single tap, symmetric with Going Quiet.** Tapping Reconnect is not followed by an upfront "how would you like to reconnect?" choice screen. It triggers a brief transition (acknowledgment, not a question — see below) and goes straight into Conversations. This keeps Home's two primary actions symmetric (both single taps), and moves the actual decision-making to where it's already needed: per person, inside Conversations.
 
-**Transition copy:** "Welcome back. Here's who's waiting to hear from you — reply however feels right today."
+**Transition copy:** "Welcome back. Here's who's waiting to hear from you. Reply however feels right today."
 
 ### Audience
 
@@ -114,29 +123,59 @@ Reconnect persists the audience chosen at Going Quiet by default — there is no
 
 Hold keeps account of who still needs a reply; this list is what Conversations reflects.
 
+### Reconnect screen — three actions, Conversations hidden until triggered
+
+The Reconnect screen (labelled "Reconnect," since tapping the Reconnect button brought the person here) opens with the message ready and exactly three actions:
+- **Send** — sends the instant message to the current selection.
+- **Edit** — basic in-place edits to the template text, without leaving the screen.
+- **Personalise** — leads into Conversations (below) for a fuller, per-person reply.
+
+**Conversations does not appear on this screen until something has actually happened** — either an instant message has been sent, or Personalise has been tapped. Before that, the screen is just Reconnect: message, Send, Edit, Personalise. This avoids showing two routes to the same place at once (Personalise and a visible Conversations section would be redundant), and protects the calm default view. Because tapping Personalise *is* entering Conversations, the two are one door, not two.
+
+Once triggered (message sent, or Personalise tapped), the gate prompt appears: **"Want to reply to anyone properly?"** with "Not now." "Not now" skips straight to the Reconnected screen and back to Home — completing Reconnect without personalising anything is fully valid, nothing is forced.
+
+### Instant message status label
+
+Immediately after sending: **"Sent. They know you're thinking of them."** — brief and warm, stating what was achieved for the relationship without praising the person or naming their psychology (per the governing voice principle in `04-ux-content/02-voice-and-language.md`). From the next calendar day onward, the label becomes the actual date instead (e.g. "Sent 26 Jul"), since "sent" alone goes ambiguous the longer Taking Time continues.
+
 ## Conversations
 
-Available both as where Reconnect leads (per the restructure above) and as a standalone destination at any time, without needing to have gone quiet first.
+**Revised again — two separate dropdowns, not one progressively-revealing section.** The previous version nested per-person instant messages inside the same area as the bulk flow. This version splits by *purpose* instead: a **Quick message** dropdown for the low-effort bulk case, and a **Personalise / Conversations** dropdown for anyone who needs actual attention — someone moves from one to the other by being unticked, rather than gaining a third nested level within the same section.
 
-**Structured in three tiers, matching how Going Quiet already groups people by Circle — not one flat list:**
+**The screen is organised around "who, then how"** — selection answers *who*, the two dropdowns answer *how*.
 
-### Tier 1 — Send to everyone
-Top of the screen. One tap sends the same quick message (e.g. "I'm getting there, will respond properly soon") to the whole Reconnect list at once, for someone who doesn't want or need to address anyone individually or by Circle. This restores the original point of a single-tap Quick Connect within the per-person structure — without it, someone wanting the same message for everyone would have to repeat an action per Circle or per contact, which defeats "smallest possible decision."
+Available both as where Reconnect leads and as a standalone destination at any time, without needing to have gone quiet first.
 
-### Tier 2 — Per-Circle
-The list below "Send to everyone" is grouped under the Circles originally messaged at Going Quiet (e.g. "Family," "Work," "Book Club" as section headers), not a flat list of individuals. Each Circle group has its own bulk action — send one instant template to just that Circle — so different Circles can get different messages (e.g. a warmer note to Family, a brisker one to Work) without needing to act on each person separately.
+### Dropdown 1 — Quick message (top)
 
-### Tier 3 — Per person
-Expand any Circle group to see and act on individuals within it. Per person, two lightweight options:
-- **Quick message** — one instant, low-effort message, editable inline without leaving the page. Example: "I'm doing a little better, but I don't quite have the energy for a proper reply yet. I'll message properly soon x"
-- **Personalise** — paste in the specific message they sent, get help wording a considered reply
+**Default view — two elements only:** a scrollable Circle selection row mirroring Going Quiet's picker ("All" first, then each individual Circle), and one shared message box beneath it with one Send action. That's the whole dropdown for someone happy to send the same quick message to everyone.
+
+**When "All" breaks** (any Circle deselected): reveals one row per Circle, all of them, each with its own message box pre-filled from a copy of the shared box (or that Circle's own saved default if one exists), independently editable, its own Send action, and a down-arrow to expand into its people.
+
+**Unticking someone from a Circle's group removes them from Quick message entirely — they move to Dropdown 2**, not into a nested individual instant-message box within this dropdown. Quick message's whole purpose is the low-effort bulk case; anyone who needs individual attention belongs in the other dropdown, not a third tier bolted onto this one.
+
+**Sent-state pill treatment:** once a Circle's message is sent, its pill softens and desaturates to a paler, quieter version of its own colour, paired with a small checkmark — and **loses the outer selection halo/border**, since "sent" is its own distinct state, not the selection indicator layered underneath it. Never a full colour inversion (white fill/dark green text is already assigned to secondary navigation/add-manage actions elsewhere).
+
+**Status label evolves over time, not a single frozen state:** immediately after sending, the label reads "Instant message sent." From the next calendar day onward, it changes to show the actual date instead (e.g. "Sent 26 Jul") — "sent" alone becomes ambiguous the longer Taking Time continues, but is perfectly clear in the moment it happens.
+
+### Dropdown 2 — Personalise / Conversations
+
+Contains: anyone unticked out of a Quick message group, anyone added via "+ Add person," and is also the standalone destination reachable independent of having gone quiet at all — someone can open it because they have one hard message to reply to, with nothing else required first.
+
+Per person:
+- **Personalise** — expands as an accordion panel directly beneath that person's row, not a separate screen. Only one panel open at a time. Panel contents: "What they sent" paste box; "Starting point" as a compact horizontal row of chips (Keep it brief / Acknowledge the wait / Explain a little / Write my own); "Your reply" text box, pre-filled from the chosen starting point, editable; send-now/save-for-later actions. Closing the panel collapses it back to a compact status row. The retention-duration control from the original full-screen version is deliberately left unplaced here pending clarification — see `08-decisions/04-open-questions.md`.
 - tick/untick as replied — always reversible, never a hard "done"
 - "Conversation complete" covers: replied in Hold, replied elsewhere, phone call, saw them in person, or no further reply needed
 
-### Adding someone new
-A separate "+ Add person" action for anyone not part of the original Circles (e.g. a new contact who messaged while away) — added **one at a time**, not in bulk, since these are ad-hoc individual additions rather than an existing grouped Circle. They appear as their own item, not nested under an existing Circle group, unless the user chooses to also add them to a Circle.
+**Post-send state.** After a Personalise reply is sent, the row's status label reads "Sent. They'll hear from you properly." (same next-day-becomes-a-date behaviour as the instant message, and same voice principle — warm, brief, no praise). Sending does not automatically tick the conversation as complete — that stays a separate, deliberate action, since "Conversation complete" already covers real-world completion paths beyond "Hold sent something."
 
-**Accidental-tap protection applies at every tier**, not just Tier 1: any bulk action (Send to everyone, or a per-Circle send) shows a brief confirm step — "Send '[message]' to [N] people?" with Send / Cancel — before sending, given the page also has per-person tick boxes and buttons nearby. Using a bulk action at any tier doesn't block personalising a reply to any of those people afterward.
+### Adding someone new
+
+"+ Add person," in Dropdown 2, for anyone not part of the original Circles (e.g. a new contact who messaged while away) — added one at a time, not in bulk.
+
+### Accidental-tap protection
+
+Applies to any bulk action in Dropdown 1 (the shared "All" send, or a per-Circle send): a brief confirm step — "Send '[message]' to [N] people?" with Send / Cancel — before sending.
 
 No counts, no unread badges, no "outstanding" language anywhere in this screen. "Hold remembers where you left off. Continue whenever you're ready."
 

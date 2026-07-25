@@ -48,3 +48,7 @@ Not previously specified at this level of detail. One proposal: organise by Circ
 ## Exact free-tier AI allowance
 
 `07-business/02-pricing-principles.md` treats 10–20 AI-assisted drafts/month as a working assumption, not a tested figure. **Not yet decided precisely** — should be set from real usage data (actual API cost per draft, actual distribution of how often free users need AI help) once available, not guessed permanently in a design conversation. The *principle* is decided (one shared monthly pool, generous, episodic usage keeps average cost low); the *number* isn't.
+
+## "Keep this on your device for" retention window
+
+A "1 hour / 2 hours / 4 hours / 8 hours (default) / 12 hours" local-retention control appeared on the Personalise screen in the first build, but isn't described anywhere in this book. It plausibly matches an earlier privacy concept — a time-boxed local bridge window for an in-progress reply before it auto-clears — but that needs confirming with whoever built it, not assumed. **Not yet documented, needs clarification before it's treated as decided.**

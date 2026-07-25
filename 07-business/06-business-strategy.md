@@ -60,9 +60,11 @@ If paid ads are used at all, start small (£150–300/month) to learn before sca
 - **A patent is not recommended.** Software patents are slow, expensive, and unlikely to protect the actual value here, which comes from brand, design judgement, trust and execution rather than a patentable mechanism.
 - **Developer agreements** (if anyone else is ever brought on to build) should explicitly assign all created IP to the company.
 
-## Revenue idea not yet in the pricing model: one-time export purchase
+## Revenue idea, now resolved: one-time export purchase
 
-A modest, non-subscription, one-off price for a single GP/clinician export (`03-product/04-patterns.md`), aimed at a free-tier user who wants one proper pattern report for an upcoming appointment without committing to an annual or monthly subscription. Captures revenue at the single highest-motivation moment a free user is likely to have (advocating for themselves medically) without forcing a subscription decision someone may only need once or twice a year. Not yet reflected in `02-pricing-principles.md`'s free/Hold+ split — worth deciding whether this sits alongside the subscription model or gets folded into it.
+**Resolved:** two tiers, not one. Raw data export (a plain CSV/text list of quiet periods and durations) is free for everyone, always — charging for someone's own raw data would sit uncomfortably against data portability norms and wasn't worth the reputational risk for what it would add in revenue. The paid one-time purchase is specifically the **formatted GP/clinician PDF report** — quiet periods, durations, and pattern observations laid out and summarised — priced at **£3.99**, reflecting that it's the formatting and analysis work being sold, not the underlying data. Originally considered at £5.99–6.99 before this distinction was made explicit; £3.99 fits better now that what's being sold is clearly a service, not data access.
+
+Captures revenue at the single highest-motivation moment a free user is likely to have (advocating for themselves medically) without forcing a subscription decision someone may only need once or twice a year.
 
 ## Revenue realism check
 

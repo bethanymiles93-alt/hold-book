@@ -1,6 +1,6 @@
 {
-  "version": "1.29",
-  "file_count": 35,
+  "version": "1.47",
+  "file_count": 36,
   "folders": [
     "01-foundation",
     "02-research",
@@ -12,9 +12,9 @@
     "08-decisions"
   ],
   "release_notes": [
-    "Extended Conversations into three tiers: Send to everyone, per-Circle bulk send, per person",
-    "List now grouped by the Circles originally messaged at Going Quiet, not a flat list",
-    "New contacts added via '+ Add person' one at a time, appearing outside existing Circle groups unless the user assigns them",
-    "Confirm-step accidental-tap protection now applies to per-Circle sends as well as Send to everyone"
+    "Added 02-research/06-guilt-spiral-and-supportive-language.md with named lived-experience sources, surfaced in the in-app Research page",
+    "Added a research-backed governing voice principle applied app-wide: gentle short validating statements, permission without pressure or commentary, no praise for basic communication, no narrating the person's psychology back to them",
+    "Reconnect screen finalised to three actions (Send, Edit, Personalise); Conversations hidden until triggered, then a gentle gate prompt",
+    "Finalised Reconnect status/gate copy in the new voice; updated MVP requirements to match"
   ]
 }

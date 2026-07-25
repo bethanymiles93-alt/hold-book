@@ -73,9 +73,13 @@ Already a stated Hold-wide principle (`01-foundation/03-principles.md`), and Pat
 - No comparison to "normal" or population averages.
 - No alerts framed as concerning ("You're going quiet more often" reads as a warning; "Your quiet periods have become more frequent this year" is a neutral observation the user can do what they want with).
 
-## Export
+## Export — two tiers, resolving a real ethical question
 
-A natural extension of Patterns rather than a separate feature: a PDF or plain summary of quiet periods, durations and (if Patterns is active) the pattern observations — intended for the user to optionally take to a GP or therapist. The user controls what's included and when it's generated; nothing is sent anywhere automatically.
+**Free, always, for everyone: raw data export.** A plain CSV/text list of quiet periods and durations, no formatting or analysis — the user's own data, available on demand at no charge. This matters beyond generosity: charging for someone's own raw data would sit uncomfortably against data portability norms (UK GDPR gives people a right to get their own data out, generally expected to be free) and would be a fair criticism of Hold if it charged for this. Never gate raw export behind payment.
+
+**Paid, one-time, non-subscription: the formatted GP/clinician report.** A polished PDF — quiet periods, durations, and (if Patterns is active) the pattern observations, laid out and summarised for sharing with a doctor or therapist. This is priced because it's a service — the formatting and analysis work done on the user's behalf — not because the underlying data is being withheld. See `07-business/06-business-strategy.md` for pricing.
+
+The user controls what's included and when either export is generated; nothing is sent anywhere automatically.
 
 ## Optional future layer: external comparison
 
