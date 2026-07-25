@@ -162,6 +162,8 @@ Available both as where Reconnect leads and as a standalone destination at any t
 
 Contains: anyone unticked out of a Quick message group, anyone added via "+ Add person," and is also the standalone destination reachable independent of having gone quiet at all — someone can open it because they have one hard message to reply to, with nothing else required first.
 
+**Build note:** the standalone "reply without having gone quiet" entry point is intentionally not wired up yet — it's meant to live inside Library (`04-ux-content/04-navigation-architecture.md`, "Library screen structure"), which hasn't been built. This isn't a regression; there's deliberately no route to it until Library exists.
+
 Per person:
 - **Personalise** — expands as an accordion panel directly beneath that person's row, not a separate screen. Only one panel open at a time. Panel contents: "What they sent" paste box; "Starting point" as a compact horizontal row of chips (Keep it brief / Acknowledge the wait / Explain a little / Write my own); "Your reply" text box, pre-filled from the chosen starting point, editable; send-now/save-for-later actions. Closing the panel collapses it back to a compact status row. The retention-duration control from the original full-screen version is deliberately left unplaced here pending clarification — see `08-decisions/04-open-questions.md`.
 - tick/untick as replied — always reversible, never a hard "done"
