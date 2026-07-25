@@ -130,9 +130,9 @@ The Reconnect screen (labelled "Reconnect," since tapping the Reconnect button b
 - **Edit** — basic in-place edits to the template text, without leaving the screen.
 - **Personalise** — leads into Conversations (below) for a fuller, per-person reply.
 
-**Conversations does not appear on this screen until something has actually happened** — either an instant message has been sent, or Personalise has been tapped. Before that, the screen is just Reconnect: message, Send, Edit, Personalise. This avoids showing two routes to the same place at once (Personalise and a visible Conversations section would be redundant), and protects the calm default view. Because tapping Personalise *is* entering Conversations, the two are one door, not two.
+**Conversations does not appear on this screen until something has actually happened** — either an instant message has been sent, or Personalise has been tapped. Before that, the screen is just Reconnect: message, Send, Edit, Personalise. This avoids showing two routes to the same place at once (Personalise and a visible Conversations section would be redundant), and protects the calm default view.
 
-Once triggered (message sent, or Personalise tapped), the gate prompt appears: **"Want to reply to anyone properly?"** with "Not now." "Not now" skips straight to the Reconnected screen and back to Home — completing Reconnect without personalising anything is fully valid, nothing is forced.
+**Resolved — the gate is Send-only.** Tapping Personalise goes straight into Conversations with no intermediate prompt, since choosing Personalise already answers "do you want to reply to anyone properly" — asking again would be redundant. Because tapping Personalise *is* entering Conversations, the two are one door, not two. The gate prompt only appears after **Send**: **"Want to reply to anyone properly?"** with a "Not now" option alongside Personalise itself as the other path forward. "Not now" skips straight to the Reconnected screen and back to Home — completing Reconnect with just the instant message, and no further personalising, is fully valid, nothing is forced.
 
 ### Instant message status label
 
