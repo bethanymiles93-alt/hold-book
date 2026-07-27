@@ -29,6 +29,7 @@ Hold should aim for WCAG 2.2 AA where applicable and test beyond compliance with
 - Short paragraphs
 - Destructive actions separated from primary actions
 - Recipient selection reversible and visible
+- Native autocorrect, spellcheck and predictive text always enabled on every message input, exactly like composing a normal text — never a custom or stripped-down keyboard. This is an accessibility requirement, not just parity: cognitive fog, fatigue, ADHD and medication effects are common among Hold's users, and native input assistance lowers composition effort
 
 ## Sources
 
