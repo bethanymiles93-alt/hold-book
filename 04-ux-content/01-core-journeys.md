@@ -158,6 +158,8 @@ Available both as where Reconnect leads and as a standalone destination at any t
 
 **Status label evolves over time, not a single frozen state:** immediately after sending, the label reads "Instant message sent." From the next calendar day onward, it changes to show the actual date instead (e.g. "Sent 26 Jul") — "sent" alone becomes ambiguous the longer Taking Time continues, but is perfectly clear in the moment it happens.
 
+**Sent is reopenable, not a permanent lock:** tapping a sent Circle's pill (or, when "All" is fully sent, the shared "Sent to everyone" summary in its place) reopens the same message box and Send action for another round, rather than leaving no way to message that Circle or everyone again for the rest of the Conversations session. A repeat send updates the status label's timestamp to the new send.
+
 ### Dropdown 2 — Personalise / Conversations
 
 Contains: anyone unticked out of a Quick message group, anyone added via "+ Add person," and is also the standalone destination reachable independent of having gone quiet at all — someone can open it because they have one hard message to reply to, with nothing else required first.
