@@ -65,21 +65,39 @@ The **icon** is what should change: not a literal house glyph, which is a generi
 
 **Corrected:** not a single About screen with headed sub-sections — the hamburger opens a panel where each item is its own row, tapped through to its own screen. "Our Mission" (renamed from the generic "About") is one row among several, not the container for the others.
 
-Panel order:
+**Panel order, grouped by purpose rather than one flat list — revised from the original Mission-first order** (see `08-decisions/01-decision-log.md`): someone opening this menu while unwell is usually here to do something practical, not to read about the app's values, so task-oriented content leads and browsing/values content follows. Groups are separated by spacing alone, with no visible heading text — only the final group gets a divider line above it, since it's genuinely lower-priority legal/data reference rather than daily-use items.
 
-1. **Our Mission** — values and privacy-values messaging in Hold's own voice, including the fuller version of "no one should be judged by their illness or its limitations"
-2. **Hold+** — also present as its own persistent top-bar element (see "Hold+ visibility" below); this is a second access point, not a replacement for it
-3. **Manage Circles**
-4. **Notifications**
-5. **Connected Accounts**
+**Manage Hold**
+
+1. **Manage Circles**
+2. **Notifications**
+3. **Language**
+4. **Connected Accounts**
+
+**About Hold**
+
+5. **Our Mission** — values and privacy-values messaging in Hold's own voice, including the fuller version of "no one should be judged by their illness or its limitations"
 6. **Research** — the evidence base behind Hold's design and safety approach (accessibility research, safeguarding evidence, icon/label findings, and the lived-experience guilt-spiral/supportive-language research that shaped Hold's voice — see `02-research/`), surfaced honestly rather than left as internal documentation only. Can state plainly that Hold looked to the lived experience of people who deal with the guilt spiral when designing how it speaks: gentle, short, genuine statements that validate; permission without pressure or commentary.
-7. **Feedback**
-8. **Share** — invite someone else to Hold
+7. **Hold+** — also present as its own persistent top-bar element (see "Hold+ visibility" below); this is a second access point, not a replacement for it
 
-— visually separated (spacing or a divider), lower-priority legal reference rather than daily-use items —
+**Support**
 
-9. **Privacy Policy** (link)
-10. **Terms** (link)
+8. **Feedback**
+9. **Share Hold** — invite someone else to Hold
+
+— divider line above this group only, since it's lower-priority legal/data reference rather than daily-use items —
+
+**Legal and data**
+
+10. **Privacy Policy** (link)
+11. **Terms** (link)
+12. **Delete my data** — wipes every saved Circle, Hold history entry, in-progress reply, Conversations list, and saved template from the device; not part of the original panel spec, added here since it needed a home somewhere reachable
+
+**Spacing intent between groups:** the gap between About Hold and Support is the single largest in the panel — the one real section break, between values/browsing content and the practical Support rows beneath it. Manage Hold → About Hold and Support → the Legal and data divider use the same, smaller gap as each other; none of the group spacing relies on a visible heading label, only breathing room (and, for the last group only, the divider line itself) to read as distinct sections.
+
+**No icons in the drawer, deliberately, for now.** Considered and deferred rather than omitted by default — the same icon-plus-label accessibility reasoning used for the three bottom-nav tabs (`02-research/04-accessibility.md`: a familiar icon plus a short word lowers recognition effort versus text alone) would apply here too, but a dozen rows each needing a distinct, legible glyph is a meaningfully bigger design task than three tab icons, and plain text rows are already fully clear on their own. Worth revisiting once the drawer's contents settle, not a closed door.
+
+**"Delete my data" uses a darker, muted red**, not the same red used for Circle-deletion/Hold-history confirms at their usual size and weight — the same destructive signal (this is the one truly irreversible action in the drawer) toned down for a passive row label sitting among plain-text rows, rather than an active confirm button, so it doesn't read as more alarming than the rest of the calm panel around it. See `05-design-system/02-colour-and-typography.md` for the derivation.
 
 Bottom nav stays at three items — Home, Library, History. Settings deliberately does not become a fourth bottom tab, even though some reference apps (e.g. Balance) use an Account tab. Circles were already moved out of the bottom nav specifically because they're occasional maintenance rather than a reason someone opens the app; Settings sits in that same category, so it stays behind the corner icon rather than gaining equal billing with Home, Library and History.
 

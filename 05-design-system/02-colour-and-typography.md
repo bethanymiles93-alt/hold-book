@@ -52,6 +52,10 @@ Used on Circle-picker pills and equivalent selectable cards:
 
 Keep the palette restrained — primary fill, soft fill, border, outline is enough vocabulary; adding more shades of green reduces clarity rather than adding it.
 
+## Destructive/error colour in a passive label context
+
+The app's error/destructive red is used for active confirm actions (Circle deletion, Hold history entry deletion) at their usual size and weight. Applied to a passive row label sitting among plain-text rows — the Settings drawer's "Delete my data" — the same hex read as more alarming than intended, simply by being the only coloured text in an otherwise calm, monochrome list. Resolved by deriving a darker, calmer shade from the existing token rather than inventing a new one: the error colour blended roughly 85/15 toward the body text colour (an initial 70/30 blend on-device read as too close to brown/grey — barely red — so the ratio was lightened back up). Still clearly identifiable as red at a glance (never drifts toward the app's cool green/sage palette, which would blur the destructive signal), just toned down enough to sit quietly until actually needed.
+
 ## Typography criteria
 
 Choose a typeface that:
