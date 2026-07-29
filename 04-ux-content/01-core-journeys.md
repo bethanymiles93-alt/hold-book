@@ -43,15 +43,18 @@ Four emotionally distinct stages, kept separate on purpose:
 ### Emotional goal
 "I am safe here. I do not need to catch up."
 
-### Three home states
+### Four home states
 
 | State | Main action | Secondary action |
 |---|---|---|
 | Normal | Going Quiet | — |
 | Taking Time | Reconnect | Send an update |
+| Reconnecting | Continue reconnecting | — |
 | Post-Reconnect | Finish Reconnecting | Start a New Quiet Session |
 
-**Post-Reconnect** appears when the user has entered Conversations but hasn't yet addressed everyone on the list (whether by Quick message or Personalise). It does not reset to Normal. Supporting copy: "Continue where you left off," optionally with progress ("2 of 5 replies sent"). Never use "outstanding," "incomplete," "overdue," "pending," or "you still need to."
+**Reconnecting** (new, added with Reconnect's multi-select/completion-gate rewrite) appears when Reconnect's coverage gate hasn't been satisfied yet — whether the user just navigated away mid-session or force-quit and reopened the app. Resumes straight back into the picker, not a fresh start. Supporting copy mirrors Post-Reconnect's pattern: "Pick up where you left off," with progress ("2 of 5 reached") when available.
+
+**Post-Reconnect** appears once the coverage gate is satisfied and the user has entered Conversations but hasn't yet addressed everyone on the list (whether by Quick message or Personalise). It does not reset to Normal. Supporting copy: "Continue where you left off," optionally with progress ("2 of 5 replies sent"). Never use "outstanding," "incomplete," "overdue," "pending," or "you still need to."
 
 The **Conversations** destination is separate from Post-Reconnect and always available, independent of whether the user has gone quiet at all — it's for getting help with a specific reply at any time, not only after a Hold journey.
 
@@ -132,27 +135,27 @@ A future, optional gentle nudge may appear after a long quiet period: "You've be
 
 ### Audience
 
-Reconnect persists the audience chosen at Going Quiet by default — there is no full re-pick screen. The user can still:
-- remove someone already dealt with (e.g. spoken to on the phone)
-- add someone new (e.g. someone who messaged while the user was away)
-- expand to the full Circle — a bulk option to include everyone in the original Circle, not just the subset who received the Going Quiet message, for when the user wants to reconnect more broadly than the persisted list
+Reconnect persists the audience chosen at Going Quiet by default — there is no full re-pick screen. The user can still add someone new (e.g. someone who messaged while the user was away, via "Add to Going Quiet"); the full audience — every Circle and every ungrouped individual — is what the picker below reflects.
 
-Hold keeps account of who still needs a reply; this list is what Conversations reflects.
+**Revised: no separate "remove someone already dealt with" escape hatch.** The completion gate below requires everyone in the audience to be reached by an instant message at least once before Reconnect's second stage unlocks — there's no way to mark someone as handled outside Hold (e.g. a phone call) and skip them. This supersedes the earlier allowance; flagged here since it's a real capability loss, not just a rewording, in case it needs revisiting.
 
-### Reconnect screen — three actions, Conversations hidden until triggered
+### Reconnect screen — multi-select picker with a completion gate
 
-The Reconnect screen (labelled "Reconnect," since tapping the Reconnect button brought the person here) opens with the message ready and exactly three actions:
-- **Send** — sends the instant message to the current selection.
-- **Edit** — basic in-place edits to the template text, without leaving the screen.
-- **Personalise** — leads into Conversations (below) for a fuller, per-person reply.
+Replaces the previous three-action (Send/Edit/Personalise) single-audience-box screen. Structure:
 
-**Conversations does not appear on this screen until something has actually happened** — either an instant message has been sent, or Personalise has been tapped. Before that, the screen is just Reconnect: message, Send, Edit, Personalise. This avoids showing two routes to the same place at once (Personalise and a visible Conversations section would be redundant), and protects the calm default view.
+1. **Picker**: "All" plus one pill per Circle and one pill per ungrouped individual, in one horizontal scrollable row — the same multi-select + All pattern used throughout the app (Going Quiet's Circle picker, Taking Time's "Send an update"). Can select everyone, a subset, or narrow down to just one person.
+2. **One shared message box** for whichever are currently selected.
+3. **Send** — sends the message to the current selection; each just-reached Circle/individual's pill switches to the existing sent/checkmark treatment in place. Repeatable across as many separate sends as needed to reach everyone.
+4. **Coverage gate**: until every Circle and every ungrouped individual has been reached at least once (a plain "X of Y reached" line makes progress visible), the picker/box/Send loop is the only thing on screen — no Personalise, no "want to reply properly," nothing else competing for attention before the essential thing is actually done.
+5. **Once fully covered**: "Want to reply to anyone properly?" → **Personalise** (leads into Conversations, unchanged) / **Not now** (returns to Home, unchanged — see below). Also newly unlocked here: **"Turn off out-of-office"** and **"Clear my status,"** shown only if either was turned on at Going Quiet's "Done" step. Both are currently mocked, symmetric to how activation itself is mocked — no real email/social provider integration exists yet.
 
-**Resolved — the gate is Send-only.** Tapping Personalise goes straight into Conversations with no intermediate prompt, since choosing Personalise already answers "do you want to reply to anyone properly" — asking again would be redundant. Because tapping Personalise *is* entering Conversations, the two are one door, not two. The gate prompt only appears after **Send**: **"Want to reply to anyone properly?"** with a "Not now" option alongside Personalise itself as the other path forward. **"Not now" returns to Home, not straight to Reconnected** (build-time correction of stale text below): the instant message alone doesn't mark anyone in Conversations complete, so Home resolves to its own Post-Reconnect state ("Finish Reconnecting" available whenever the user's ready) rather than a forced acknowledgment. Completing Reconnect with just the instant message, and no further personalising, is still fully valid, nothing is forced — it just means Conversations stays open rather than being declared done on the user's behalf. Reconnected only ever fires from Conversations/Library's own completion check, once every person on the list is actually addressed within an active Reconnect journey — matching the "Reconnected (Conversations complete → Home)" description in the overview above, which this paragraph previously contradicted.
+**"Not now" still returns to Home, not straight to Reconnected**, unchanged from the prior resolution: the instant messages alone don't mark anyone in Conversations complete, so Home resolves to Post-Reconnect ("Finish Reconnecting" available) rather than a forced acknowledgment. Reconnected only ever fires from Conversations/Library's own completion check.
+
+**Force-quit resilience, by design, not an afterthought.** Coverage (who's been reached) is stored on the Hold period record itself, not just in-memory app state — closing the app mid-Reconnect and reopening resumes exactly where it left off, with Home showing "Continue reconnecting" (with the same "X of Y reached" line) rather than a misleading Normal state. See `docs/03-privacy-model.md` for what's stored and why.
 
 ### Instant message status label
 
-Immediately after sending: **"Sent. They know you're thinking of them."** — brief and warm, stating what was achieved for the relationship without praising the person or naming their psychology (per the governing voice principle in `04-ux-content/02-voice-and-language.md`). From the next calendar day onward, the label becomes the actual date instead (e.g. "Sent 26 Jul"), since "sent" alone goes ambiguous the longer Taking Time continues.
+Each reached Circle/individual's pill switches to the same in-place sent/checkmark treatment already used in Library's Quick message and Taking Time's update screen (desaturated fill, checkmark, name) — no separate full-screen status label, since the picker itself is always showing current state rather than a single one-shot confirmation.
 
 ## Conversations
 

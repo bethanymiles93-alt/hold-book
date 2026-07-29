@@ -27,8 +27,10 @@
 - Optional "Add to Going Quiet" for a new contact messaging while away
 
 ### Reconnect
-- Persist audience from Going Quiet by default; allow add/remove per person
-- Single-tap action (no upfront choice screen) — leads directly into Conversations
+- Persist audience from Going Quiet by default; allow adding a new person (e.g. via "Add to Going Quiet")
+- Single-tap action (no upfront choice screen) — leads directly into a multi-select "All" + per-Circle/per-individual picker sharing one message box
+- Completion gate: everyone in the audience must be reached at least once, across as many separate sends as needed, before Personalise/"Not now" and the OOO/status-off controls unlock
+- Coverage persists durably (survives force-quit), not just in memory — Home resumes an interrupted session in place rather than losing track of who's been reached
 - No overdue language
 
 ### Conversations
