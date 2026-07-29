@@ -92,8 +92,8 @@ Hold exists to reduce emotional burden, not create financial burden. Pricing sho
 
 ## Ethical access options
 
-- 7–14 day trial rather than a very short, high-pressure trial
-- Clear reminder before trial conversion
+**No free trial, deliberately** (see `08-decisions/01-decision-log.md`) — the free tier is already generous enough (full journey, unlimited Circles/History/Library, basic Patterns, a shared AI allowance, and the GP/clinician PDF export available free-tier too) that someone can fully evaluate whether Hold works for them before Hold+ is even relevant. A trial isn't needed to unlock basic access the way it would be for a normally-gated product.
+
 - One-tap cancellation route
 - Scholarship or sponsored access
 - Regional pricing where supported
