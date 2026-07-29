@@ -14,17 +14,16 @@
 - Do not upload the full address book by default
 
 ### Going Quiet
-- Select one or more Circles (inline setup, not separate onboarding)
-- Select intent or write from scratch
-- Generate or choose a draft
-- Edit
-- Preview recipients and final text
+- One single screen, no separate Review step — select one or more Circles (inline setup, not separate onboarding), select intent or write from scratch, generate or choose a draft, edit
+- Per-Circle, per-person include/exclude/remove via a selection-circle control, matching Home's main action-circle visual language
+- Personalise routes an excluded person to Conversations instead of an inline compose, seeded only once Send fires
+- Send fires the group and individual instant messages together and starts Taking Time; email out-of-office and wider-world status appear after Send as an optional unwind, not before it
 - Share through native share sheet
-- Calm completion state — nothing else to do afterwards
+- Calm completion state — one explicit final action ("Done"), nothing automatic
 
 ### Taking Time
 - Calm resting state; no default reminder to reconnect
-- Optional "Send an update" to reassure Circles without ending Taking Time
+- Optional "Send an update" to reassure Circles without ending Taking Time — multi-select Circle chip row, one shared message box, per-Circle sent state persisting for the current Taking Time period only
 - Optional "Add to Going Quiet" for a new contact messaging while away
 
 ### Reconnect
