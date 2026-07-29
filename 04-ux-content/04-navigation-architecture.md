@@ -78,7 +78,7 @@ The **icon** is what should change: not a literal house glyph, which is a generi
 
 5. **Our Mission** — values and privacy-values messaging in Hold's own voice, including the fuller version of "no one should be judged by their illness or its limitations"
 6. **Research** — the evidence base behind Hold's design and safety approach (accessibility research, safeguarding evidence, icon/label findings, and the lived-experience guilt-spiral/supportive-language research that shaped Hold's voice — see `02-research/`), surfaced honestly rather than left as internal documentation only. Can state plainly that Hold looked to the lived experience of people who deal with the guilt spiral when designing how it speaks: gentle, short, genuine statements that validate; permission without pressure or commentary.
-7. **Hold+** — also present as its own persistent top-bar element (see "Hold+ visibility" below); this is a second access point, not a replacement for it
+7. **Hold+** — see "Hold+ visibility" below for its other access point (Patterns' contextual surfacing)
 
 **Support**
 
@@ -93,7 +93,7 @@ The **icon** is what should change: not a literal house glyph, which is a generi
 11. **Terms** (link)
 12. **Delete my data** — wipes every saved Circle, Hold history entry, in-progress reply, Conversations list, and saved template from the device; not part of the original panel spec, added here since it needed a home somewhere reachable
 
-**Spacing intent between groups:** the gap between About Hold and Support is the single largest in the panel — the one real section break, between values/browsing content and the practical Support rows beneath it. Manage Hold → About Hold and Support → the Legal and data divider use the same, smaller gap as each other; none of the group spacing relies on a visible heading label, only breathing room (and, for the last group only, the divider line itself) to read as distinct sections.
+**Spacing intent between groups:** Feedback/Share and Legal and data move together as one bottom-anchored block, pinned to the panel's bottom edge (mirroring the top padding above Manage Circles) rather than trailing at a fixed distance below About Hold. The single largest gap in the panel sits above that whole block — the one real section break, between values/browsing content (Manage Hold, About Hold) and the practical, occasional-use rows below (Feedback/Share, then the divider, then Legal and data). None of the group spacing relies on a visible heading label, only breathing room (and, for the last group only, the divider line itself) to read as distinct sections.
 
 **No icons in the drawer, deliberately, for now.** Considered and deferred rather than omitted by default — the same icon-plus-label accessibility reasoning used for the three bottom-nav tabs (`02-research/04-accessibility.md`: a familiar icon plus a short word lowers recognition effort versus text alone) would apply here too, but a dozen rows each needing a distinct, legible glyph is a meaningfully bigger design task than three tab icons, and plain text rows are already fully clear on their own. Worth revisiting once the drawer's contents settle, not a closed door.
 
@@ -103,11 +103,17 @@ Bottom nav stays at three items — Home, Library, History. Settings deliberatel
 
 ## Hold+ visibility
 
-Two access points, not one: a row inside the Settings panel (above), and its own small, persistent, quiet element in the top bar, separate from the hamburger/Settings icon — reachable in one tap without opening the drawer first.
+**Revised: no persistent top-bar element.** A standing visual element in the top bar — even styled quietly — reads as ongoing pressure/visual noise, inconsistent with Hold's "held, not managed" tone. Supersedes the earlier two-access-point wording (see `08-decisions/01-decision-log.md`).
+
+Two access points instead, both reaching the same destination:
+
+- The Settings drawer's Hold+ row (above).
+- Contextual surfacing at natural moments — currently the Patterns screen's "More with Hold+" section, shown below the free stats as an additive invitation ("here's more depth if it'd help you"), never a locked or greyed-out preview — see `03-product/04-patterns.md`.
+
+Both now route to a concrete destination, `app/settings/hold-plus.tsx`: an honest info screen built from `07-business/02-pricing-principles.md`'s real content (free tier, what Hold+ would add, Founding Member pricing, fair-access commitments), closing with a plain "not open for purchase yet" note rather than a working purchase flow, since no entitlement/billing system exists yet.
 
 - Never a banner, modal, or interruption to the core journey (already established in `07-business/02-pricing-principles.md`).
-- Present from the start, but may be styled slightly more noticeably in the first period after signup and then settle into a permanently quiet, low-key presence — visible the whole time, never pushed.
-- Tapping it goes straight to the Hold+ offer, not into a general Settings/About screen first.
+- Never framed as urgency or a countdown — an invitation, not a wall.
 
 ## Circle setup
 

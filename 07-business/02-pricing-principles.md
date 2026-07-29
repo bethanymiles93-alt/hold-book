@@ -46,10 +46,15 @@ Usage here is episodic rather than habitual (an active quiet-and-reconnect perio
 - Unlimited AI-assisted drafting
 - AI personalisation (learning writing style, using saved messages as context, relationship-aware drafting) — see `03-product/05-roadmap.md` for the privacy consideration this raises; not yet fully scoped
 - Richer Patterns (seasonal trends, recurring timing, health-note correlations, longer-term summaries)
-- Export — raw data export is free for everyone, always (see `03-product/04-patterns.md`); the formatted GP/clinician PDF report is £3.99 as a one-time, non-subscription purchase — treated as a first-class part of the monetisation strategy, not a minor add-on, since it targets a sharp, high-motivation need that doesn't require an annual commitment
 - Optional encrypted sync, multi-device use (future) — covers Hold's own data only (Circles, Library/templates, History, Patterns, settings) so it's available on a second device. Does not sync email/health app connections themselves — those are external OAuth/permission grants (Gmail, Outlook, HealthKit, Health Connect) that each device authenticates to independently; Hold doesn't hold or relay those credentials between devices.
 
 **Deliberately not monetised:** Trusted Contact (`03-product/05-roadmap.md`), if built at all, stays free and separate from the subscription conversation entirely. Charging for a feature that gives one person visibility into another's status — even scoped narrowly to status-only, revocable, opt-in — risks Hold appearing to profit from something adjacent to surveillance. Not worth the trade-off for the revenue it would add.
+
+### One-time purchases, available to everyone
+
+Not gated behind Hold+ — purchasable by free-tier users too, independent of any subscription:
+
+- **Formatted GP/clinician PDF export** — raw data export is free for everyone, always (see `03-product/04-patterns.md`); the formatted PDF report is £3.99 as a one-time, non-subscription purchase, available whether or not someone is a Hold+ subscriber — treated as a first-class part of the monetisation strategy, not a minor add-on, since it targets a sharp, high-motivation need that doesn't require an annual commitment. Was previously listed under the Hold+ feature list above, which wrongly implied it was subscription-gated; moved here to make the distinction explicit.
 
 ### Notifications/reminders — resolved
 
@@ -96,12 +101,14 @@ Hold exists to reduce emotional burden, not create financial burden. Pricing sho
 
 ## The paywall/upgrade moment
 
-**Not yet specified anywhere else in this book** — pricing tiers exist, but no screen or trigger point for actually reaching them has been described.
+**Built, though without a working purchase flow yet** — no entitlement/billing system exists in the app. The destination is an honest Hold+ info screen (`app/settings/hold-plus.tsx`) built from this document's real content: what's free, what Hold+ would add, the Founding Member pricing table, and the fair-access commitments below, closing with a plain "not open for purchase yet" note. No fake Subscribe button — building one would invent a purchase flow this book doesn't actually specify.
 
 Principle: Hold+ should be discoverable, not interruptive. No forced upsell modal blocking the core Going Quiet/Taking Time/Reconnect journey — someone in the middle of going quiet should never hit a paywall.
 
-Natural discovery points instead:
-- A quiet, dismissible mention at the edge of a screen where a Free-tier limit is genuinely reached (e.g. the AI reply allowance for the month) — the limit message itself should state what happened plainly ("You've used your AI replies for this month") without urgency framing, then offer Hold+ as an option, not a requirement, with a way to continue unassisted.
-- A small, persistent Hold+ element in the top bar, separate from the About/Settings icon — see "Hold+ visibility" in `04-ux-content/04-navigation-architecture.md` — reachable in one tap, always present, never a banner or interruption.
+Two access points reach the info screen, both covered in "Hold+ visibility" in `04-ux-content/04-navigation-architecture.md`:
+- The Settings drawer's Hold+ row.
+- Contextual surfacing at natural moments — currently the Patterns screen's "More with Hold+" section, an additive invitation shown below the free stats rather than a locked or greyed-out preview (see `03-product/04-patterns.md`). A quiet, dismissible mention where a Free-tier limit is genuinely reached (e.g. the AI reply allowance for the month) remains a natural future discovery point too, once that limit exists.
 
-No countdown timers, no "you're missing out" framing, no interstitial that appears uninvited during the core journey.
+**No standing persistent top-bar element.** Considered and dropped — a permanently visible Hold+ badge in the top bar reads as ongoing pressure/visual noise, inconsistent with Hold's "held, not managed" tone, even styled quietly. See `08-decisions/01-decision-log.md`.
+
+No countdown timers, no "you're missing out" framing, no interstitial that appears uninvited during the core journey, and no locked/greyed-out data — someone should never feel Hold is withholding their own information from them.
