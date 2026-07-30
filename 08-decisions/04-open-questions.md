@@ -48,3 +48,5 @@ Not previously specified at this level of detail. One proposal: organise by Circ
 ## Exact free-tier AI allowance
 
 `07-business/02-pricing-principles.md` treats 10–20 AI-assisted drafts/month as a working assumption, not a tested figure. **Not yet decided precisely** — should be set from real usage data (actual API cost per draft, actual distribution of how often free users need AI help) once available, not guessed permanently in a design conversation. The *principle* is decided (one shared monthly pool, generous, episodic usage keeps average cost low); the *number* isn't.
+
+**Now technically enforced, still a placeholder:** the AI proxy (`worker/`) implements this as a real cap — 20/month, the upper end of the working range — configurable via a plain Worker variable (`FREE_MONTHLY_DRAFT_LIMIT` in `wrangler.toml`), not hardcoded into application logic. Enforcing *something* from day one was necessary for cost safety; this doesn't mean 20 is the resolved answer, just the current placeholder value in a config field that's trivial to change once real data exists.
