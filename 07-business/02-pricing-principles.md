@@ -44,7 +44,9 @@ Usage here is episodic rather than habitual (an active quiet-and-reconnect perio
 ### Hold+
 
 - Unlimited AI-assisted drafting
-- AI personalisation (learning writing style, using saved messages as context, relationship-aware drafting) — see `03-product/05-roadmap.md` for the privacy consideration this raises; not yet fully scoped
+- **Built:** "Amend with AI" — a light-touch blend, not a from-scratch regenerate. Below the message box on Going Quiet, Reconnect, Taking Time's update, and Personalise/Conversations, an open prompt ("What's going on, if you want to share?") lets the model edit only what new context requires, keeping the rest of what's already in the box. See `04-ux-content/01-core-journeys.md`, "Amend with AI," and `06-privacy-security/02-ai-boundaries.md` for the mechanics.
+- **Built:** AI memory, a separate two-layer opt-in — a standing "Remember helpful details" toggle (off by default, set in the Hold+ area, never an in-the-moment prompt), which lets the model quietly note a short detail while amending and offer it back later, during Taking Time or Reconnect, as a dismissible "Use it" / "Don't remember" suggestion. See `docs/03-privacy-model.md` (in `hold-app`) for the full consent/retention model.
+- **Not yet built:** the broader "learning writing style, relationship-aware drafting" idea from the original roadmap cluster — see `03-product/05-roadmap.md` for the privacy consideration this still raises; distinct from, and larger than, the two features above
 - Richer Patterns (seasonal trends, recurring timing, health-note correlations, longer-term summaries)
 - Optional encrypted sync, multi-device use (future) — covers Hold's own data only (Circles, Library/templates, History, Patterns, settings) so it's available on a second device. Does not sync email/health app connections themselves — those are external OAuth/permission grants (Gmail, Outlook, HealthKit, Health Connect) that each device authenticates to independently; Hold doesn't hold or relay those credentials between devices.
 

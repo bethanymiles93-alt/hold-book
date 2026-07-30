@@ -30,6 +30,8 @@ This is where richer Patterns (`03-product/04-patterns.md`) actually gets built 
 
 ## AI personalisation — not yet decided
 
+**Note:** a narrower, distinct pair of features has since been built and shouldn't be confused with the ideas below — "Amend with AI" (a light-touch blend of typed context into an existing draft) and AI memory (an opt-in, two-layer "remember a detail, suggest it back later" feature). See `07-business/02-pricing-principles.md`'s Hold+ list and `04-ux-content/01-core-journeys.md`, "Amend with AI." Neither does writing-style learning, uses saved messages as ambient context, or varies drafting by relationship type — the ideas below remain genuinely unscoped.
+
 A cluster of related Hold+ ideas from parallel exploration, not yet reconciled with what's already in the pricing file:
 
 - AI that learns the user's writing style over time
