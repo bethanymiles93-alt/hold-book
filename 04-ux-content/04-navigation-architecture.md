@@ -51,7 +51,7 @@ Match Instagram's reference sizing for icon and label: compact, legible, not ove
 Selected pills carry a down-arrow to expand into a recipient box beneath the row — see the "Who needs to know?" step in `04-ux-content/01-core-journeys.md` for the full interaction, which deliberately mirrors Conversations' Tier 2 → Tier 3 dropdown so both screens share one expand-a-Circle pattern rather than two different mechanisms.
 
 - Close Circle stays first in the row and keeps its stronger fill/priority position, as already decided.
-- **"+ New Circle" sits outside the scrollable row entirely**, as a small round icon button (echoing Hold's circle motif — the same shape as the Home tab icon and main interaction circle), positioned at the right end of the "Who needs to know?" heading line rather than beside the pill row itself. This keeps the scrollable row purely about the Circles themselves, treats "+" as a heading-level action (a common pattern — a section title with an add-action at its end), and deliberately avoids two problems: putting "+" first inside the row (the Instagram Stories convention) would compete with Close Circle for the prime position; putting it last inside the row means someone with many Circles has to scroll the whole row to find it, undermining the "adding a Circle shouldn't feel like labour" principle from Going Quiet. Fixed, above the row, and always visible resolves both without stranding it awkwardly next to a horizontal scroll.
+- **Revised — "+ New Circle" is pinned inside the row, right after "All," not a heading-level icon button.** "All," then "+ New Circle," then the named-Circle pills, all reading as one continuous line — only the named-Circle portion actually scrolls; "All" and "+ New Circle" stay fixed in place ahead of it. This supersedes the earlier heading-icon-button placement below, which was never actually built that way and had drifted from real product direction. Your Circles (Settings) is the screen that now uses the heading-level "+" icon-button pattern instead, since it has its own title/header bar that Going Quiet's inline "Who needs to know?" step doesn't.
 - Where content extends beyond the visible row, the last visible pill should be **partially cut off at the edge**, not a hard stop — a visible cue that more exists to scroll to, rather than the row appearing to simply end.
 - "Manage your Circles" stays a separate line beneath the picker, unaffected by this layout change.
 
@@ -69,7 +69,7 @@ The **icon** is what should change: not a literal house glyph, which is a generi
 
 **Manage Hold**
 
-1. **Manage Circles**
+1. **Your Circles**
 2. **Notifications**
 3. **Language**
 4. **Connected Accounts**
@@ -93,7 +93,7 @@ The **icon** is what should change: not a literal house glyph, which is a generi
 11. **Terms** (link)
 12. **Delete my data** — wipes every saved Circle, Hold history entry, in-progress reply, Conversations list, and saved template from the device; not part of the original panel spec, added here since it needed a home somewhere reachable
 
-**Spacing intent between groups:** Feedback/Share and Legal and data move together as one bottom-anchored block, pinned to the panel's bottom edge (mirroring the top padding above Manage Circles) rather than trailing at a fixed distance below About Hold. The single largest gap in the panel sits above that whole block — the one real section break, between values/browsing content (Manage Hold, About Hold) and the practical, occasional-use rows below (Feedback/Share, then the divider, then Legal and data). None of the group spacing relies on a visible heading label, only breathing room (and, for the last group only, the divider line itself) to read as distinct sections.
+**Spacing intent between groups:** Feedback/Share and Legal and data move together as one bottom-anchored block, pinned to the panel's bottom edge (mirroring the top padding above Your Circles) rather than trailing at a fixed distance below About Hold. The single largest gap in the panel sits above that whole block — the one real section break, between values/browsing content (Manage Hold, About Hold) and the practical, occasional-use rows below (Feedback/Share, then the divider, then Legal and data). None of the group spacing relies on a visible heading label, only breathing room (and, for the last group only, the divider line itself) to read as distinct sections.
 
 **No icons in the drawer, deliberately, for now.** Considered and deferred rather than omitted by default — the same icon-plus-label accessibility reasoning used for the three bottom-nav tabs (`02-research/04-accessibility.md`: a familiar icon plus a short word lowers recognition effort versus text alone) would apply here too, but a dozen rows each needing a distinct, legible glyph is a meaningfully bigger design task than three tab icons, and plain text rows are already fully clear on their own. Worth revisiting once the drawer's contents settle, not a closed door.
 
@@ -135,6 +135,8 @@ A user opens Library because they need help communicating; Conversations is what
 ## Circle category names — used as template categories, not literal Circle names
 
 ChatGPT-side work proposed named Circles with emoji: Core Circle, Friends, Care, Professional, Community. **Decided:** the emoji don't fit Hold's calm, non-whimsical visual language (see `05-design-system/01-design-direction.md`). The category *names* themselves are good, though — not as fixed Circle names (the user's own Circles like "Close Circle," "Book Club" stay user-defined and freeform), but as good starting-point categories for templates inside Library — e.g. a default set of email/message templates organised under Core Circle / Friends / Care / Professional / Community headings, that the user can adapt to whatever they've actually named their own Circles.
+
+**Status: unbuilt roadmap item, confirmed not in current scope.** Library today only has per-Circle saved template defaults (a message becomes that specific Circle's own default after first use) — no separate, pre-populated category-based starter template set exists yet. Per-Circle saved defaults already cover the practical need this was meant to solve; revisit if a genuinely first-run, before-any-Circle-exists starting point turns out to be needed.
 
 ## The Transition screen
 

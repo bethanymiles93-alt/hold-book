@@ -10,7 +10,7 @@
 
 ### Hold Circle
 - Create, edit and delete circles
-- Add contacts manually or through permission-based selection
+- Add contacts through permission-based selection (the native contacts picker) — confirmed as the sole entry path; no separate manual name/phone-number form, since the contacts picker alone already covers the practical need
 - Do not upload the full address book by default
 
 ### Going Quiet
