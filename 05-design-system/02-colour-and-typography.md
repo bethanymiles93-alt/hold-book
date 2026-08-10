@@ -81,7 +81,7 @@ Choose a typeface that:
 
 **Found too large and clunky on first build.** Only two things should read as large: screen titles (e.g. "Going quiet," "Reconnect" on Home) and primary action buttons. Everything else — body copy, input boxes, option labels, secondary text — should sit closer to the compact, dense scale used in Instagram and Gmail, not scaled up to match the titles.
 
-- **Large (titles, primary buttons only):** the Home screen's circle header ("Going quiet"/"Reconnect"), and the main action button per screen.
+- **Large (titles, primary buttons only):** the Home screen's circle header ("Going quiet"/"Reconnect"/"Taking time"), and the main action button per screen. "Taking time" specifically was corrected back up to this tier (2026-08-10) after reading as too small/tucked-away for a state that's meant to read as a deliberate, held state, not an incidental label — see the decision log for why this reopens the ~17pt figure decision 136 set for it.
 - **Compact (everything else):** body paragraphs, message text boxes, option list labels and their descriptions, input fields, secondary buttons. This should visually read closer to a standard iOS system font size (roughly 15–17pt equivalent) than the larger, heavier weight currently used throughout — compare directly against Instagram or Gmail's own text sizing as the target density, not against Hold's current build.
 
 This applies globally across the app, not just specific screens flagged in review — the whole component library (option cards, message boxes, buttons other than the two primary ones) should be audited against this, not patched screen by screen.
