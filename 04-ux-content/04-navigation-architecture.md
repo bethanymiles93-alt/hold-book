@@ -139,12 +139,6 @@ Templates build up naturally over time: whenever the user edits an AI draft or w
 
 A user opens Library because they need help communicating; Conversations is what they find immediately, Templates is what supports that once they're there.
 
-## Circle category names — used as template categories, not literal Circle names
-
-ChatGPT-side work proposed named Circles with emoji: Core Circle, Friends, Care, Professional, Community. **Decided:** the emoji don't fit Hold's calm, non-whimsical visual language (see `05-design-system/01-design-direction.md`). The category *names* themselves are good, though — not as fixed Circle names (the user's own Circles like "Close," "Book Club" stay user-defined and freeform), but as good starting-point categories for templates inside Library — e.g. a default set of email/message templates organised under Core Circle / Friends / Care / Professional / Community headings, that the user can adapt to whatever they've actually named their own Circles.
-
-**Status: unbuilt roadmap item, confirmed not in current scope.** Library today only has per-Circle saved template defaults (a message becomes that specific Circle's own default after first use) — no separate, pre-populated category-based starter template set exists yet. Per-Circle saved defaults already cover the practical need this was meant to solve; revisit if a genuinely first-run, before-any-Circle-exists starting point turns out to be needed.
-
 ## The Transition screen
 
 ChatGPT-side proposal: a brief screen between Going Quiet and Taking Time, with quiet, non-cheerful reassurance copy ("You've taken the first step... Taking time to recover isn't selfish. You don't need to earn rest.") before "Begin Taking Time."
