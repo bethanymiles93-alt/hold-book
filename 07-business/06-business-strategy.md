@@ -68,9 +68,15 @@ Captures revenue at the single highest-motivation moment a free user is likely t
 
 ## Revenue realism check
 
-The ARR scenarios discussed earlier in this repository's history (roughly £5k conservative to £2M exceptional, depending on downloads and conversion) were reasoned before the free tier was this fully specified. Worth revisiting that lens now: the free tier turned out generous — unlimited History, unlimited templates, a shared monthly AI allowance, and now basic Patterns too — which is the right call for trust and word-of-mouth, but likely means a **lower conversion rate than a typical freemium app**, since fewer free users will hit a hard wall that forces the upgrade decision. Conversion is more likely to come from genuinely heavy users (frequent quiet periods, many Circles) and from specific high-value moments (the export feature above) than from volume caps doing the selling.
+The ARR scenarios discussed earlier in this repository's history (roughly £5k conservative to £2M exceptional, depending on downloads and conversion) were reasoned before the free tier was this fully specified, and before AI drafting moved fully behind Hold+. Worth revisiting that lens now, with two forces pulling in different directions rather than one clear signal:
 
-None of this changes the underlying case for the product — the problem is real, differentiated, and under-served by existing "wellness" or "productivity" framing — but the honest expectation should lean toward the conservative-to-modest end of the earlier scenarios unless and until real usage data says otherwise. Treat the ARR figures elsewhere in this repository as directional hypotheses, not commitments.
+**Toward higher conversion:** AI drafting was likely the single most-differentiated feature free users experienced. With it now fully paywalled, the free tier presents a harder, clearer wall than the "generous, low-pressure" free tier this document originally reasoned about — someone who wants AI help has no free path to it at all, which is a stronger conversion trigger than any volume cap.
+
+**Against higher conversion:** the same move reduces what free users get day-to-day, which cuts against the trust-and-word-of-mouth case this document also makes — free tier without AI is a less compelling thing to use regularly or recommend, which could shrink the pool of people who ever get far enough to consider paying.
+
+Which force dominates isn't resolvable from reasoning alone, and this document shouldn't pretend otherwise — it depends on real usage data this project doesn't have yet (how much people actually wanted AI vs. the rest of the free tier, how much referral was ever driven by it). Until that data exists, the honest expectation stays where it was: lean toward the conservative-to-modest end of the scenarios above, not toward a rosier read just because the wall got harder in one specific place.
+
+None of this changes the underlying case for the product — the problem is real, differentiated, and under-served by existing "wellness" or "productivity" framing — but the honest expectation should continue leaning conservative-to-modest unless and until real usage data says otherwise. Treat the ARR figures elsewhere in this repository as directional hypotheses, not commitments.
 
 ## Legal and compliance (cross-reference)
 
