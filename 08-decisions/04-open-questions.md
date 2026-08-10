@@ -45,11 +45,9 @@ What Hold says when the native share sheet fails/is cancelled, SMS isn't availab
 
 Not previously specified at this level of detail. One proposal: organise by Circle first, then by message stage within each Circle (Going Quiet / Reassurance / Reconnect / Conversations expanding inline under a Circle selector) — reasoning being that in practice someone thinks "I need my Work message" before they think "I need my Reconnect template." Alternative: organise by stage first, Circle second (the reverse). **Not yet decided** — worth resolving once the broader Library scope is picked back up, not urgent for the current MVP pass.
 
-## Exact free-tier AI allowance
+## Exact free-tier AI allowance — moot, superseded
 
-`07-business/02-pricing-principles.md` treats 10–20 AI-assisted drafts/month as a working assumption, not a tested figure. **Not yet decided precisely** — should be set from real usage data (actual API cost per draft, actual distribution of how often free users need AI help) once available, not guessed permanently in a design conversation. The *principle* is decided (one shared monthly pool, generous, episodic usage keeps average cost low); the *number* isn't.
-
-**Now technically enforced, still a placeholder:** the AI proxy (`worker/`) implements this as a real cap — 20/month, the upper end of the working range — configurable via a plain Worker variable (`FREE_MONTHLY_DRAFT_LIMIT` in `wrangler.toml`), not hardcoded into application logic. Enforcing *something* from day one was necessary for cost safety; this doesn't mean 20 is the resolved answer, just the current placeholder value in a config field that's trivial to change once real data exists.
+This question (what number to set a free monthly AI-drafting allowance at) no longer applies: AI-assisted drafting is now Hold+-only, with no free allowance at all. `draftService.ts` gates AI drafting behind Hold+ directly; the AI proxy's (`worker/`) monthly cap (`MONTHLY_DRAFT_SAFETY_CAP` in `wrangler.toml`, still 20/month) is now a blunt cost-safety backstop against abuse of the endpoint itself, not a user-facing allowance to size correctly. **The removed-free-tier decision itself — why, and what it means for Hold+'s positioning — isn't yet a logged decision-log entry; flagged here rather than written unilaterally.** `07-business/06-business-strategy.md`'s ARR/conversion reasoning still assumes the old free-AI-tier framing and needs its own dedicated re-think, not a mechanical edit.
 
 ## "Reset app" as a distinct action from "Delete my data"
 

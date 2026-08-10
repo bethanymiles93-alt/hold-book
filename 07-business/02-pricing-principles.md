@@ -22,11 +22,9 @@ This is the reasoning the free/paid split below is built on, not a separate cons
 - **Near-zero marginal cost:** SMS/share-sheet sending (native OS composer, not a paid API), Circles and contact storage, Quiet History, basic Patterns (simple arithmetic on stored dates), Library/template storage, Email out-of-office (low-cost official APIs).
 - **Real, usage-scaling cost:** AI-assisted drafting (Going Quiet, Reassurance, Reconnect and Conversations "AI Help," and any narrative Patterns text).
 
-Because almost everything is cheap to provide, the free tier should be generous everywhere except AI usage — that's the one feature genuinely worth metering, and the natural lever that makes Hold+ pay for its own heaviest users rather than an arbitrary collection of paywalled features.
+Because almost everything is cheap to provide, the free tier is generous everywhere except AI usage — AI-assisted drafting is Hold+-only, not metered-then-capped for free users, and is the natural lever that makes Hold+ pay for its own heaviest users rather than an arbitrary collection of paywalled features. (Historical note: an earlier version of this model gave free users a shared monthly AI allowance rather than excluding them from AI entirely — see `08-decisions/04-open-questions.md` for where that's tracked; the reasoning here reflects the current AI-is-Hold+-only state.)
 
-**AI allowance is one shared monthly pool**, not separate quotas per screen — simpler to understand ("you have 15 AI-assisted drafts this month") and simpler to control cost against than fragmenting it across Going Quiet/Reassurance/Reconnect/Conversations individually.
-
-Usage here is episodic rather than habitual (an active quiet-and-reconnect period, then likely zero for weeks), which keeps average cost per free user low even with a cap that feels generous in the moment — see `02-research/...` reasoning on low-capacity, non-daily-use design.
+Usage here is episodic rather than habitual (an active quiet-and-reconnect period, then likely zero for weeks), which keeps average AI cost per Hold+ subscriber low even relative to subscription price — see `02-research/...` reasoning on low-capacity, non-daily-use design.
 
 ## Suggested model
 
@@ -37,7 +35,6 @@ Usage here is episodic rather than habitual (an active quiet-and-reconnect perio
 - Quiet History, unlimited
 - Basic Patterns (see `03-product/04-patterns.md`)
 - Unlimited Library/template storage
-- A generous shared monthly AI-assisted drafting allowance (exact number to be set once real usage data exists — see `08-decisions/04-open-questions.md`; treat 10–20/month as the working assumption until tested)
 - Core accessibility and privacy controls
 - No essential safety feature paywalled (see `01-foundation/03-principles.md`)
 
@@ -94,7 +91,7 @@ Hold exists to reduce emotional burden, not create financial burden. Pricing sho
 
 ## Ethical access options
 
-**No free trial, deliberately** (see `08-decisions/01-decision-log.md`) — the free tier is already generous enough (full journey, unlimited Circles/History/Library, basic Patterns, a shared AI allowance, and the GP/clinician PDF export available free-tier too) that someone can fully evaluate whether Hold works for them before Hold+ is even relevant. A trial isn't needed to unlock basic access the way it would be for a normally-gated product.
+**No free trial, deliberately** (see `08-decisions/01-decision-log.md`) — the free tier is already generous enough (full journey, unlimited Circles/History/Library, basic Patterns, and the GP/clinician PDF export available free-tier too) that someone can fully evaluate whether Hold works for them before Hold+ is even relevant. A trial isn't needed to unlock basic access the way it would be for a normally-gated product.
 
 - One-tap cancellation route
 - Scholarship or sponsored access
@@ -109,7 +106,7 @@ Principle: Hold+ should be discoverable, not interruptive. No forced upsell moda
 
 Two access points reach the info screen, both covered in "Hold+ visibility" in `04-ux-content/04-navigation-architecture.md`:
 - The Settings drawer's Hold+ row.
-- Contextual surfacing at natural moments — currently the Patterns screen's "More with Hold+" section, an additive invitation shown below the free stats rather than a locked or greyed-out preview (see `03-product/04-patterns.md`). A quiet, dismissible mention where a Free-tier limit is genuinely reached (e.g. the AI reply allowance for the month) remains a natural future discovery point too, once that limit exists.
+- Contextual surfacing at natural moments — currently the Patterns screen's "More with Hold+" section, an additive invitation shown below the free stats rather than a locked or greyed-out preview (see `03-product/04-patterns.md`). A quiet, dismissible mention where a Free-tier limit is genuinely reached remains a natural future discovery point too, once such a limit exists — AI-assisted drafting itself is no longer an example of this, since it isn't a free-tier feature at all.
 
 **No standing persistent top-bar element.** Considered and dropped — a permanently visible Hold+ badge in the top bar reads as ongoing pressure/visual noise, inconsistent with Hold's "held, not managed" tone, even styled quietly. See `08-decisions/01-decision-log.md`.
 
