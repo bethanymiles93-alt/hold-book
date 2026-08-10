@@ -4,7 +4,11 @@ Unlike `01-decision-log.md`, nothing here is settled. These are live questions t
 
 ## Safeguarding trigger logic and wording
 
-The proportionate approach (detection layer, crisis resources, lightweight safety-plan option) is set out in `06-privacy-security/03-safeguarding.md`, but the exact trigger logic, thresholds and wording are **not yet decided** — this requires solicitor and/or clinical safety consultant sign-off before launch, not just an internal UX decision.
+**Architecture decided; content is not.** The two-tier detection model (free: on-device keyword/phrase matching; Hold+: the same layer plus a classifier pass), which surfaces get checked, and the non-blocking persistent-banner response are set out in `06-privacy-security/03-safeguarding.md` and settled for now. What's still **not decided, and requires solicitor and/or clinical safety consultant sign-off before launch:** the actual keyword/phrase list, the classifier's detection criteria, the exact thresholds, and the banner/resource wording — none of this is an internal UX decision. The pipeline is built with a placeholder detection list, hard-gated to local dev builds only, not reaching TestFlight/beta/production until this is resolved.
+
+**Separately noted, not decided:** whether the classifier layer should eventually extend to the free tier once Hold+ revenue comfortably covers its cost — an intention for later, not a current commitment, and doesn't affect the free-tier baseline's launch quality.
+
+**Also separately noted, not scoped:** detecting risk language in "What they sent" (someone else's pasted message) is a different problem from this layer — different response flow, different privacy consideration — and isn't part of this pass at all.
 
 ## Group vs Individual messaging mode
 
