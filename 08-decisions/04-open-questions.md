@@ -14,6 +14,26 @@ Unlike `01-decision-log.md`, nothing here is settled. These are live questions t
 
 The safeguarding placeholder-list gate (see `08-decisions/01-decision-log.md`, 2026-08-10) relies on React Native's `__DEV__` being false in any build that reaches TestFlight or production — true in any release-mode bundle, which is what EAS Build's preview/production profiles always produce. Once EAS Build is actually set up for the first real submission, do a sanity check that the resulting build is genuinely release-mode, not an accidental dev client, before it ships — the placeholder list (not clinically reviewed) must never reach a real device. **Not yet actioned — no `eas.json` exists yet.** Revisit when EAS Build is first configured.
 
+## Worker deploy pending — three new AI-amend surfaces not yet live
+
+`worker/src/prompts.ts` and `worker/src/index.ts` (see `08-decisions/01-decision-log.md`, 2026-08-10, "Unified text entry app-wide") gained three new `AiSurface`/`PromptSurface` values — `email-ooo`, `wider-world-status`, `template` — so Amend with AI works on OOO/status/Library-template editing for the first time. This is a code change only; the live `hold-ai-proxy` worker still runs the old build until someone manually runs `cd worker && npm run deploy` with Cloudflare/wrangler credentials — nothing in the app repo's own push/CI triggers this. **Not yet actioned; Bethany's own responsibility, not a code task.** Until deployed, tapping AI-assist on those three surfaces specifically will throw an "unknown surface" error against the live proxy — the four pre-existing surfaces (going-quiet, reassurance, reconnect, conversations-reply) are unaffected either way. Revisit/close once the deploy has actually run.
+
+## Voice control for navigation/actions (not dictation) — deferred, open question
+
+**Status:** Not scoped, not started. Logged as a distinct future consideration, separate from speech-to-text dictation (already decided and built — see `08-decisions/01-decision-log.md`, 2026-08-10, "Unified text entry app-wide").
+
+**The need:** Raised as an accessibility case — someone whose hands hurt too much to type or tap reliably (physical pain/mobility limitation, distinct from the emotional/cognitive low-capacity cases the rest of the app is designed around) may still be able to speak.
+
+**What this would mean, if built:** Voice-driven navigation and action-triggering across the app — e.g. "go to Reconnect," "select Close Circle" — not just dictating text into a box. This is a materially larger undertaking than the STT-for-composing feature already shipped: it needs intent recognition across the whole app's navigation and action space, not speech-to-text into one field.
+
+**Provisional shape discussed (not committed):** Voice could plausibly drive everything except the final "Send" — that one action stays gated behind a deliberate confirm step, given it's the one truly consequential, hard-to-undo action in these flows. Two options discussed for that confirm step, both with real trade-offs and neither obviously correct:
+- A physical tap to confirm — lower burden than typing, but still requires some physical action, which may not fully solve for the person this is meant to serve on a bad day.
+- A spoken double-confirm (app reads back what it's about to do, listens for a narrow yes/no) — zero physical action needed, but introduces a different risk: background speech or a misheard word triggering an unintended send. Narrowing the listening window to just after a read-back mitigates but doesn't eliminate this.
+
+Current lean, not decided: offer both as options rather than picking one, since they serve overlapping but not identical accessibility needs.
+
+**Why deferred rather than scoped now:** Raised in the middle of an already-large in-progress batch of work (docked input bar rollout, AI-amend relocation, dictation). Logged here to make sure it isn't lost, not to imply it's next.
+
 ## Group vs Individual messaging mode
 
 **Discussion, not yet fully decided.** Whether to build Group/Individual sending per Circle now, alongside the Core Journey work, or defer it as a tracked follow-up (the way Messaging Channels/per-contact preferences were deferred).
