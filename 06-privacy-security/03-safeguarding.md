@@ -50,6 +50,8 @@ Both are closer to clinical/therapeutic tools than Hold is trying to be. Hold is
 
 ## Legal and clinical review
 
+A placeholder detection list exists in code for pipeline-testing purposes only — see `hold-app`'s `src/services/safeguardingService.ts` (the on-device keyword/phrase list) and `worker/src/safeguarding.ts` (the Hold+ classifier's placeholder criteria). Both are explicitly marked as not clinically reviewed and are hard-gated to local dev builds only (never reaches TestFlight or production). This is what the clinical safety consultant needs to review and replace — the book intentionally does not duplicate the placeholder content itself here, only points to where it lives, so this document stays the policy source of truth rather than an implementation dump.
+
 This sits on the existing outstanding legal/compliance list (see `hold-app-idea` project notes), not as a separate item:
 
 - Treat the detection trigger logic and crisis-resource wording as part of the DPIA and legal review already flagged as outstanding — not just a copy/UX decision.
