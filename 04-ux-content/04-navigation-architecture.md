@@ -40,9 +40,16 @@ Match Instagram's reference sizing for icon and label: compact, legible, not ove
 
 **Corrected:** this applies to pills, not avatar thumbnails. When a Circle pill is selected, use a soft white glowing ring around its edge — the same visual idea as Instagram's story ring, in white/glow rather than a coloured gradient — as an option alongside (or in place of) the existing dark-green-border approach from `05-design-system/02-colour-and-typography.md`, whichever reads more clearly against the pill's fill colour in practice.
 
-## Pills vs circles for Circle selection
+## Circle shape: true circle by default, pill when the label needs more room
 
-**Decided: pills**, specifically fully rounded/stadium-shaped pills (rounded ends, not just rounded corners) with generous horizontal padding, not rectangular chips. Circles are Hold's core visual motif and read as calmer in the abstract, but Circle names vary in length ("Close Circle" vs "Book Club" vs longer custom names), and cramming variable-length text into a fixed circle forces either tiny type or truncation — both read as *less* calm than a well-padded pill, not more. A generously rounded pill keeps most of the circle's softness while staying legible at any name length.
+**Supersedes the earlier "Decided: pills" rule directly below (kept struck through for the record, not deleted, since the reasoning is still worth having on file).** True circles are Hold's actual core visual motif — a pill was the earlier fallback specifically because variable-length Circle names didn't fit a fixed circle legibly. The new rule keeps that reasoning but resolves it per-Circle instead of abandoning the circle shape for everyone:
+
+- **Default: true circle** (equal width/height, fully rounded) — the hard minimum accessible tap target size (44×44pt iOS / 48dp Android).
+- **Sizing rule, not a character-count threshold:** measure the Circle name's actual rendered text width at the user's current font size (Dynamic Type / font-scale respected live, re-measured on change, not just at default size) against that minimum circle diameter. If the text fits inside it, render as a true circle at that fixed size. If it doesn't, fall back to the stadium-pill shape (the prior decision below), sized to the text, at the same fixed height — so short names/initials read as circles, longer names read as pills, and neither shape ever drops below the hard minimum tap target regardless of font size.
+- Selected-state ring and the row's partial-cutoff scroll cue work identically on either shape — both are the same corner-radius formula (height ÷ 2), just at different widths.
+- Implemented as one shared, isolated component (`AdaptiveCircleChip`) rather than per-screen shape logic, so this can't drift between screens the way pill styling once could.
+
+~~**Decided: pills**, specifically fully rounded/stadium-shaped pills (rounded ends, not just rounded corners) with generous horizontal padding, not rectangular chips. Circles are Hold's core visual motif and read as calmer in the abstract, but Circle names vary in length ("Close" vs "Book Club" vs longer custom names), and cramming variable-length text into a fixed circle forces either tiny type or truncation — both read as *less* calm than a well-padded pill, not more. A generously rounded pill keeps most of the circle's softness while staying legible at any name length.~~
 
 ## Circle picker layout — single scrollable row
 
@@ -50,7 +57,7 @@ Match Instagram's reference sizing for icon and label: compact, legible, not ove
 
 Selected pills carry a down-arrow to expand into a recipient box beneath the row — see the "Who needs to know?" step in `04-ux-content/01-core-journeys.md` for the full interaction, which deliberately mirrors Conversations' Tier 2 → Tier 3 dropdown so both screens share one expand-a-Circle pattern rather than two different mechanisms.
 
-- Close Circle stays first in the row and keeps its stronger fill/priority position, as already decided.
+- Close stays first in the row and keeps its stronger fill/priority position, as already decided.
 - **Revised — "+ New Circle" is pinned inside the row, right after "All," not a heading-level icon button.** "All," then "+ New Circle," then the named-Circle pills, all reading as one continuous line — only the named-Circle portion actually scrolls; "All" and "+ New Circle" stay fixed in place ahead of it. This supersedes the earlier heading-icon-button placement below, which was never actually built that way and had drifted from real product direction. Your Circles (Settings) is the screen that now uses the heading-level "+" icon-button pattern instead, since it has its own title/header bar that Going Quiet's inline "Who needs to know?" step doesn't.
 - Where content extends beyond the visible row, the last visible pill should be **partially cut off at the edge**, not a hard stop — a visible cue that more exists to scroll to, rather than the row appearing to simply end.
 - "Manage your Circles" stays a separate line beneath the picker, unaffected by this layout change.
@@ -134,7 +141,7 @@ A user opens Library because they need help communicating; Conversations is what
 
 ## Circle category names — used as template categories, not literal Circle names
 
-ChatGPT-side work proposed named Circles with emoji: Core Circle, Friends, Care, Professional, Community. **Decided:** the emoji don't fit Hold's calm, non-whimsical visual language (see `05-design-system/01-design-direction.md`). The category *names* themselves are good, though — not as fixed Circle names (the user's own Circles like "Close Circle," "Book Club" stay user-defined and freeform), but as good starting-point categories for templates inside Library — e.g. a default set of email/message templates organised under Core Circle / Friends / Care / Professional / Community headings, that the user can adapt to whatever they've actually named their own Circles.
+ChatGPT-side work proposed named Circles with emoji: Core Circle, Friends, Care, Professional, Community. **Decided:** the emoji don't fit Hold's calm, non-whimsical visual language (see `05-design-system/01-design-direction.md`). The category *names* themselves are good, though — not as fixed Circle names (the user's own Circles like "Close," "Book Club" stay user-defined and freeform), but as good starting-point categories for templates inside Library — e.g. a default set of email/message templates organised under Core Circle / Friends / Care / Professional / Community headings, that the user can adapt to whatever they've actually named their own Circles.
 
 **Status: unbuilt roadmap item, confirmed not in current scope.** Library today only has per-Circle saved template defaults (a message becomes that specific Circle's own default after first use) — no separate, pre-populated category-based starter template set exists yet. Per-Circle saved defaults already cover the practical need this was meant to solve; revisit if a genuinely first-run, before-any-Circle-exists starting point turns out to be needed.
 

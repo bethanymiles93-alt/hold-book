@@ -45,7 +45,7 @@ Used on Circle-picker pills and equivalent selectable cards:
 
 | Treatment | Meaning |
 |---|---|
-| Strong/primary green fill | Primary or most important item (e.g. Close Circle) |
+| Strong/primary green fill | Primary or most important item (e.g. Close) |
 | Soft sage fill | Standard selectable item |
 | Dark green border | Selected (must not rely on fill/colour change alone — pair with a checkmark or equivalent) |
 | White/outlined pill | Secondary navigation, add or manage action (e.g. "+ New Circle," "Manage your Circles") |
