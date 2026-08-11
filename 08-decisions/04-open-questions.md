@@ -93,6 +93,36 @@ Right now "Delete my data" wipes content only (Circles, history, templates, draf
 
 **Not yet decided:** whether to build this at all, which providers to support, where API keys are stored/used (needs its own privacy-model writeup, same rigor as Your Circle's contact data), and how much setup friction is acceptable for Hold's actual low-capacity audience.
 
+## Adult-only scope boundary — youth/family variant out of scope, not forgotten
+
+Logged 2026-08-11. Hold is designed for adults managing their own communication capacity, and that scope boundary is deliberate, not an oversight to revisit lightly. Pediatric chronic-illness self-management research shows a youth/family variant would need a fundamentally different, multi-person/family-inclusive design — not a smaller or simplified version of the current single-user model, since a child or teenager's communication needs, capacity, and consent structure inherently involve parents/carers as active participants, not passive bystanders. **Not scoped, not planned** — this line exists so the absence of a youth variant reads as a considered boundary rather than a gap nobody noticed.
+
+## Taking Time widget — calming photo display
+
+**Logged 2026-08-11. Future spec — design idea, not yet scoped for build.** No existing widget open-question to cross-reference against; this is the first widget-related entry in this log. (The widget implementation itself — `expo-widgets` / `react-native-android-widget` — is existing, separately-tracked work; this entry is about a specific display feature within it.)
+
+**Concept:** The Taking Time widget shows a calming photo instead of (or alongside) text reassurance — sensory, glanceable calm that doesn't require reading or parsing anything, consistent with low-capacity design principles. Over repeated use, the person comes to associate the specific image with the feeling of Taking Time itself.
+
+**Photo sources — two tiers, both free:**
+1. **Curated starter set** — a small selection of calming images (e.g. Jordan's salt flats, Dead Sea, flowers) sourced from free-to-use stock libraries (Unsplash, Pexels, or similar). Each individual image's license must be checked and confirmed before inclusion — terms can vary photo-to-photo even on the same platform, so this is a per-image check, not a blanket assumption. No cost, but not to be skipped.
+2. **Personal upload** — confirmed **free tier, not Hold+**. Reasoning: a photo of someone's own child, pet, or meaningful place may genuinely help them more than any curated option, and this sits closer to core emotional support than to a paywallable customisation perk.
+
+**Personal upload — privacy requirements, non-negotiable:**
+- On-device storage only. The image must never be uploaded to any server, never synced to Hold's backend, never touch the Cloudflare Workers proxy or the Anthropic API in any form. No legitimate reason for this image to leave the phone under any circumstance.
+- No AI processing of these images, under any circumstance — no auto-tagging, no content analysis, no categorisation, local or otherwise. Stated explicitly because these images may include photos of a child or pet.
+- Getting a locally-stored image to render inside a home-screen widget will need a shared on-device storage mechanism the widget extension can read (e.g. App Groups on iOS, an equivalent shared-container approach on Android) — still on-device only, just needs the right technical approach so the widget can access the file without it ever leaving the device. **Flag for scoping alongside the existing widget work, not solved here.**
+- Brief in-app disclosure needed at upload time that the photo stays local to this device and is not backed up by Hold — so nobody is caught out expecting it to survive a phone change or app reinstall.
+
+**Placement — widget only, not duplicated in-app.** The calming photo lives on the widget only. Deliberately not added to the in-app Taking Time screen, which has a different job (functional: Reconnect button, day-2 contact-update flow, etc.) — adding imagery there risks clutter and could hurt legibility of the actual functional elements on that screen. Treat the widget and the in-app screen as two different surfaces with two different jobs, not something needing visual consistency with each other.
+
+**Reconnect widget state — wording confirmed.** Simpler text for the Reconnect widget state: "Reconnecting" (not "Continue Reconnecting," which read too close to task/checklist framing). Stays unquantified, consistent with the existing no-counts rule for that state.
+
+**Explicitly out of scope — logged separately, not part of this spec.** Community photo-sharing (users sharing their calming images with each other for shared engagement/sense of community) is **not** included here. This is structurally the same shape as the community/social-content-feed feature already explicitly rejected earlier in this project for safeguarding and passive-scroll concerns. If pursued at all, it needs its own dedicated future conversation covering moderation, reporting/blocking mechanisms, and safeguarding review — not folded into the personal-photo feature above. Logged here explicitly so the two don't get conflated later.
+
+**Curated set — licensing clarification.** Bethany's own photography, if included in the curated starter set, requires no licensing at all — she holds copyright as photographer. A brief Terms of Service line noting curated in-app images are for use within Hold only, not external redistribution, is worth adding when this is built, but is not a blocker to scoping or building this feature.
+
+**Not yet decided:** whether/when to build this, which curated images to include (pending per-image license checks), and the App Groups/shared-container technical approach for the personal-upload path.
+
 ## Fair-access funding mechanisms — three future-spec ideas, structure captured, none built
 
 Logged 2026-08-11, alongside the current pricing decision (`01-decision-log.md`). None of these are scoped for implementation — this is a record of the shape each idea would take if picked up later, not a commitment.
@@ -101,4 +131,40 @@ Logged 2026-08-11, alongside the current pricing decision (`01-decision-log.md`)
 - **Gift-a-year:** a one-time purchase generating a redemption code for 12 months of Hold+, since Apple/Google don't support native subscription gifting directly.
 - **Charity partnerships:** distributing free Hold+ access via charity-vetted eligibility, so Hold itself never has to build or judge a means-testing system.
 
-All three serve the same underlying goal already stated in `07-business/02-pricing-principles.md`'s "Ethical access options" (scholarship/sponsored access, regional pricing) — these are three concrete mechanisms for that principle, not a new principle. **Not yet decided:** whether to build any of them, which one(s) first, or how they'd interact with the Founding Member pricing structure.
+All three serve the same underlying goal already stated in `07-business/02-pricing-principles.md`'s "Ethical access options" (scholarship/sponsored access, regional pricing) — these are three concrete mechanisms for that principle, not a new principle. **Not yet decided:** whether to build any of them, which one(s) first, or how they'd interact with the current pricing structure (£17.99/year, £4.99/3-month — the earlier Founding Member/Standard split referenced here has since been removed, see `08-decisions/01-decision-log.md`, 2026-08-11 correction).
+
+## Additional Wider World channels — three future-spec ideas, none built
+
+**Logged 2026-08-11. Future spec — not committed, not scoped for build.** Email out-of-office and Wider World status were built this pass (see `08-decisions/01-decision-log.md`) — these three additional channels were considered alongside them and are worth keeping on record, not built now.
+
+1. **Calendar auto-blocking** — automatically block out time on a person's calendar each morning while they're in Taking Time, until manually turned off. Primary benefit: passively communicates unavailability to teammates who share the calendar, without the person needing to explain directly — consistent with Hold's existing goal of reducing the burden of repeated explanation. Requires real calendar API integration (OAuth, ongoing sync) — a meaningfully bigger technical undertaking than a text field, deliberately scoped out of this pass.
+2. **SMS auto-reply** — genuine native auto-reply is not available to third-party apps on either platform without disproportionate scope (see "Hold as default SMS handler" below, closed). If pursued at all, this would only ever be a ready-to-paste text fallback the person applies manually via their own phone's Focus/third-party auto-reply settings (iPhone: Driving Focus only; Android: requires a separate third-party auto-reply app) — not something Hold can trigger directly.
+3. **Text-to-speech voicemail greeting** — Hold could generate a spoken audio file from typed status text, but no public API exists on either platform for a third-party app to set someone's actual carrier voicemail greeting. Would require the person to manually apply the generated audio themselves, or a much larger integration with a separate voicemail-replacement service (YouMail, Google Voice, etc.) — deliberately scoped out of this pass.
+
+**Not yet decided:** whether any of these get picked up as future Wider World channels, or in what order.
+
+## Hold as default SMS handler — closed, not open
+
+**Closed 2026-08-11. Explicitly considered and rejected, not a future-spec candidate** — logged here specifically so it isn't quietly revisited without this context, unlike every other entry in this file.
+
+Hold becoming the device's default SMS-handling app (Android) to enable native auto-reply was investigated and rejected on privacy-scope grounds. Google Play policy requires an app to be the **full** default SMS handler (sending/receiving/reading every text message on the device) to access the relevant permissions at all — there is no scoped-down version limited to just auto-reply. This would mean Hold gaining permanent visibility into every text message a person sends and receives, not just during Taking Time — a disproportionate expansion of what the app touches, directly contradicting Hold's privacy-by-design principle (on-device-only storage, no unnecessary data access, established repeatedly elsewhere in this project).
+
+On iOS, this is not possible at any scope — Apple's architecture has no third-party default SMS handler concept at all; Messages is a fixed system app, and the only native auto-reply mechanism (Driving Focus) is OS-exclusive and not extensible by any third-party app.
+
+**Closed. Do not revisit without a materially different technical landscape** (e.g. a platform policy change) — this was rejected on the merits, not deferred for later.
+
+## Does Reconnect need its own "save this message" mechanism?
+
+**Logged 2026-08-11**, from a request to add a "change template/save" control beneath Reconnect's message box, matching Going Quiet's. Going Quiet already has this (single-Circle default auto-save/"Save to Library," combination-keyed templates, "start from X's message") — confirmed present and working, no change needed there.
+
+Reconnect has no equivalent concept at all: its message box starts from `QUICK_RECONNECT_MESSAGES` (a fixed set of canned starter lines), not a saved-per-Circle default, and nothing in Reconnect currently persists an edited message back anywhere. Building an equivalent "Save"/"Change template" control would mean deciding, from scratch: save against what key (a Circle? the current multi-select combination, the same way Going Quiet does combinations? a person, for ungrouped contacts?); whether it should compete with or replace the existing quick-message picker; and whether "template" even means the same thing here, since Reconnect's own message is deliberately generic/one-size ("Reach everyone at your own pace") rather than Circle-specific by design.
+
+**Not yet decided:** whether Reconnect needs this at all, and if so, what it should key against. Flagged rather than guessed at, since it's a real scope/design decision, not an implementation detail.
+
+## Reconnect's "X of Y reached" count — inconsistent with the app's own no-badges-no-counts rule
+
+**Logged 2026-08-11.** Reconnect's own in-flow header showed a plain "X of Y reached" progress line, which was removed this pass (see `01-decision-log.md`) as inconsistent with the app-wide no-counts rule (`04-ux-content/04-navigation-architecture.md`'s "No badges, no counts" section) — that rule was already explicitly confirmed to apply to Reconnect's *resume/widget* state specifically (this file, "Reconnect widget state — wording confirmed").
+
+Investigating that specific rule surfaced a related, still-live instance: **Home's own "Continue reconnecting" widget still shows the same count** (`${reconnectingProgress.done} of ${reconnectingProgress.total} reached`, in `app/(tabs)/index.tsx`), and `01-core-journeys.md` still documents it that way in two places (the "Reconnecting" state description, and the force-quit-resilience note). This wasn't part of what was reported broken this pass — the report was specifically about Reconnect's own in-flow screen — so it wasn't changed without being asked. Flagged instead: same rule, same app, still contradicted at a second surface.
+
+**Not yet decided:** whether Home's widget count should also be removed/unquantified for consistency, or whether it's a deliberate, different exception (a resumption reassurance rather than an in-task progress indicator) that the in-flow screen's count wasn't.
