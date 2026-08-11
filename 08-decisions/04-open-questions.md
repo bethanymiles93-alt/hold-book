@@ -92,3 +92,13 @@ Right now "Delete my data" wipes content only (Circles, history, templates, draf
 - If built, Hold+'s value proposition should stay "convenience, zero setup" rather than "better AI" — BYOK users should get the same Hold system prompts/voice/safeguarding integration as Hold+, since there's no cost reason to withhold prompt quality from someone paying their own token costs.
 
 **Not yet decided:** whether to build this at all, which providers to support, where API keys are stored/used (needs its own privacy-model writeup, same rigor as Your Circle's contact data), and how much setup friction is acceptable for Hold's actual low-capacity audience.
+
+## Fair-access funding mechanisms — three future-spec ideas, structure captured, none built
+
+Logged 2026-08-11, alongside the current pricing decision (`01-decision-log.md`). None of these are scoped for implementation — this is a record of the shape each idea would take if picked up later, not a commitment.
+
+- **"Pay more if you can" / supporter tier:** an optional higher amount at checkout beyond the base Hold+ price, framed plainly and without pressure — no progress bars, no urgency framing, consistent with the app's existing voice — letting people with means subsidise people without.
+- **Gift-a-year:** a one-time purchase generating a redemption code for 12 months of Hold+, since Apple/Google don't support native subscription gifting directly.
+- **Charity partnerships:** distributing free Hold+ access via charity-vetted eligibility, so Hold itself never has to build or judge a means-testing system.
+
+All three serve the same underlying goal already stated in `07-business/02-pricing-principles.md`'s "Ethical access options" (scholarship/sponsored access, regional pricing) — these are three concrete mechanisms for that principle, not a new principle. **Not yet decided:** whether to build any of them, which one(s) first, or how they'd interact with the Founding Member pricing structure.

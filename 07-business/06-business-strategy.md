@@ -38,6 +38,8 @@ Illustrative only, not a forecast — net of Apple/Google commission (typically 
 
 Treat 100–300 paying users in the first year as a genuinely good outcome, not a disappointing one — it's real evidence people will pay for the problem Hold solves, and a much healthier bar to plan against than assuming thousands of subscribers early.
 
+**Two new one-time IAP lines, logged 2026-08-11** (full pricing reasoning in `02-pricing-principles.md`): an AI credit pack (£2.99, non-expiring, no subscription) as a low-friction entry point ahead of the Hold+ subscription decision; a Patterns Report (£2.99, separate product) — Patterns itself isn't yet scoped, so treat this as a logged price only, not a revenue line to model yet.
+
 ## Marketing approach
 
 Education and trust-building before paid acquisition, not the other way round.
