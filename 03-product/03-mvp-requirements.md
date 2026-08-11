@@ -15,9 +15,12 @@
 
 ### Going Quiet
 - One single screen, no separate Review step — select one or more Circles (inline setup, not separate onboarding), select intent or write from scratch, generate or choose a draft, edit
+- **Sequential, group-based sending (2026-08-11 redesign — supersedes the earlier per-Circle-card version of this list):** any selected subset of Circles is one group, sharing one message and one Send — not a separate message per Circle. Select some Circles, send, the selection clears, pick the next group, repeat until Done or every Circle is covered. Exactly one text-entry surface for this (the app-wide docked bar), matching the same flat-selection + shared-message pattern Taking Time's "Send an update" already used. A Circle-combination previously sent to auto-loads its own saved default; a new combination offers starting points drawn from its member Circles' own single-Circle saved defaults instead of auto-loading anything, and its own default is saved (silently, no separate "Save" step) once actually sent. Single-Circle saved defaults and "Save to Library" are untouched, unaffected by any of this.
 - Per-Circle, per-person include/exclude/remove via a selection-circle control, matching Home's main action-circle visual language
 - Personalise routes an excluded person to Conversations instead of an inline compose, seeded only once Send fires
+- **Splitting a removed person into a new Circle, mid-flow:** one or more already-removed people (multi-select, can span more than one Circle's card) can be spun into a new, provisional Circle — auto-generated placeholder name, never a naming prompt mid-flow. Reconnect asks whether to make it permanent (and name it properly) later; that prompt fires regardless of whether anything was ever sent to the provisional Circle during Going Quiet, since the person was already removed from their original Circle the moment the split happened and would otherwise fall out of tracking with no signal anywhere.
 - Send fires the group and individual instant messages together and starts Taking Time; email out-of-office and wider-world status appear after Send as an optional unwind, not before it
+- **"Done" gating:** unreachable until at least one message has actually been sent this session — someone who hasn't engaged with the flow at all should be able to go back, not complete an empty one. Once reachable, completing (via "Done," or once every Circle is covered) leads to the same "want to send personalised messages?" step either way, using the same rich per-person Send/Edit/Personalise mechanic as Library/Reconnect (see `04-navigation-architecture.md`), not a plain nav-away hand-off; OOO/Wider-World status is its own step shown after that decision regardless of what was chosen, never folded into the Personalise yes/no itself.
 - Share through native share sheet
 - Calm completion state — one explicit final action ("Done"), nothing automatic
 
@@ -29,7 +32,7 @@
 ### Reconnect
 - Persist audience from Going Quiet by default; allow adding a new person (e.g. via "Add to Going Quiet")
 - Single-tap action (no upfront choice screen) — leads directly into a multi-select "All" + per-Circle/per-individual picker sharing one message box
-- Completion gate: everyone in the audience must be reached at least once, across as many separate sends as needed, before Personalise/"Not now" and the OOO/status-off controls unlock
+- Completion gate: everyone in the audience must be reached at least once, across as many separate sends as needed, before Personalise/"Not now" and the OOO/status-off controls unlock. **Personalise (2026-08-11) opens the same rich per-person Send/Edit/Personalise mechanic in place** (see `04-navigation-architecture.md`) — no longer a plain nav-away hand-off into Library; "Not now" stays a direct exit, unchanged.
 - Coverage persists durably (survives force-quit), not just in memory — Home resumes an interrupted session in place rather than losing track of who's been reached
 - No overdue language
 

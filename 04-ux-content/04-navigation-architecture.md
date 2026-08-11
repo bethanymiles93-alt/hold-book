@@ -130,6 +130,16 @@ Both now route to a concrete destination, `app/settings/hold-plus.tsx`: an hones
 
 Circles are set up inline, during first use, as part of the natural Going Quiet flow — not as separate onboarding, so it doesn't feel like labour. "+ New Circle" and "Manage your Circles" are available directly from the Going Quiet screen. Ongoing management (editing, deleting, reorganising) lives in Settings.
 
+## Personalise pattern — shared across Library, Going Quiet, and Reconnect (2026-08-11)
+
+One rich per-person mechanic — a "Personalise" link/status that expands into an accordion with "What they sent," a "Starting point" chip row, "Your reply" (via the screen's own shared docked bar), and Save-for-later/Send-now actions — used everywhere someone can personalise a reply to a specific person, not just inside Library. Extracted into its own shared component (`PersonaliseAccordion`) plus a small hook (`usePersonaliseCompletion`) that seeds/loads the right `ConversationPerson` records and owns the per-person draft/style/reply-target state, so Going Quiet's and Reconnect's own completion steps can reach it too, rather than each growing a thinner, divergent version of "personalise."
+
+- **Library/Conversations** — the mechanic's original home, unchanged: a per-person link that swaps in for the quick-message path.
+- **Going Quiet's completion step** ("want to send personalised messages?", after at least one Circle has been sent) — choosing "Personalise" opens this same accordion in place, for whichever excluded-and-not-yet-personalised recipients this session has, right there on the Going Quiet screen. Not a navigation.
+- **Reconnect's completion step** ("everyone's been reached") — corrects the previous plain "Personalise" button, which navigated straight to Library with nothing more specific happening on this screen. Now opens the same accordion in place, since Reconnect's own `send()` already seeds every audience member into Conversations at send time regardless, so there's nothing extra to seed here, only to read back and render.
+
+**What stays a plain navigation, deliberately:** Library's own reply flows (that's where the mechanic already lives) and the final "Finish Reconnecting" state (`app/return/done.tsx`, reached once every Conversations entry is actually complete) — the nav-away hand-off wasn't wrong everywhere, only as a stand-in for the in-flow Personalise moment itself, which is what both completion steps now do properly instead.
+
 ## Library screen structure
 
 **Revised:** the bottom-nav tab is called Library, not Conversations — but the screen itself leads with the Conversations reply-help experience, not the template shelf, so renaming the tab doesn't cost discoverability:
