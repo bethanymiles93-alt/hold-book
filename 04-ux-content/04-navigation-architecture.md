@@ -12,6 +12,12 @@ The main journey is sacred. When someone opens Hold while unwell, they shouldn't
 - **Library** — always available, independent of the Going Quiet journey. Someone can open Hold because they have one message they can't face replying to, with no need to have gone quiet first. Named "Library" rather than "Conversations" specifically to avoid the tab reading as a standing to-do list — a persistent nav item called "Conversations" can imply unfinished business just by convention, even with no badges or counts. The screen itself still leads with the Conversations reply-help experience (per-person, paste a message, get help wording a reply) rather than the template shelf, so the calmer name doesn't cost discoverability of the actual function — see "Library screen structure" below. Never shows an unread count or notification badge on its nav icon (see "No badges, no counts" below).
 - **History** — reflective, not active. A timeline of previous quiet periods, one card per period. Patterns sits inside History via a segmented control at the top (History | Patterns) rather than a separate tab — see `03-product/04-patterns.md` for the full structure and free/Hold+ split.
 
+### Bottom nav visibility during active composition, 2026-08-13
+
+**Rule: the bottom nav bar hides whenever a docked text-composition field is actively focused, anywhere, and shows in every other state** — driven by "is a text input currently focused?" rather than a hand-maintained per-screen list, so it extends correctly to any future screen without a fresh decision each time. Closes a second, easily-missed path to the same in-progress-message data-loss risk already addressed by disabling the swipe-back gesture during composition — an accidental tap on the nav bar mid-message is just as capable of losing work as an accidental swipe; the explicit Back/close control remains the deliberate way to leave either way. Built as one shared mechanism with the swipe-back disable, not two separately-maintained ones, per direct instruction.
+
+In practice, given how the app's screens are actually split between the tab group and pushed stack screens: Going Quiet and Reconnect are stack screens outside the bottom-tab group entirely, so the nav bar was never rendered there regardless — only the swipe-back half of the rule does anything for them. Library is the only tab-root screen with a composition surface at all (Templates is a section of the same screen, not a separate route, so the same check already covers it); Home and History have no composition concept, so neither needed anything. Research is not part of Library and never has been — see "Library screen structure" below — so, like Going Quiet/Reconnect, it has no tab bar to hide in the first place.
+
 ## Settings (top-right icon, not a bottom tab)
 
 Interaction: tapping the icon slides a panel out from the right edge of the screen (Gmail's slide-out drawer pattern, mirrored to the right rather than the left) rather than pushing to a new full screen — keeps context of where the user was.
@@ -64,6 +70,7 @@ Selected pills carry a down-arrow to expand into a recipient box beneath the row
 
 - **Close stays first in the row (its priority position is unchanged), but no longer carries any colour distinctiveness (2026-08-11, corrects the "stronger fill" line of the 2026-07 decision this bullet used to restate)** — Close uses the exact same sage-default/dark-green-sent-fill treatment as every other Circle. Its only remaining secondary cue is a bolder font weight on its label; fixed-first position is the primary identification mechanism, deliberately not doubled up with a second colour-based signal.
 - **Revised again — "+ New Circle" is pinned outside the scrollable row entirely, always visible; "All" is the scrollable row's first item, not pinned alongside "+".** "+" sits fixed at the row's start; the scroll begins with "All," then the named-Circle pills. "All" doesn't need to persist once someone's scrolled past it the way "+" does, since it's only relevant before scrolling starts. This supersedes the immediately-prior "+ pinned inside the row, right after All" placement. Your Circles (Settings) still uses the separate heading-level "+" icon-button pattern instead, since it has its own title/header bar that Going Quiet's inline "Who needs to know?" step doesn't.
+- **Confirmed app-wide, 2026-08-13 — not a Going-Quiet-specific placement.** Every row of this kind ("+"-plus-"All"-plus-Circle-or-person-chips) follows the same pinned "+"/first "All" layout: Reconnect's own Circle-browsing row and its shared per-person pill row (each gets its own "+"/"All" pair — "+" adds a person to the audience in both, "All" scoped to the whole audience from the Circle row vs. only what's currently visible from the pill row), and Library/Conversations' own Circle-browsing row. Library's second row (expanded Circles' people, one shared list) has no "+"/"All" of its own and wasn't given one — it never had that concept, and adding one wasn't part of this correction. Your Circles (Settings) is unaffected, per the header-bar exception immediately above.
 - **"+" final spec (2026-08-11):** the glyph alone, no baked-in text, sized noticeably larger/bolder than the small arrow glyph beside named chips (it has no competing label text sharing the circle). A "New Circle" caption sits beneath it, with a small deliberate gap, only while active — close enough to read as associated, visibly separate so it's never mistaken for a label baked into the chip itself. Tapping "+" gives it a distinct temporary active-state treatment (a filled tint plus a 3px border) — never the dark-green sent-fill "All" and "+" both stay outside that system entirely, since neither has anything to have been "sent." Tapping "+" again while active, or tapping anywhere outside the keyboard/docked-bar area, closes it without creating anything — no separate Cancel button; the old inline Add/Cancel buttons from the pre-docked-bar "+" flow are gone.
 - Where content extends beyond the visible row, the last visible pill should be **partially cut off at the edge**, not a hard stop — a visible cue that more exists to scroll to, rather than the row appearing to simply end.
 - **"Manage your Circles" removed from Going Quiet entirely (2026-08-11)** — confirmed via a full-app search that Going Quiet's picker was its only render site; nothing else in the app depended on that link for something Settings' own navigation doesn't already cover.
@@ -80,31 +87,51 @@ The **icon** is what should change: not a literal house glyph, which is a generi
 
 **Panel order, grouped by purpose rather than one flat list — revised from the original Mission-first order** (see `08-decisions/01-decision-log.md`): someone opening this menu while unwell is usually here to do something practical, not to read about the app's values, so task-oriented content leads and browsing/values content follows. Groups are separated by spacing alone, with no visible heading text — only the final group gets a divider line above it, since it's genuinely lower-priority legal/data reference rather than daily-use items.
 
+**Build-status note, added 2026-08-12 after a live code check found the drawer's actual state materially behind an earlier optimistic write-up:** rows below are marked **Built** or **Not built — "Coming later" stub in code** to keep this spec honest against `hold-app`'s actual `SettingsDrawer.tsx`, rather than reading as a flat list of equally-real rows. See `07-business/06-business-strategy.md`'s "MVP status check" for the fuller verification detail this is drawn from.
+
 **Manage Hold**
 
-1. **Your Circles**
-2. **Notifications**
-3. **Language**
-4. **Connected Accounts**
+1. **Your Circles** — Built.
+2. **Accessibility & Display** — **Not built.** New row, target design only — see "Accessibility & Display page" below. Supersedes the earlier separate "Accessibility" and "Personalise" rows implied by an earlier session write-up (referenced in `07-business/06-business-strategy.md`'s status check and the 2026-08-11 pricing decision-log row) — neither of those ever existed in code, and the merged single page below is now the intended target, not a further-split pair.
+3. **Notifications** — **Not built** — an explicit `ComingLaterRow` stub in the current code, not silently missing.
+4. **Language** — **Not built** — same stub treatment as Notifications.
+5. **Connected Accounts** — **Not built** — same stub treatment as Notifications.
 
 **About Hold**
 
-5. **Our Mission** — values and privacy-values messaging in Hold's own voice, including the fuller version of "no one should be judged by their illness or its limitations"
-6. **Research** — the evidence base behind Hold's design and safety approach (accessibility research, safeguarding evidence, icon/label findings, and the lived-experience guilt-spiral/supportive-language research that shaped Hold's voice — see `02-research/`), surfaced honestly rather than left as internal documentation only. Can state plainly that Hold looked to the lived experience of people who deal with the guilt spiral when designing how it speaks: gentle, short, genuine statements that validate; permission without pressure or commentary. **Planned, not yet built:** the Research page needs individually addressable/anchored sections (not one undifferentiated block of text) to support the citation marker mechanism below — a requirement on this row specifically, not yet implemented.
-7. **Hold+** — see "Hold+ visibility" below for its other access point (Patterns' contextual surfacing)
+6. **Our Mission** — Built. Values and privacy-values messaging in Hold's own voice, including the fuller version of "no one should be judged by their illness or its limitations."
+7. **Research** — Built. The evidence base behind Hold's design and safety approach (accessibility research, safeguarding evidence, icon/label findings, and the lived-experience guilt-spiral/supportive-language research that shaped Hold's voice — see `02-research/`), surfaced honestly rather than left as internal documentation only. Can state plainly that Hold looked to the lived experience of people who deal with the guilt spiral when designing how it speaks: gentle, short, genuine statements that validate; permission without pressure or commentary. **Planned, not yet built:** the Research page needs individually addressable/anchored sections (not one undifferentiated block of text) to support the citation marker mechanism below — a requirement on this row specifically, not yet implemented.
+8. **Hold+** — Built. See "Hold+ visibility" below for its other access point (Patterns' contextual surfacing).
 
 **Support**
 
-8. **Feedback**
-9. **Share Hold** — invite someone else to Hold
+9. **Feedback** — Built.
+10. **Share Hold** — Built. Invite someone else to Hold.
 
 — divider line above this group only, since it's lower-priority legal/data reference rather than daily-use items —
 
 **Legal and data**
 
-10. **Privacy Policy** (link)
-11. **Terms** (link)
-12. **Delete my data** — wipes every saved Circle, Hold history entry, in-progress reply, Conversations list, saved template, message draft, and remembered AI-drafting detail (including turning the AI memory toggle back off, not just clearing what it had captured) from the device, plus the anonymous AI-proxy install id (a fresh one is generated on next use, same as a genuine fresh install). Deliberately content-only: the one-time seen-welcome-screen/seen-retention-note flags are left alone, so a wipe doesn't force someone back through onboarding — see `08-decisions/04-open-questions.md`, "'Reset app' as a distinct action from 'Delete my data.'" Not part of the original panel spec, added here since it needed a home somewhere reachable
+11. **Privacy Policy** (link) — Built.
+12. **Terms** (link) — **Not built** — same "Coming later" stub treatment as Notifications/Language/Connected Accounts above.
+13. **Delete my data** — Built. Wipes every saved Circle, Hold history entry, in-progress reply, Conversations list, saved template, message draft, and remembered AI-drafting detail (including turning the AI memory toggle back off, not just clearing what it had captured) from the device, plus the anonymous AI-proxy install id (a fresh one is generated on next use, same as a genuine fresh install). Deliberately content-only: the one-time seen-welcome-screen/seen-retention-note flags are left alone, so a wipe doesn't force someone back through onboarding — see `08-decisions/04-open-questions.md`, "'Reset app' as a distinct action from 'Delete my data.'" Not part of the original panel spec, added here since it needed a home somewhere reachable
+
+### Accessibility & Display page — target design, logged 2026-08-12, NOT YET BUILT
+
+**Confirmed current status: none of this is built yet in `hold-app`** — this is the target design to build against, not a record of completed work. **Supersedes the earlier "separate Accessibility row and separate Personalise row" idea** referenced in an earlier session write-up — that split was never built, and is no longer the plan. Reasoning for merging into one page: font and display controls belong together, and a separate-rows split would create unnecessary navigation friction for settings someone is likely to want to adjust together.
+
+One drawer row — **"Accessibility & Display"** — opens one merged page, organised into two sub-groups:
+
+**Reading:**
+- Text size
+- Font — four options: System default, Lexend (visual-processing research basis), Atkinson Hyperlegible (Braille Institute, low vision), and OpenDyslexic (dyslexia-specific weighted letterforms). Verdana, Arial, and Open Sans were considered and explicitly cut as redundant with System default.
+- Reduce motion (in-app override)
+
+**Look & Feel:**
+- Display theme (beach/forest/meadow/seasonal)
+- Warmth bar — a relative offset applied on top of Hold's existing automatic warmth shifts per flow state, **not** an independent palette override. **Flagged, not yet confirmed:** WCAG contrast compliance must be verified across the full warmth range before shipping.
+- Light/Dark/System toggle
+- Moon phase toggle
 
 **Spacing intent between groups:** Feedback/Share and Legal and data move together as one bottom-anchored block, pinned to the panel's bottom edge (mirroring the top padding above Your Circles) rather than trailing at a fixed distance below About Hold. The single largest gap in the panel sits above that whole block — the one real section break, between values/browsing content (Manage Hold, About Hold) and the practical, occasional-use rows below (Feedback/Share, then the divider, then Legal and data). None of the group spacing relies on a visible heading label, only breathing room (and, for the last group only, the divider line itself) to read as distinct sections.
 
