@@ -18,6 +18,10 @@ The main journey is sacred. When someone opens Hold while unwell, they shouldn't
 
 In practice, given how the app's screens are actually split between the tab group and pushed stack screens: Going Quiet and Reconnect are stack screens outside the bottom-tab group entirely, so the nav bar was never rendered there regardless — only the swipe-back half of the rule does anything for them. Library is the only tab-root screen with a composition surface at all (Templates is a section of the same screen, not a separate route, so the same check already covers it); Home and History have no composition concept, so neither needed anything. Research is not part of Library and never has been — see "Library screen structure" below — so, like Going Quiet/Reconnect, it has no tab bar to hide in the first place.
 
+### Bottom nav bar surface, 2026-08-13
+
+The pill is the only shape on screen — there is no separate background container behind it; it floats directly over whatever screen content sits beneath. The pill's own fill is a frosted-glass surface (blur + a translucent tint of the active palette's `surfaceStrong`), not a flat colour, and follows whichever palette Home is currently resting in (normal vs. quiet/Taking Time) rather than always using the normal palette — so it never visibly clashes with a quiet-palette screen behind it.
+
 ## Settings (top-right icon, not a bottom tab)
 
 Interaction: tapping the icon slides a panel out from the right edge of the screen (Gmail's slide-out drawer pattern, mirrored to the right rather than the left) rather than pushing to a new full screen — keeps context of where the user was.
