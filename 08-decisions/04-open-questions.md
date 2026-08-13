@@ -237,3 +237,9 @@ Three genuinely open sub-questions, not decided:
 **Logged 2026-08-13, a direct conflict between two on-record instructions, not silently resolved either way.** The 2026-08-12 decision log entry deliberately flipped Reconnect's OOO/status section's default from collapsed to *expanded*, scoped explicitly to "Reconnect's own post-coverage-complete moment." A 2026-08-13 message specifying the resumed "Finish Reconnecting" view — itself that exact same moment — asked for OOO/status "closed/collapsed but reopenable." Built with the 2026-08-12 default (expanded/`true`) left unchanged, since reversing it wasn't confirmed as deliberate rather than the two instructions simply not having been cross-checked against each other.
 
 **Not yet decided:** whether the 2026-08-13 message meant to reverse the 2026-08-12 default, in which case `oooExpanded`'s initial state in `app/return/reconnect.tsx` should flip back to `false`.
+
+## Two-tier nav bar rule — does swipe-back (gestureEnabled) also need revisiting?
+
+**Logged 2026-08-13.** The composition-everywhere nav-bar rule from earlier the same day was explicitly superseded by a two-tier, screen-category-first rule (see `04-navigation-architecture.md`). Only the nav bar's own visibility changed — `gestureEnabled` (swipe-back disable) was left exactly as originally built: conditional on active composition on Going Quiet/Reconnect, unconditional/static on the four completion/transition screens.
+
+**Not yet decided:** given Tier 1 now frames Going Quiet/Reconnect/Transition as "hidden throughout, no exceptions" for the nav bar specifically because they're active-flow screens with in-progress-work-loss risk, should swipe-back on Going Quiet/Reconnect become similarly unconditional (matching the four already-static screens) rather than staying conditional on composition state? Not built either way — flagged rather than assumed.
