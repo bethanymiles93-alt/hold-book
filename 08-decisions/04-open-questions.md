@@ -249,3 +249,15 @@ Three genuinely open sub-questions, not decided:
 **Logged 2026-08-13, surfaced while confirming the ungrouped-audience question above and building "Add to Going Quiet."** The confirmed design — every Going Quiet contact becomes its own Circle — is now followed by the new "Add to Going Quiet" drawer (`app/(tabs)/index.tsx`'s `createCircleFromPickedContact`, `addCircleToAudience`) and already true of `create/people.tsx`'s own "+ New Circle." Home's own older ungrouped-adding mechanic (`addToAudience`) was this new drawer's only caller and has been removed entirely, not left dormant. **But Reconnect's own separate "+" (`addToReconnectingAudience`, mid-flow) still adds the person ungrouped, not as a Circle** — a genuinely separate function from the others (it targets a period that's no longer the currently-open one by the time Reconnect is on screen), not touched by the instruction that confirmed the Circle-of-one design, so left as-is rather than silently also changed.
 
 **Not yet decided:** whether Reconnect's own "+" should be brought in line with the now-confirmed Circle-of-one convention, or is deliberately different because a full Circle feels like more ceremony than a mid-Reconnect add calls for.
+
+## Taking Time drawers still need the real docked bar (Template + pills)
+
+**Logged 2026-08-13.** `TakingTimeUpdateDrawer.tsx` and `AddToGoingQuietDrawer.tsx` (built earlier the same day) use a plain text box, deliberately, since the template-editing interaction was still being finalised at build time. That interaction is now specified (green-highlight Template/pill insertion, `DockedInputBar`), but upgrading both drawers to use it wasn't done in the same pass — `DockedInputBar` depends on `KeyboardStickyView`, which has never been exercised inside an `Animated`-driven bottom sheet in this codebase, an untested combination not folded into an already-large pass.
+
+**Not yet decided:** nothing design-wise — this is purely sequencing. The upgrade itself (swap the plain `TextInput` for `DockedInputBar`, wire each drawer's own per-Circle template into the new `template` prop) is expected to be straightforward once the keyboard-in-a-sheet interaction is confirmed to work.
+
+## DockedFieldPreview's sentence-pill row — remaining call sites
+
+**Logged 2026-08-13.** The new pill row on `DockedFieldPreview` was wired into Going Quiet's and Reconnect's own message-field previews only — the two most central compose surfaces. Not yet threaded into: Library's per-person Conversations fields, Manage Circles' own fields, email out-of-office, wider-world status, or Personalise's reply box.
+
+**Not yet decided:** whether all of these should get the pill row (matching the docked bar's own fully-automatic, app-wide scope), or whether some of them are the "non-message-shaped field" case the row was deliberately made opt-in to exclude (e.g. a Circle name field, matching `aiAmend`'s own existing message-shaped-content-only scoping).
