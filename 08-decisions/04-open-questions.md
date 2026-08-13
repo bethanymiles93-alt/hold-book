@@ -261,3 +261,11 @@ Three genuinely open sub-questions, not decided:
 **Logged 2026-08-13.** The new pill row on `DockedFieldPreview` was wired into Going Quiet's and Reconnect's own message-field previews only — the two most central compose surfaces. Not yet threaded into: Library's per-person Conversations fields, Manage Circles' own fields, email out-of-office, wider-world status, or Personalise's reply box.
 
 **Not yet decided:** whether all of these should get the pill row (matching the docked bar's own fully-automatic, app-wide scope), or whether some of them are the "non-message-shaped field" case the row was deliberately made opt-in to exclude (e.g. a Circle name field, matching `aiAmend`'s own existing message-shaped-content-only scoping).
+
+## Nav bar blur needs a native rebuild before it can be evaluated at all
+
+**Logged 2026-08-13, confirmed on-device, not theoretical.** A diagnostic (temporary `intensity={100}` + an unmissable solid tint on `BottomTabBar.tsx`'s `BlurView`, reverted immediately after) showed the tint painting correctly but zero blur softening on the text underneath — the specific signature of the native `ExpoBlur` module not being present in the currently-running app binary, not of `intensity={40}` simply being too low a value. Checked directly: no config-level fix exists — `expo-blur` has no config plugin, `app.json` needs nothing added for it, and the Podfile's `use_expo_modules!` autolinking is already correctly picking up `ExpoBlur` at the source level (confirmed in `ios/Podfile.lock`). The gap is specifically that no binary has been *compiled* since the module was linked — force-quit/reopen relaunches the existing binary; only an actual rebuild (`npx expo run:ios` or an Xcode build) produces a new one.
+
+**Not yet actioned — deliberately deferred, per direct instruction, to be batched with other pending native-level changes** rather than done in isolation just for this. See `hold-app`'s own `docs/09-decision-log.md` for the full diagnostic trail.
+
+**Not yet decided (blocked on the rebuild above, not a design question):** whether `intensity={40}` is actually the right value once blur genuinely renders — that tuning question was raised earlier the same day and still has no on-device answer, since blur has never actually been visible to evaluate against.
