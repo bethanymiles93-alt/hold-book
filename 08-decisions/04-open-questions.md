@@ -243,3 +243,9 @@ Three genuinely open sub-questions, not decided:
 **Logged 2026-08-13.** The composition-everywhere nav-bar rule from earlier the same day was explicitly superseded by a two-tier, screen-category-first rule (see `04-navigation-architecture.md`). Only the nav bar's own visibility changed — `gestureEnabled` (swipe-back disable) was left exactly as originally built: conditional on active composition on Going Quiet/Reconnect, unconditional/static on the four completion/transition screens.
 
 **Not yet decided:** given Tier 1 now frames Going Quiet/Reconnect/Transition as "hidden throughout, no exceptions" for the nav bar specifically because they're active-flow screens with in-progress-work-loss risk, should swipe-back on Going Quiet/Reconnect become similarly unconditional (matching the four already-static screens) rather than staying conditional on composition state? Not built either way — flagged rather than assumed.
+
+## Send an Update drawer — are ungrouped audience members reachable at all?
+
+**Logged 2026-08-13.** The request specifying the new Send an Update drawer describes Circles exclusively throughout — the true-circle row, dropdown arrows, per-Circle templates, grouped/linked clusters — with no mention of ungrouped individuals (people in the tracked audience but not in any Circle), unlike Reconnect's own screen, which explicitly handles both. Built with ungrouped members entirely out of scope for this drawer rather than guessing at inclusion.
+
+**Not yet decided:** whether ungrouped audience members should get some equivalent reach inside this drawer (their own row, folded into "All", or something else), or whether they're deliberately out of scope for Taking Time updates specifically.
