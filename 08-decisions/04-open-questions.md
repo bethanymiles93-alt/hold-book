@@ -234,18 +234,18 @@ Three genuinely open sub-questions, not decided:
 
 ## Reconnect's resumed-view OOO/status default — collapsed or expanded?
 
-**Logged 2026-08-13, a direct conflict between two on-record instructions, not silently resolved either way.** The 2026-08-12 decision log entry deliberately flipped Reconnect's OOO/status section's default from collapsed to *expanded*, scoped explicitly to "Reconnect's own post-coverage-complete moment." A 2026-08-13 message specifying the resumed "Finish Reconnecting" view — itself that exact same moment — asked for OOO/status "closed/collapsed but reopenable." Built with the 2026-08-12 default (expanded/`true`) left unchanged, since reversing it wasn't confirmed as deliberate rather than the two instructions simply not having been cross-checked against each other.
-
-**Not yet decided:** whether the 2026-08-13 message meant to reverse the 2026-08-12 default, in which case `oooExpanded`'s initial state in `app/return/reconnect.tsx` should flip back to `false`.
+**Resolved 2026-08-13.** Confirmed by direct instruction: collapsed by default, correcting the 2026-08-12 entry, which is superseded (not wrong — a legitimate earlier decision point, per this book's standing convention for same-topic reversals). `oooExpanded`'s initial state in `app/return/reconnect.tsx` is `false`. A new exit-time nudge (see `01-core-journeys.md`'s Reconnect section) now surfaces genuinely unresolved Wider World state at the point of leaving instead of defaulting the section open on every visit.
 
 ## Two-tier nav bar rule — does swipe-back (gestureEnabled) also need revisiting?
 
-**Logged 2026-08-13.** The composition-everywhere nav-bar rule from earlier the same day was explicitly superseded by a two-tier, screen-category-first rule (see `04-navigation-architecture.md`). Only the nav bar's own visibility changed — `gestureEnabled` (swipe-back disable) was left exactly as originally built: conditional on active composition on Going Quiet/Reconnect, unconditional/static on the four completion/transition screens.
-
-**Not yet decided:** given Tier 1 now frames Going Quiet/Reconnect/Transition as "hidden throughout, no exceptions" for the nav bar specifically because they're active-flow screens with in-progress-work-loss risk, should swipe-back on Going Quiet/Reconnect become similarly unconditional (matching the four already-static screens) rather than staying conditional on composition state? Not built either way — flagged rather than assumed.
+**Resolved 2026-08-13.** Confirmed by direct instruction: yes — swipe-back on Going Quiet and Reconnect is now unconditional (`gestureEnabled: false` statically), matching the four already-static completion/transition screens, not gated on composition state anymore. The explicit Back button is unaffected; only the gestural path was removed.
 
 ## Send an Update drawer — are ungrouped audience members reachable at all?
 
-**Logged 2026-08-13.** The request specifying the new Send an Update drawer describes Circles exclusively throughout — the true-circle row, dropdown arrows, per-Circle templates, grouped/linked clusters — with no mention of ungrouped individuals (people in the tracked audience but not in any Circle), unlike Reconnect's own screen, which explicitly handles both. Built with ungrouped members entirely out of scope for this drawer rather than guessing at inclusion.
+**Resolved 2026-08-13 — confirmed moot, not a gap.** Direct confirmation: every contact ever added to Going Quiet becomes its own Circle (even a Circle of one) — there is no "individual, non-Circle" category in the system as designed. The Update drawer's Circles-only scope was already correct.
 
-**Not yet decided:** whether ungrouped audience members should get some equivalent reach inside this drawer (their own row, folded into "All", or something else), or whether they're deliberately out of scope for Taking Time updates specifically.
+## Circle-of-one convention not applied to Reconnect's own "+" (mid-flow add)
+
+**Logged 2026-08-13, surfaced while confirming the ungrouped-audience question above and building "Add to Going Quiet."** The confirmed design — every Going Quiet contact becomes its own Circle — is now followed by the new "Add to Going Quiet" drawer (`app/(tabs)/index.tsx`'s `createCircleFromPickedContact`, `addCircleToAudience`) and already true of `create/people.tsx`'s own "+ New Circle." Home's own older ungrouped-adding mechanic (`addToAudience`) was this new drawer's only caller and has been removed entirely, not left dormant. **But Reconnect's own separate "+" (`addToReconnectingAudience`, mid-flow) still adds the person ungrouped, not as a Circle** — a genuinely separate function from the others (it targets a period that's no longer the currently-open one by the time Reconnect is on screen), not touched by the instruction that confirmed the Circle-of-one design, so left as-is rather than silently also changed.
+
+**Not yet decided:** whether Reconnect's own "+" should be brought in line with the now-confirmed Circle-of-one convention, or is deliberately different because a full Circle feels like more ceremony than a mid-Reconnect add calls for.
