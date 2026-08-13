@@ -56,6 +56,8 @@ Four emotionally distinct stages, kept separate on purpose:
 
 **Post-Reconnect** appears once the coverage gate is satisfied and the user has entered Conversations but hasn't yet addressed everyone on the list (whether by Quick message or Personalise). It does not reset to Normal. Supporting copy: "Continue where you left off," optionally with progress ("2 of 5 replies sent"). Never use "outstanding," "incomplete," "overdue," "pending," or "you still need to."
 
+**"Finish Reconnecting" (2026-08-13) resumes the same Reconnect screen, not a separate destination.** Top to bottom: the instant-message area starts collapsed (nothing left to send to the original audience); the circle row shows already-reached Circles with the standard dark-green/white sent fill, and any Circle added to the audience *after* completion (e.g. via "Add to Going Quiet") in a third, distinct paler shade, grouped at the end of the row rather than interspersed; the "Want to reply to anyone properly?" Personalise prompt is open by default; the OOO/status section sits collapsed-but-reopenable beneath it. **Flagged, not resolved:** OOO/status defaulting collapsed here contradicts the 2026-08-12 entry that deliberately defaulted it *open* for this same post-coverage-complete moment — left as-is (open) pending confirmation which is actually wanted; see `08-decisions/04-open-questions.md`.
+
 The **Conversations** destination is separate from Post-Reconnect and always available, independent of whether the user has gone quiet at all — it's for getting help with a specific reply at any time, not only after a Hold journey.
 
 ### Circle text hierarchy — previously undocumented
