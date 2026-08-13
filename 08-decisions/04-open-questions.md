@@ -269,3 +269,9 @@ Three genuinely open sub-questions, not decided:
 **Not yet actioned — deliberately deferred, per direct instruction, to be batched with other pending native-level changes** rather than done in isolation just for this. See `hold-app`'s own `docs/09-decision-log.md` for the full diagnostic trail.
 
 **Not yet decided (blocked on the rebuild above, not a design question):** whether `intensity={40}` is actually the right value once blur genuinely renders — that tuning question was raised earlier the same day and still has no on-device answer, since blur has never actually been visible to evaluate against.
+
+## Box B pill-insertion — hypothesis only, not a confirmed fix
+
+**Logged 2026-08-13.** On-device testing found sentence pills correctly inserting text on Box A (`DockedFieldPreview`) but doing nothing when tapped on Box B (`DockedInputBar`, the active docked bar) — a real, reported inconsistency between two surfaces meant to share the same insertion mechanic. Re-reading `onPillPress`/`highlight.insertBlock` found no separate code bug — the logic looks correct in isolation and matches Box A's own working version. Given Box B's overlay rendering was *also* confirmed broken at the same testing moment (see the scroll-architecture entries in `01-core-journeys.md`), the leading hypothesis is that pill taps were updating the underlying message correctly the whole time, just not visibly, because the broken overlay wasn't rendering the result.
+
+**Not confirmed.** This is a hypothesis, not a diagnosis — there's no way to distinguish "data updated but not shown" from "nothing happened at all" without an actual device. Needs explicit on-device re-verification once the rebuilt scroll architecture is confirmed working, not assumed resolved as a side effect of that fix.
