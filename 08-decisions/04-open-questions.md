@@ -281,3 +281,57 @@ Three genuinely open sub-questions, not decided:
 **Logged 2026-08-13.** On-device testing reported "Save to Library" absent on both Box A (`DockedFieldPreview`) and Box B (`DockedInputBar`), despite both being verified-by-reading as correctly wired the same session. No code fault found on re-reading either box's gating logic — both are, and always have been (Box A's own gating predates this session), scoped to a single-Circle selection only; a multi-Circle combination has never had a Save-to-Library affordance, only Template (which has always supported combinations).
 
 **Not yet decided:** whether this was a real bug (in which case it hasn't been found yet and needs a fresh look) or the person was testing with a Circle combination selected, where no Save affordance has ever existed by design. Needs the exact selection used during that specific test to resolve either way — not assumed to be either.
+
+## Staged content richness (Taking Time vs. Reconnect) — proposed, pending sign-off
+
+**Logged 2026-08-19.** Proposed: Taking Time notifications/copy stay validation-and-permission only; fuller opt-in content (story, poetry, cultural/research material) becomes available from Reconnect onward via a Transition-screen toggle. Reasoning recorded in `01-decision-log.md`'s 2026-08-19 row.
+
+**Proposed, not yet explicitly confirmed — treat as a strong candidate decision pending sign-off, not settled.**
+
+## "You're reconnected" copy for Care/Professional contacts with no real prior distance
+
+**Logged 2026-08-19.** The main "You're reconnected" question (single friend/single message, standalone Conversations use) is resolved — see `01-decision-log.md`'s 2026-08-19 row. This is a separate, narrower remaining sliver: whether the same copy fits Conversations use with Care/Professional-category contacts, where there may be no real prior distance to "reconnect" from in the first place. **Not resolved.**
+
+## Daily-check-in vs. weekly-rest-day model for a future "tick each day" feature
+
+**Logged 2026-08-19.** No evidence found either way in the current research base for which cadence (a daily tick/check-in vs. a weekly rest-day model) better fits a future tracking feature. **Flagged as needing user testing, not a literature-based answer** — don't build against an assumed answer here.
+
+## Opt-in daily reassurance notification — viable, or does it conflict with the no-re-engagement-notification rule?
+
+**Logged 2026-08-19.** Whether an opt-in daily reassurance notification is viable at all, or conflicts with the app's existing no-re-engagement-notification rule even when gently framed and explicitly opt-in. **Not resolved.**
+
+## Music/playlist feature — scope breakdown, mixed leanings across sub-categories
+
+**Logged 2026-08-19.** Four distinct sub-ideas, not one feature, with different leanings:
+- Official Hold-curated playlists — leaning good.
+- User-submitted-to-an-approved-pool, with future curators — leaning good.
+- Public/followable playlists — **leaning against**, conflicts with Hold's low-visibility ethos and adds UGC-moderation burden with unclear benefit.
+- Somatic/sound-frequency content — flagged as a separate, weaker-evidence category from general music-listening research (see `02-research/07-extended-evidence-base.md`'s sound-frequency section) — should not be bundled with the general music research in future copy or specs.
+
+**Not resolved as a whole feature** — the sub-category leanings above are directional, not a committed scope.
+
+## Multi-recipient single-confirmation compose screen (per Circle)
+
+**Logged 2026-08-19.** `MFMessageComposeViewController` supports adding multiple recipients to one compose call, resolved with a single confirmation tap rather than today's per-recipient confirmation loop — worth considering as a UX improvement to the existing sequential per-Circle send. **Tradeoff not yet resolved:** doing this creates one shared group thread (recipients see each other and each other's replies), breaking the individual/BCC-style separation the current sequential send deliberately preserves (see `01-decision-log.md`'s 2026-08-11 delivery-model row). Needs a decision on whether reduced confirmation friction is worth losing that separation before this goes into a build message — likely only applicable to Circles already using the "send as group" opt-in, not the default individual-delivery case, where it would directly undo the existing privacy premise.
+
+## Instant symbol send (one-tap, lightweight)
+
+**Logged 2026-08-19.** A faster alternative to a full Going Quiet message: one tap sends a small fixed asset (logo/symbol, possibly brief fixed wording) via the existing per-Circle send infrastructure, for moments too low-capacity even for the current flow. Buildable now on existing Circle/queue architecture. **Not yet scoped or decided** — needs thinking through against the no-pressure/statements-over-questions rules (does an unexplained symbol read as reassuring, or as confusing/alarming, to a recipient who doesn't already know what Hold is?), and against the fact that the idea depends on the recipient already recognising the symbol — related to the wordmark/symbol-recognition question below.
+
+## "On Hold" presence indicator (cross-user visibility) — first logged here, leaning against
+
+**Logged 2026-08-19 — previously only discussed in chat, not written into hold-book before now.** Idea: if another person also uses Hold, could a user see that friend is currently "on Hold," shown via the Hold symbol. Technically possible (contact-matching against a server, similar in kind to how Signal/WhatsApp do contact discovery, though a privacy-respecting version is non-trivial). **Leaning against as an ambient/discoverable feature** — it's a persistent visible status rather than something explicitly shared with a specific recipient in a specific moment, and it reintroduces the exact "why haven't they replied" checking-in anxiety Hold exists to remove, just displaced onto the person watching. **If ever pursued, restrict strictly to:** visible only to someone already included in that specific Going Quiet's Circle, never ambient or visible app-wide. **Not decided; leaning against.**
+
+## Icon placement in the wordmark
+
+**Logged 2026-08-19.** Should the "held" icon (soft overlapping/embracing shapes) sit inside the "O" of the "Hold" wordmark, or stay as a fully separate mark? **Not yet decided** — worth testing both: embedding it in the "O" could read as clever or as cluttered/hard to reproduce at small sizes; a separate mark is safer but less distinctive. This is about the small wordmark logo specifically, which stays static per `05-design-system/01-design-direction.md` — a branding question, not a motion one.
+
+**Added context (2026-08-19):** there's a long-term aspiration for the standalone symbol to become recognisable enough on its own that sending just the logo communicates "thinking of you, not gone" without accompanying text (related to the instant-symbol-send idea above) — a brand-adoption outcome, not a near-term feature, but it raises the stakes on getting the trademark clearance opinion done before further investment in the symbol as a standalone brand asset. See `07-business/06-business-strategy.md`'s trademark note — a live UK Class 9 registration conflict currently exists on "Hold."
+
+## AI reply-timing signal: quiet-period duration vs. friend-message timestamp
+
+**Logged 2026-08-19.** When AI drafting for Conversations/Reconnect replies is built, what "elapsed time" should the model use to calibrate tone (amount of apology/context)? **Current leaning:** use the Hold period's own duration (`HoldPeriod` start/end, already tracked for Quiet History/Patterns) rather than the timestamp of the specific friend message being replied to — it's already-known, factual data requiring no new capture (satisfies `06-privacy-security/02-ai-boundaries.md`'s rule against inferring facts not supplied by the user, since it *is* supplied, just not re-asked), avoids trusting a manually-entered date on a pasted message (error-prone, extra friction at low capacity) or reading message metadata Hold doesn't have access to (pasted text only, no inbox integration), and avoids a privacy-minimisation question (storing a timestamp against pasted message content) similar in kind to the Quiet History exception in `docs/03-privacy-model.md`.
+
+**Not formally decided** — no AI drafting is built yet (`draftService.ts` is currently fully local/template-based), so this doesn't block anything today. Revisit when AI drafting moves from boundary doc to implementation.
+
+**Deferred, tracked separately:** capturing the friend-message's own timestamp (distinct from quiet-period duration) as a future, addable feature — e.g. if "they messaged on day 2 of a 3-week Hold" vs. "they messaged yesterday" turns out to meaningfully change what a good reply looks like. Not scoped, not costed, just not lost.

@@ -23,6 +23,10 @@ Prefer:
 6. Community discussion for hypothesis generation
 7. Founder insight
 
+## Extended evidence base
+
+`07-extended-evidence-base.md` (logged 2026-08-11, extended 2026-08-19 with autonomy-support/SDT, music-as-emotion-regulation, sound-frequency/somatic claims, and chronic-illness therapeutic-intervention effect sizes) holds a larger batch of academic research spanning social connection, weak ties, reach-out/disclosure psychology, habit formation, loneliness interventions, plan-making, chronic-illness-specific findings, shame/guilt, and colour-mood research — each finding tagged correlational, causal, descriptive/qualitative, or theoretical. Three entries (Sirois, Hibbard et al., Neff) initially lacked full citation detail; all three were completed 2026-08-11 via direct web search — Neff expanded to the Self-Compassion Break's full theory/practice/validation lineage. One citation (Neff, Knox, Long & Gregory 2020, the health-professions-specific study) carries a confidence caveat worth checking before anything published-facing (e.g. the in-app Research page) treats it as fully settled — see that file's "Citations completed" section.
+
 ## Research gaps requiring original work
 
 - The silence → guilt → avoidance → relationship erosion loop
