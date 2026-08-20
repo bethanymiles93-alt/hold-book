@@ -36,18 +36,9 @@ Current lean, not decided: offer both as options rather than picking one, since 
 
 **Why deferred rather than scoped now:** Raised in the middle of an already-large in-progress batch of work (docked input bar rollout, AI-amend relocation, dictation). Logged here to make sure it isn't lost, not to imply it's next.
 
-## Group vs Individual messaging mode
+## Group vs Individual messaging mode — resolved, closing a stale open question
 
-**Discussion, not yet fully decided.** Whether to build Group/Individual sending per Circle now, alongside the Core Journey work, or defer it as a tracked follow-up (the way Messaging Channels/per-contact preferences were deferred).
-
-- **Group** — one message, sent to everyone in the Circle at once.
-- **Individual** — the same or separate drafts prepared per person in the Circle.
-
-The case for keeping it in scope: the Conversations per-person tracking model ("2 of 5 replies sent," tick/untick per person) requires per-person state to exist underneath regardless of whether a message was sent as a group or individually. Individual tracking isn't really optional given that — so Group becomes a comparatively cheap UI layer (one drafted message, fanned out to several people) on top of tracking that has to exist either way, rather than a separately expensive feature to build or cut.
-
-The case for deferring: it still adds UI surface (a Group/Individual toggle per Circle) and drafting-flow complexity at a stage where the Core Journey rename and restructure is already substantial. Worth a explicit decision — not silently defaulting either way — before this goes into a build message.
-
-**Current leaning:** keep in scope, for the tracking-model reason above. **Not formally decided.**
+**Resolved.** Decided 2026-08-11, built and verified 2026-08-12. Individual/BCC-style delivery is the default (each recipient gets their own separate message; no one in a Circle knows who else received it), with a per-Circle "send as group" toggle, default off, available at Circle creation and in that Circle's own Manage Circles settings — a combination of Circles with mixed settings still sends as one action, each Circle following its own setting within it. This is already live in the code, not a pending decision. See `08-decisions/01-decision-log.md`'s 2026-08-11 consolidated-pass entry (the delivery-model correction) and its 2026-08-12 follow-up (the accepted N-compose-sheet-confirms trade-off) for the full reasoning. This entry was left open after the decision was made and built; closed now rather than left to imply the question is still live.
 
 ## Messaging Channels (per-contact preferred channel, grouped delivery screen)
 
@@ -73,13 +64,11 @@ See `03-design-experiments.md`. Beta hypothesis, not a decision.
 
 What Hold says when the native share sheet fails/is cancelled, SMS isn't available, or AI drafting times out. **Not yet written** — should follow the same voice principles as the rest of the app, not generic system error text. See `04-ux-content/05-onboarding-empty-states.md`.
 
-## Library internal organisation
+## Library internal organisation — resolved 2026-08-20
 
-Not previously specified at this level of detail. One proposal: organise by Circle first, then by message stage within each Circle (Going Quiet / Reassurance / Reconnect / Conversations expanding inline under a Circle selector) — reasoning being that in practice someone thinks "I need my Work message" before they think "I need my Reconnect template." Alternative: organise by stage first, Circle second (the reverse). **Not yet decided** — worth resolving once the broader Library scope is picked back up, not urgent for the current MVP pass.
+**Resolved.** Circle-first confirmed as the organising structure — someone thinks "I need my Work message" before they think "I need my Reconnect template." Tapping a Circle reveals its saved template within Templates. Scope extended beyond Library alone: the same Circle-first structure applies consistently across Library, Reconnect, and Templates, not just one of them — a broader decision than the original proposal below, which only considered Library in isolation. See `08-decisions/01-decision-log.md`'s 2026-08-20 entry. **Decision only, not yet built** — reconciling the three surfaces to match is separate implementation work, not yet scoped or started.
 
-## Exact free-tier AI allowance — moot, superseded, fully resolved
-
-This question (what number to set a free monthly AI-drafting allowance at) no longer applies: AI-assisted drafting is now Hold+-only, with no free allowance at all. `draftService.ts` gates AI drafting behind Hold+ directly; the AI proxy's (`worker/`) monthly cap (`MONTHLY_DRAFT_SAFETY_CAP` in `wrangler.toml`, still 20/month) is now a blunt cost-safety backstop against abuse of the endpoint itself, not a user-facing allowance to size correctly. The removed-free-tier decision itself is now logged in `08-decisions/01-decision-log.md` (2026-08-10, retroactive), and `07-business/06-business-strategy.md`'s ARR/conversion reasoning has since been rewritten to reflect it — nothing left open here.
+Original proposal, for reference: organise by Circle first, then by message stage within each Circle (Going Quiet / Reassurance / Reconnect / Conversations expanding inline under a Circle selector). Alternative considered and not chosen: organise by stage first, Circle second.
 
 ## "Reset app" as a distinct action from "Delete my data"
 
@@ -137,15 +126,22 @@ Logged 2026-08-11, alongside the current pricing decision (`01-decision-log.md`)
 
 All three serve the same underlying goal already stated in `07-business/02-pricing-principles.md`'s "Ethical access options" (scholarship/sponsored access, regional pricing) — these are three concrete mechanisms for that principle, not a new principle. **Not yet decided:** whether to build any of them, which one(s) first, or how they'd interact with the current pricing structure (£17.99/year, £4.99/3-month — the earlier Founding Member/Standard split referenced here has since been removed, see `08-decisions/01-decision-log.md`, 2026-08-11 correction).
 
-## Additional Wider World channels — three future-spec ideas, none built
+## Additional Wider World channels — two future-spec ideas, none built
 
-**Logged 2026-08-11. Future spec — not committed, not scoped for build.** Email out-of-office and Wider World status were built this pass (see `08-decisions/01-decision-log.md`) — these three additional channels were considered alongside them and are worth keeping on record, not built now.
+**Logged 2026-08-11. Future spec — not committed, not scoped for build.** Email out-of-office and Wider World status were built this pass (see `08-decisions/01-decision-log.md`) — these two additional channels were considered alongside them and are worth keeping on record, not built now. (A third channel considered alongside these, the text-to-speech voicemail greeting, is closed rather than deferred — see its own section below, not listed here.)
 
 1. **Calendar auto-blocking** — automatically block out time on a person's calendar each morning while they're in Taking Time, until manually turned off. Primary benefit: passively communicates unavailability to teammates who share the calendar, without the person needing to explain directly — consistent with Hold's existing goal of reducing the burden of repeated explanation. Requires real calendar API integration (OAuth, ongoing sync) — a meaningfully bigger technical undertaking than a text field, deliberately scoped out of this pass.
 2. **SMS auto-reply** — genuine native auto-reply is not available to third-party apps on either platform without disproportionate scope (see "Hold as default SMS handler" below, closed). If pursued at all, this would only ever be a ready-to-paste text fallback the person applies manually via their own phone's Focus/third-party auto-reply settings (iPhone: Driving Focus only; Android: requires a separate third-party auto-reply app) — not something Hold can trigger directly.
-3. **Text-to-speech voicemail greeting** — Hold could generate a spoken audio file from typed status text, but no public API exists on either platform for a third-party app to set someone's actual carrier voicemail greeting. Would require the person to manually apply the generated audio themselves, or a much larger integration with a separate voicemail-replacement service (YouMail, Google Voice, etc.) — deliberately scoped out of this pass.
 
-**Not yet decided:** whether any of these get picked up as future Wider World channels, or in what order.
+**Not yet decided:** whether either of these gets picked up as a future Wider World channel, or in what order.
+
+## Text-to-speech voicemail greeting — closed, not deferred
+
+**Closed 2026-08-19, correcting the 2026-08-11 "deliberately scoped out of this pass" framing above and originally used for this item too** — logged here specifically so it isn't quietly revisited as an open future-spec item without this context, same treatment as "Hold as default SMS handler" below.
+
+Hold could generate a spoken audio file from typed status text, but no public API exists on either platform for a third-party app to set someone's actual carrier voicemail greeting. Would require the person to manually apply the generated audio themselves, or a much larger integration with a separate voicemail-replacement service (YouMail, Google Voice, etc.) — the same category of disproportionate-scope platform constraint already applied to native SMS auto-reply and default-SMS-handler status.
+
+**Closed. Do not revisit without a materially different technical landscape** (e.g. a platform policy change) — this was rejected on the merits, not deferred for later.
 
 ## Hold as default SMS handler — closed, not open
 
@@ -331,3 +327,7 @@ Three genuinely open sub-questions, not decided:
 **Not formally decided** — no AI drafting is built yet (`draftService.ts` is currently fully local/template-based), so this doesn't block anything today. Revisit when AI drafting moves from boundary doc to implementation.
 
 **Deferred, tracked separately:** capturing the friend-message's own timestamp (distinct from quiet-period duration) as a future, addable feature — e.g. if "they messaged on day 2 of a 3-week Hold" vs. "they messaged yesterday" turns out to meaningfully change what a good reply looks like. Not scoped, not costed, just not lost.
+
+## Lapsed/dormant backup account retention, now that backup isn't Hold+-exclusive
+
+**Flagged 2026-08-21.** `06-privacy-security/04-content-retention.md`'s "Lapsed/dormant Hold+ backup account retention" section (30-day grace period, 6–12 month dormant window before deletion) was scoped entirely around backup being a paid, Hold+-only feature — that premise is no longer accurate, backup is now free for everyone. Unresolved whether the same tiered model just applies once "lapsed subscription" is swapped for a free-tier-appropriate trigger, or whether free-tier backup needs its own rethought policy from scratch (a free account has nothing to "lapse"). Explicitly not decided here — see that section for the full flagged note; do not build against either answer without checking first.
