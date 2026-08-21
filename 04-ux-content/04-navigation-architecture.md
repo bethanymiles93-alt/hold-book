@@ -196,21 +196,23 @@ A user opens Library because they need help communicating; Conversations is what
 
 ## The Transition screen
 
-**Resolved — the screen exists structurally now**, built as part of this session's flow work: Going Quiet → Transition → Taking Time is a genuine extra screen, not folded into Going Quiet's completion state. The "not yet decided" framing this section previously carried is superseded; see `04-ux-content/01-core-journeys.md` for the currently-shipped copy ("You've taken the first step. You've let the people who matter know you need some time. Taking time to recover isn't selfish. You don't need to earn rest.") and the Reconnect landing transition copy ("Welcome back. Here's who's waiting to hear from you. Reply however feels right today.").
+**Resolved — the screen exists structurally now**, built as part of this session's flow work: Going Quiet → Transition → Taking Time is a genuine extra screen, not folded into Going Quiet's completion state. The "not yet decided" framing this section previously carried is superseded; see `04-ux-content/01-core-journeys.md` for the currently-shipped Going Quiet copy ("You've taken the first step. You've let the people who matter know you need some time. Taking time to recover isn't selfish. You don't need to earn rest.").
 
-### Planned copy + citation marker mechanism, logged 2026-08-11 — NOT YET DELIVERED TO THE APP
+### Planned copy + citation marker mechanism, logged 2026-08-11 — Reconnect half delivered, Going Quiet half and citation markers still not built
 
-Drafted replacement copy for both transition moments, with a citation-marker mechanism, was written this session but never wired in — the app still runs the copy quoted above. **Flagged, not silently assumed as an upgrade:** this drafted copy would replace currently-shipped, working copy if built — treat this as a proposal to evaluate, not an obviously-approved update.
+Drafted replacement copy for both transition moments, with a citation-marker mechanism, was written this session but not wired in at the time — flagged then as "a proposal to evaluate, not an obviously-approved update." **The Reconnect landing moment's three-line sequence is now confirmed and shipped** (`app/return/transition.tsx`, `hold-app`), superseding "Welcome back. Here's who's waiting to hear from you. Reply however feels right today." outright — the old copy is gone, not amended. Going Quiet's own three-line sequence remains a drafted proposal only, not yet built or confirmed. Neither sequence's citation marker (line 2 of each) is built — that depends on the Research page having individually addressable/anchored sections, a separate, larger, still-not-built piece of infrastructure (see "Settings panel structure" above, item 7).
 
-**Going Quiet → Transition screen, three lines in order:**
+**Going Quiet → Transition screen, three lines in order — drafted, not yet confirmed or built:**
 1. "This can feel harder than it should." — no citation marker.
 2. "Taking time isn't the same as letting people down." — **citation marker**, linking to Holt-Lunstad et al. and/or Masi et al. research on the Research page (see `02-research/07-extended-evidence-base.md`, "Social connection / mortality" and "Loneliness interventions").
 3. "You don't need to earn rest." — no citation marker. (Unchanged from the currently-shipped copy above.)
 
-**Reconnect landing moment, same three-line shape:**
+**Reconnect landing moment, same three-line shape — confirmed and shipped:**
 1. "Coming back doesn't need a perfect opening line." — no marker.
-2. "Most people underestimate how much a message like this means." — **citation marker**, linking to Liu, Rim & Min and/or Boothby et al. research (see `02-research/07-extended-evidence-base.md`, "Reach-out underestimation / liking gap / compliance underestimation").
+2. "Most people underestimate how much a message like this means." — **citation marker not yet built** (see dependency note above); linking to Liu, Rim & Min and/or Boothby et al. research (see `02-research/07-extended-evidence-base.md`, "Reach-out underestimation / liking gap / compliance underestimation") once it is.
 3. "It doesn't need to be perfect. It just needs to be sent." — no marker.
+
+No separate "Welcome back." title above the sequence — the three lines are the whole message block, HoldMark (the logo) stays above them as the only other visual element. Same shape decision presumably applies to Going Quiet's own sequence once/if that half is built, for consistency, though that hasn't been separately confirmed.
 
 **Citation marker mechanism:** only the "common humanity" line in each sequence (the second line, in both cases) gets a marker — a small, muted, secondary-weight tap target (e.g. "Why this is true" in smaller/lighter text, not an academic footnote number), linking directly to the relevant anchored entry on the Research page. This depends on the Research page having individually addressable/anchored sections, not one undifferentiated block of text — see item 6 ("Research") in "Settings panel structure" above, where this requirement is also flagged as not yet built.
 
