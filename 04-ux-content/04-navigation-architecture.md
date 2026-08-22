@@ -104,7 +104,7 @@ The **icon** is what should change: not a literal house glyph, which is a generi
 **Manage Hold**
 
 1. **Your Circles** — Built.
-2. **Accessibility & Display** — **Not built.** New row, target design only — see "Accessibility & Display page" below. Supersedes the earlier separate "Accessibility" and "Personalise" rows implied by an earlier session write-up (referenced in `07-business/06-business-strategy.md`'s status check and the 2026-08-11 pricing decision-log row) — neither of those ever existed in code, and the merged single page below is now the intended target, not a further-split pair.
+2. **Accessibility & Display** — **Built (Look & Feel sub-group only)**, 2026-08-22 — see "Accessibility & Display page" below for what's built vs. still pending. Supersedes the earlier separate "Accessibility" and "Personalise" rows implied by an earlier session write-up (referenced in `07-business/06-business-strategy.md`'s status check and the 2026-08-11 pricing decision-log row) — neither of those ever existed in code, and the merged single page is the shipped structure, not a further-split pair.
 3. **Notifications** — **Not built** — an explicit `ComingLaterRow` stub in the current code, not silently missing.
 4. **Language** — **Not built** — same stub treatment as Notifications.
 5. **Connected Accounts** — **Not built** — same stub treatment as Notifications.
@@ -128,22 +128,22 @@ The **icon** is what should change: not a literal house glyph, which is a generi
 12. **Terms** (link) — **Not built** — same "Coming later" stub treatment as Notifications/Language/Connected Accounts above.
 13. **Delete my data** — Built. Wipes every saved Circle, Hold history entry, in-progress reply, Conversations list, saved template, message draft, and remembered AI-drafting detail (including turning the AI memory toggle back off, not just clearing what it had captured) from the device, plus the anonymous AI-proxy install id (a fresh one is generated on next use, same as a genuine fresh install). Deliberately content-only: the one-time seen-welcome-screen/seen-retention-note flags are left alone, so a wipe doesn't force someone back through onboarding — see `08-decisions/04-open-questions.md`, "'Reset app' as a distinct action from 'Delete my data.'" Not part of the original panel spec, added here since it needed a home somewhere reachable
 
-### Accessibility & Display page — target design, logged 2026-08-12, NOT YET BUILT
+### Accessibility & Display page — Look & Feel sub-group built 2026-08-22, Reading still pending
 
-**Confirmed current status: none of this is built yet in `hold-app`** — this is the target design to build against, not a record of completed work. **Supersedes the earlier "separate Accessibility row and separate Personalise row" idea** referenced in an earlier session write-up — that split was never built, and is no longer the plan. Reasoning for merging into one page: font and display controls belong together, and a separate-rows split would create unnecessary navigation friction for settings someone is likely to want to adjust together.
+**Current status, corrected against a live code check:** Look & Feel is built end-to-end — persisted, and wired all the way through `useAppTheme` so it actually applies app-wide, not just displayed on this one screen. Reading is still entirely unbuilt. **Supersedes the earlier "separate Accessibility row and separate Personalise row" idea** referenced in an earlier session write-up — that split was never built, and is no longer the plan. Reasoning for merging into one page: font and display controls belong together, and a separate-rows split would create unnecessary navigation friction for settings someone is likely to want to adjust together.
 
 One drawer row — **"Accessibility & Display"** — opens one merged page, organised into two sub-groups:
 
-**Reading:**
+**Reading — not built:**
 - Text size
 - Font — four options: System default, Lexend (visual-processing research basis), Atkinson Hyperlegible (Braille Institute, low vision), and OpenDyslexic (dyslexia-specific weighted letterforms). Verdana, Arial, and Open Sans were considered and explicitly cut as redundant with System default.
-- Reduce motion (in-app override)
+- Reduce motion (in-app override) — note this is separate from the app-wide Reduce Motion sweep already shipped (OS-level `AccessibilityInfo` respected everywhere `Animated` is used); this row would add an in-app toggle independent of the OS setting, not yet built.
 
-**Look & Feel:**
-- Display theme (beach/forest/meadow/seasonal)
-- Warmth bar — a relative offset applied on top of Hold's existing automatic warmth shifts per flow state, **not** an independent palette override. **Flagged, not yet confirmed:** WCAG contrast compliance must be verified across the full warmth range before shipping.
-- Light/Dark/System toggle
-- Moon phase toggle
+**Look & Feel — built:**
+- Light/Dark/System toggle — built. Overrides `useColorScheme()`'s raw OS read app-wide via `DisplaySettingsContext` → `useAppTheme`.
+- Warmth bar — built. A relative offset applied on top of whichever palette is already showing (background/surface fills only, never text/border/primary/accent), **not** an independent palette override, per the original spec. Five-step selector (-1/-0.5/0/+0.5/+1), off by default. **WCAG verification status: hand-checked, not device-confirmed** — contrast against fixed text colours computed to move only marginally (light mode ≈13.27→≈12.74, dark mode ≈14.38→≈14.19) at the full ±1 extreme, both far clear of the 4.5:1 AA floor, but this hasn't been confirmed on a real screen yet. Note this warmth bar is a manual, persistent user setting — it is not the same mechanism as "Hold's existing automatic warmth shifts per flow state" referenced in earlier drafts of this section; no such automatic per-flow-state warmth shift exists in code, so there's nothing separate for this to layer on top of.
+- Display theme — scaffolded, not really built. Five options are shown (Default/Beach/Forest/Meadow/Seasonal); only Default renders an actual palette. The other four are visible but disabled with a "Coming later" tag, so the settings UI shows the intended option set without inventing palette values nobody has designed yet.
+- Moon phase toggle — scaffolded, not really built. Persisted as a boolean; no wired visual effect anywhere in the app yet, since this section never specified what showing a moon phase should actually look like or where. Needs its own design pass before it's more than a stored preference.
 
 **Spacing intent between groups:** Feedback/Share and Legal and data move together as one bottom-anchored block, pinned to the panel's bottom edge (mirroring the top padding above Your Circles) rather than trailing at a fixed distance below About Hold. The single largest gap in the panel sits above that whole block — the one real section break, between values/browsing content (Manage Hold, About Hold) and the practical, occasional-use rows below (Feedback/Share, then the divider, then Legal and data). None of the group spacing relies on a visible heading label, only breathing room (and, for the last group only, the divider line itself) to read as distinct sections.
 
