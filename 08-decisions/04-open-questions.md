@@ -2,6 +2,34 @@
 
 Unlike `01-decision-log.md`, nothing here is settled. These are live questions that came up while reconciling parallel design work and need a deliberate answer before they're built.
 
+## Framing note: building toward future accreditation, from now
+
+Research this session (see `09-research/nhs-orcha-accreditation-pathways.md`) confirmed Hold does not need NHS DCB0129 or ORCHA accreditation for MVP launch — neither is mandated for a standalone consumer app. However, both explicitly reward groundwork laid early rather than retrofitted later: DCB0129 states clinical risk management "must start at the earliest stage of the development lifecycle," and ORCHA scores against four pillars — Data & Privacy, Clinical/Professional Assurance, Evidence, and Usability & Accessibility — that are far cheaper to build in now than to construct after the fact.
+
+Practical implication: several items below (safeguarding documentation discipline, evidence-gathering, accessibility) aren't just individually useful — they are specifically the groundwork that keeps NHS/ORCHA accreditation realistically open as a future option, without requiring Hold to pursue either now. Treat this as the throughline connecting the public safeguarding policy, evidence-gathering, "did this help?" prompt, and comparable-app-research entries below, not several unrelated tasks. (The minimum-age question this line originally also pointed to is resolved — see below — and no longer part of this throughline.)
+
+## Spec-complete, awaiting build (queued, not started)
+
+This section is deliberately distinct from every other entry in this file. Everything below is **fully specced and ready to build** — no open design or product decision remains — but has not been started because it hasn't yet been prioritised against other work. This is a "when," not a "whether or how" list. Do not confuse these with the genuinely undecided questions later in the file.
+
+### "Did this help?" evidence prompt, History-first
+
+**Logged 2026-08-27. Trigger logic refined 2026-08-27 — spec-complete, not started.**
+
+**What it is:** In History, a simple, optional, skippable prompt on a past Reconnect period's entry: "Did reaching out help?" with 2-3 tap options (e.g. yes / a little / not really). No free text required. Never blocks or interrupts viewing History — appears passively alongside the entry, easily ignored. Store responses as anonymous aggregate data only, consistent with existing privacy model.
+
+**Trigger logic (refined):** Rather than a passive prompt that only shows if someone happens to browse an old History entry, the prompt surfaces at the point a Reconnect flow's entry is finalised into History — whichever of these happens first:
+- **Natural completion:** all Reconnect Conversations for that period are finished, and the consolidated History entry is created.
+- **Early end:** the person ends the flow before all Conversations are finished. The entry still lands in History (as it already does), and the prompt still surfaces there — this is the fallback that ensures an incomplete flow doesn't silently skip the prompt.
+
+Practically: the prompt appears attached to the entry the first time it's viewed in History after being finalised (either path above), not on every subsequent view once already answered or dismissed. Once answered or explicitly dismissed, don't re-prompt on that entry again.
+
+**Reasoning:** retrospective placement avoids adding friction to the live Going Quiet/Reconnect flow, when the person has the least capacity. Someone looking back in History has already chosen to revisit that moment, so a reflective question fits naturally rather than intruding. This is also the ongoing data source that feeds the Evidence pillar ORCHA's review scores against (see the beta/pilot entry below and `09-research/nhs-orcha-accreditation-pathways.md`) over time, not just a one-off pilot.
+
+**Flagged, not yet decided — do not build without explicit confirmation:** Three further placements were discussed and explicitly NOT approved: end of Reconnect, Reconnect Conversations (per-conversation), and Reconnect's instant message step. Logged as options to revisit only once the History-only version is live and its impact can be assessed. Do not add prompts to any live flow surface without Bethany's explicit go-ahead — the standing concern is not wanting to put users off or add friction during moments of low capacity.
+
+**Status: spec-complete, queued for later build. Not started.**
+
 ## Safeguarding trigger logic and wording
 
 **Architecture decided; content is not.** The two-tier detection model (free: on-device keyword/phrase matching; Hold+: the same layer plus a classifier pass), which surfaces get checked, and the non-blocking persistent-banner response are set out in `06-privacy-security/03-safeguarding.md` and settled for now. What's still **not decided, and requires solicitor and/or clinical safety consultant sign-off before launch:** the actual keyword/phrase list, the classifier's detection criteria, the exact thresholds, and the banner/resource wording — none of this is an internal UX decision. The pipeline is built with a placeholder detection list, hard-gated to local dev builds only, not reaching TestFlight/beta/production until this is resolved.
@@ -11,6 +39,18 @@ Unlike `01-decision-log.md`, nothing here is settled. These are live questions t
 **Also separately noted, not scoped:** detecting risk language in "What they sent" (someone else's pasted message) is a different problem from this layer — different response flow, different privacy consideration — and isn't part of this pass at all.
 
 **Reviewer-hiring research and a provisional draft framework now exist, logged 2026-08-12 — progress on the process, not a resolution of the content itself.** `06-privacy-security/03-safeguarding.md` now has the full detail: who to hire (CSO vs. clinical psychologist, DCB0129/DCB0160 context), confirmation that no public ready-made trigger-phrase list exists for Hold's specific private-1-to-1-drafting problem (including why the Samaritans Online Excellence Programme's guidance doesn't directly transfer), the international crisis-resource research (core six markets confirmed, several more flagged as researched-but-unreliable), and the region/language-detection setup-screen decision. `06-privacy-security/05-safeguarding-logic-framework-DRAFT.md` is the provisional category/response-tier skeleton itself, now committed to this repo — previously flagged here as referenced-but-missing; that gap is closed as of 2026-08-12. None of this resolves the actual open item at the top of this entry — the real trigger phrases, thresholds and banner wording still need the clinical reviewer this research is meant to help find.
+
+**Named leads for who to actually contact, logged 2026-08-28 — outreach, not resolution.** `09-research/clinical-safety-reviewer-leads.md` has specific contacts and consultancies surfaced while researching Calm Harm: stem4's general and accessibility inboxes, Dr Nihara Krause (Calm Harm's CSO, not confirmed available for outside work), mHabitat (Calm Harm's actual reviewer, but only reachable to date via an NHS-funded programme relationship, not a standalone bookable vendor — see that file for the correction), and eight commercial CSO/clinical-safety consultancies with no confirmed pricing, mostly built around ongoing NHS-supplier retainers rather than the one-off scoped review Hold likely needs. None of these leads have been contacted yet.
+
+**Related, separate question — see "Independence consideration for informal clinical input" below.** Whether an informally-available clinician known personally to Bethany could substitute for this independent review. Answered there: no, not as a substitute — logged separately since it's a distinct question from *finding* a reviewer.
+
+## Independence consideration for informal clinical input
+
+**Logged 2026-08-28.** Bethany's father is a practising GP (GMC-registered) in the UK. Considered and discussed whether he could serve as Hold's Clinical Safety Officer.
+
+**Conclusion, logged so it doesn't need re-litigating later:** GMC registration satisfies one eligibility criterion for formal DCB0129/DCB0160 CSO training, but does not confer CSO status automatically — he would need to complete NHS England's accredited Clinical Risk Management training (pricing already logged in `09-research/nhs-orcha-accreditation-pathways.md`). More importantly, using a family member for a safety-critical review of the founder's own product raises a genuine independence/conflict-of-interest question, separate from credentials or training — this could matter if the review were ever scrutinised (App Store review, a user complaint, a legal issue), and an independent reviewer with no personal connection may be viewed as more credible, particularly given Hold's core calibration challenge (false positives from ordinary phrases like "going quiet") benefits from a genuinely fresh, uninvolved clinical eye.
+
+**Decision leaning, not fully closed:** his input is welcome and valuable as an informal second opinion, but should not substitute for the formal, documented, independent clinical safety review Hold needs before safeguarding features go live. Revisit only if no independent reviewer proves accessible or affordable. See `09-research/clinical-safety-reviewer-leads.md` for the outreach leads this independent review would actually draw from.
 
 ## Verify release-mode build before first TestFlight submission
 
@@ -179,6 +219,8 @@ The app's current code already matches the two-part documented structure (unchan
 
 **Logged 2026-08-11, from a session write-up.** Design/decision-layer discussion only — nothing below has been built, and this is explicitly deferred until after MVP and the Phase 10 paywall are live.
 
+**Flag added 2026-08-28:** if this is ever scoped for build, check its final shape against the new standing principle "Stay a private messaging tool, not a social platform" (`01-foundation/03-principles.md`) before building — this idea is the one named example in that principle, since regulatory messaging-app exemptions in emerging under-16 protection laws (see `09-research/global-architecture-scan-pass1.md`, Part G) depend on Hold not gaining social-media-style interaction beyond a user's own defined Circle contributing to that user's own flow. The v1 scope described below (pre-vetted phrase bank, attributed "from your circle" labelling, no visible feed) reads as compatible with that line; anything that grows beyond it should be re-checked, not assumed still fine.
+
 **Concept:** an opt-in way for a user's own circle to contribute to their Going Quiet/Taking Time experience. Entry point: "Would you like your circle to personalise your flow?" — sender-initiated only, never prompted to friends directly, no visible consequence for declining.
 
 **Core mechanism:** the user generates a unique, time-limited invite link per Going Quiet/Taking Time period (Hold+ gated on the sender's side). A friend opens the link in a browser — no login, no app download. Friend content is always labelled "from your circle," never presented as the user's own words — this sidesteps the AI-boundaries voice-ownership problem by being a distinct, attributed human voice by design, not an AI-drafted one.
@@ -331,3 +373,49 @@ Three genuinely open sub-questions, not decided:
 ## Lapsed/dormant backup account retention, now that backup isn't Hold+-exclusive
 
 **Flagged 2026-08-21.** `06-privacy-security/04-content-retention.md`'s "Lapsed/dormant Hold+ backup account retention" section (30-day grace period, 6–12 month dormant window before deletion) was scoped entirely around backup being a paid, Hold+-only feature — that premise is no longer accurate, backup is now free for everyone. Unresolved whether the same tiered model just applies once "lapsed subscription" is swapped for a free-tier-appropriate trigger, or whether free-tier backup needs its own rethought policy from scratch (a free account has nothing to "lapse"). Explicitly not decided here — see that section for the full flagged note; do not build against either answer without checking first.
+
+## Hold's minimum age — resolved 2026-08-28, closing a stale blocker
+
+**Logged 2026-08-27, resolved 2026-08-28.** Hold will not set a minimum age or age gate. No minimum age, universal highest-protection standard applied instead of age verification — this is the ICO's own sanctioned alternative path under the Age Appropriate Design Code's age-assurance standard (Standard 3), not a workaround adopted for convenience. See `01-decision-log.md`, 2026-08-27, and the full standard-by-standard assessment in `06-privacy-security/06-aadc-compliance-review.md`, where Standards 3 and 6 have both been updated to reflect this as resolved rather than open. When Terms of Use are drafted with the solicitor, they should state the no-minimum-age position plainly, so published policy matches actual behaviour from day one.
+
+## Analytics SDK: use one, or explicitly decide not to
+
+**Logged 2026-08-27.** Hold currently has no confirmed analytics approach. Two options: (a) no analytics SDK at all — stronger privacy claim, zero build cost, matches privacy-by-design philosophy; (b) a specific SDK for defined anonymous metrics only, scoped and justified. Needs deciding before MVP ships. Bethany to decide; flag back for spec once chosen if (b). Note: the "did this help?" feedback data (below) and the pilot/beta evidence-gathering spec (below) may need their own lightweight storage path if (a) is chosen, rather than piggybacking on a third-party SDK.
+
+## No formal chronic-illness accessibility standard exists — resolved/closed
+
+**Researched and closed 2026-08-27.** Researched whether a formal chronic-illness-specific accessibility certification exists, distinct from general W3C/WCAG standards. None does — chronic-illness accessibility is addressed through practical UX choices (low-effort interactions, reduced motion, generous timeouts, no pressure language) rather than a certifiable standard. Hold's existing principles (low-capacity usability test, warmth bar, no counts/pressure language) are the appropriate substitute, and the eventual accessibility audit (already logged as unstarted, Part 4/Step 11 of master status) should be treated as the Usability & Accessibility groundwork relevant to any future ORCHA review (see `09-research/nhs-orcha-accreditation-pathways.md`), not a separate concern.
+
+## Public-facing Safeguarding Policy page — blocked
+
+**Logged 2026-08-27.** Distinct from the internal `06-privacy-security/03-safeguarding.md` (policy source of truth for reviewers). A short, plain-language public Safeguarding Policy page — no crisis-response promise, redirect to trusted adults/professionals, legal disclosure obligations under duty of care — following the structural template at calmharm.stem4.org.uk/safeguarding-policy. Blocked until `06-privacy-security/03-safeguarding.md` has clinical and legal sign-off. This documentation discipline (internal policy + public summary, kept in sync) is also directly what DCB0129's Clinical Safety Case Report and any future ORCHA Clinical/Professional Assurance review would expect to see — see `09-research/nhs-orcha-accreditation-pathways.md`.
+
+## Lightweight beta/pilot evidence structure
+
+**Logged 2026-08-27, scoped future spec, not yet build-ready.** Propose a lightweight pilot: a small beta group of real target users, structured feedback survey before and after a defined period of use, informed by a genuine co-creation conversation with a few real users about priorities (not just a survey — see the Calm Harm/HMA case study in `09-research/nhs-orcha-accreditation-pathways.md`, which used structured co-creation sessions with clinicians, young people, and safety officers to shape its roadmap). Purpose: build real evidence of Hold's value, independently worthwhile for App Store credibility and press, and directly builds the Evidence pillar ORCHA's review scores against, should that be pursued later. **NOT contingent on pursuing ORCHA/NHS accreditation.**
+
+## "Did this help?" evidence prompt, History-first — see "Spec-complete, awaiting build" section
+
+**Moved 2026-08-27.** This entry now lives in the dedicated "Spec-complete, awaiting build" section near the top of this file, not here, since the trigger logic has since been refined to spec-complete status and it's tracked separately from genuinely undecided questions. Kept as a pointer at this original location so a search for it here still finds it.
+
+## AI disclosure (EU AI Act Article 50) — near-term build item
+
+**Logged 2026-08-28**, from `09-research/ai-act-and-remaining-compliance.md`, Part A. The EU AI Act's Article 50 transparency requirement has applied to all AI systems, not just high-risk ones, since August 2025: users must be clearly informed when they're interacting with AI. Unrelated to, and not waiting on, the much harder open question of whether Hold's safeguarding classifier counts as high-risk under Annex III (see the same research file) — this is a simple, low-effort item that should ship on its own timeline.
+
+**What it is:** a simple, clear in-app disclosure that AI is used for (a) message drafting assistance and (b) safeguarding detection. Not yet written or placed — needs its own short spec pass (where it's surfaced — onboarding, Settings/About, or both — and the actual copy, following `04-ux-content/02-voice-and-language.md`'s voice principles).
+
+## UK Online Safety Act (and likely-equivalent EU/Australia/Singapore/UAE frameworks) — Reconnect Conversations hosting question
+
+**Logged 2026-08-28**, from `09-research/ai-act-and-remaining-compliance.md`, Parts C and F. The OSA doesn't broadly exempt private messaging apps (WhatsApp is named as clearly in-scope in official guidance) — the determining question is whether a service *hosts or facilitates* content exchange between users, versus merely acting on content handed off from external channels it doesn't control.
+
+**Specific feature flagged:** Reconnect Conversations, where a friend's message — received via SMS/WhatsApp/email, then manually pasted in by the user — is used to draft a reply Hold hands back to the user to send via that same external channel. Hold never receives, routes, or transmits the friend's message itself. Whether this is a sufficient distinction to place Hold outside OSA scope (and likely the equivalent EU DSA, Australian OSA, Singapore, and UAE frameworks, which appear to share the same hosting/facilitating test — see the research file) is the actual question for the solicitor, not assumed either way here.
+
+**Not resolved.** One of four items on the consolidated solicitor priority list in `09-research/ai-act-and-remaining-compliance.md`.
+
+## Two portable UX choices from comparable-app research (Calm Harm)
+
+**Logged 2026-08-27, scoped future spec.**
+
+(a) **Hide specific articles/topics.** Research section: allow hiding specific articles/topics a user finds unhelpful or triggering, rather than only a blanket on/off — mirrors Calm Harm's per-activity hide option, adapted to Hold's content model.
+
+(b) **A lighter protection step for one sensitive area only.** Consider whether any specific sensitive area (e.g. health notes within Patterns) warrants its own lighter protection step, separate from the rest of the app staying frictionless — mirrors Calm Harm's approach of removing the app-wide passcode but keeping one on its most sensitive section only. Not yet scoped as a decision, flagging the pattern for consideration.

@@ -36,6 +36,7 @@ The common loop is:
 - `06-privacy-security/` — privacy, AI, safeguarding and safety
 - `07-business/` — positioning, pricing, launch and business strategy
 - `08-decisions/` — decision log, rejected ideas, design experiments and open questions
+- `09-research/` — background research references (e.g. accreditation pathways, international/AI/online-safety compliance scans) not tied to a specific decision or open question
 
 ## The Hold Test
 

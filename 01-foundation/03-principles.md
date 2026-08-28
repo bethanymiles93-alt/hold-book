@@ -52,6 +52,12 @@ Use warm, direct language. Do not imply medical authority.
 
 Commercial design must match the product’s values.
 
+## Stay a private messaging tool, not a social platform
+
+**Added 2026-08-28**, from compliance research in `09-research/global-architecture-scan-pass1.md`. Any feature adding public or broadly-visible interaction — anything beyond a user's own defined Circle — should be evaluated against two separate tests: (a) Hold's own philosophy, which has already closed the community/social-content-feed idea on assessment (see `08-decisions/02-ideas-not-to-build.md`); and (b) the regulatory messaging-app exemptions carried by emerging under-16 social-media-protection laws (Australia, in force; France, Denmark, Canada, proposed), which depend specifically on Hold remaining primarily a messaging service rather than gaining social-media-style features that let users interact in ways other than messaging.
+
+This applies with particular weight to the future "From your circle" idea (`08-decisions/04-open-questions.md`) — flag explicitly if that feature's scope ever expands beyond a user's own defined Circle contributing directly to that user's own flow, since that's the exact line the regulatory exemption is drawn against, not just a design preference.
+
 ## Things Hold will never do
 
 - Sell private message content

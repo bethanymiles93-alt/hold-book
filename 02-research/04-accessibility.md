@@ -31,6 +31,16 @@ Hold should aim for WCAG 2.2 AA where applicable and test beyond compliance with
 - Recipient selection reversible and visible
 - Native autocorrect, spellcheck and predictive text always enabled on every message input, exactly like composing a normal text — never a custom or stripped-down keyboard. This is an accessibility requirement, not just parity: cognitive fog, fatigue, ADHD and medication effects are common among Hold's users, and native input assistance lowers composition effort
 
+## Planned audit, logged 2026-08-11 — NOT YET RUN
+
+The following is a planned audit scope, not a completed pass:
+
+- **Dynamic Type / font-scaling audit** across every screen — no fixed pixel font sizes.
+- **Touch-target audit** — every tappable element must meet 44×44pt (iOS) / 48dp (Android) minimum, including at enlarged accessibility text sizes.
+- **Accessibility label audit** — every interactive element needs correct `accessibilityLabel`/`accessibilityRole`, especially icon-only buttons. This is the intended lever for full OS-level Voice Control/Voice Access support — no custom in-app voice command system planned (distinct from the separate, also-not-built voice-driven navigation idea in `08-decisions/04-open-questions.md`, which would be a materially larger undertaking than correct labelling alone).
+
+**Explicitly not part of this audit's scope:** Dark Mode and Reduce Motion are already fully specified elsewhere (`docs/08-product-bible.md`, in `hold-app`) and don't need re-auditing here — noted explicitly so this planned audit doesn't duplicate settled work.
+
 ## Sources
 
 - WCAG 2.2: https://www.w3.org/TR/WCAG22/

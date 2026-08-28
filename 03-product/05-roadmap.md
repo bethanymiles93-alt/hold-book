@@ -8,7 +8,7 @@ The Core Journey as specified in `04-ux-content/01-core-journeys.md`: Going Quie
 
 ## v1.5 — Hold+ launch
 
-Founding Member pricing goes live (`07-business/02-pricing-principles.md`). Unlimited Circles/AI for paying users. No new product surface beyond what MVP already has — this phase is about the paywall and subscription infrastructure existing, not new features.
+Hold+ pricing goes live (`07-business/02-pricing-principles.md`): £17.99/year or £4.99/3-month. Unlimited Circles/AI for paying users. No new product surface beyond what MVP already has — this phase is about the paywall and subscription infrastructure existing, not new features.
 
 ## v2 — Communication Insights and Pattern Recognition
 
