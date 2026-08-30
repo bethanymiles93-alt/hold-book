@@ -251,6 +251,8 @@ The app's current code already matches the two-part documented structure (unchan
 
 **Why this is worth prioritising eventually, not a reason to build it now:** the first Hold+ feature that's inherently relational rather than solo (unlike AI amend, AI memory, moon-cycle overlay) — plausibly a stronger conversion driver and word-of-mouth vector, though this is reasoning, not tested data. A cheap fake-door test (an inert "invite your circle" button, measuring taps) is recommended before committing to a full build. **Not scoped for build — explicitly deferred until after MVP + Phase 10 paywall are live.**
 
+**Extension logged 2026-08-31 — friend-designed display/Look & Feel.** A friend/family member could design the *display* (colour theme, warmth, visual style) on the user's behalf, distinct from the message-content contributions already scoped above. The same resolved logic from "Preview model" above applies directly: aesthetic choices are lower-risk to leave as a surprise (per the existing "aesthetic surprise is fine, content surprise is not" resolution), so this plausibly fits the "surprise" side of that model, not the "shown in advance" side, if it's ever built. Unscoped, future, not v1 — logged as an extension of this same idea, not a separate feature.
+
 ## Notification content ideas (future, opt-in, Hold+) — three strands, none scoped for build
 
 **Logged 2026-08-11, from a session write-up, consolidated into one entry per that write-up's own recommendation.** Sits alongside the previously-scoped relationship/psychology "did you know" facts idea (if one exists elsewhere in this book) as a related but distinct set of content strands.
@@ -431,3 +433,23 @@ Three genuinely open sub-questions, not decided:
 ## A lightweight, proactive "relationship understanding" exchange
 
 **Logged 2026-08-31**, same source as above. Letting two people establish, before distress fills the silence with interpretation, what silence means for each of them, how long is comfortable, whether contact during Taking Time is welcome. Interesting preventative idea, unscoped.
+
+## AI credit pack draft allowance
+
+**Logged 2026-08-31.** The £2.99 AI credit pack (`07-business/02-pricing-principles.md`) has never had an actual draft-count number attached — price only. A design-session discussion suggested 20-25 drafts as a starting point, reasoning: each draft costs well under £0.01 to generate, so there's no cost-based ceiling forcing a low number; 20-25 was suggested as roughly matching a typical month of Hold+-equivalent use, easy to explain to a user, without being an arbitrary-feeling figure. **Not decided** — flagged as needing a real number before this ships, ideally checked against actual usage data once available rather than picked from reasoning alone.
+
+## Conversational multi-turn AI voice exchange (Hold+, future)
+
+**Logged 2026-08-31.** Distinct from and further out than the free, already-scoped voice dictation (on-device speech-to-text feeding existing text-entry points, already built into the docked bar). This is a genuinely different feature: an actual back-and-forth voice exchange with the AI (e.g. AI asks a clarifying question, user responds by voice, possibly several turns before a draft appears) rather than a single dictate-then-draft step.
+
+Confirmed Hold+ if built, given real added API cost per turn versus a single draft call. **Flagged tension:** Hold+ AI is currently positioned as unlimited/no caps (`07-business/02-pricing-principles.md`). A multi-turn voice feature could be meaningfully more expensive per use than text drafting, which may argue for its own separate, visible usage allowance — which itself sits against Hold's own no-counts/no-pressure-language principle. **Not resolved:** whether this stays under the same unlimited umbrella (simpler, more values-consistent, but exposes real cost risk if it gets popular) or gets its own capped allowance (protects margin, but needs careful, gentle framing to avoid reading as a countdown/pressure UI). Each safeguarding-check pass would also need to run per turn, not just on the final drafted text — carries the same requirement as the existing free-text safeguarding layer, just applied repeatedly within one exchange.
+
+Genuinely future-future — sequenced after the accessibility audit, OS-level voice navigation, and free speak-once dictation, all of which come first.
+
+## Journaling app connection (future, unscoped)
+
+**Logged 2026-08-31.** Newly raised, no prior discussion anywhere in this project. Direction undefined — could mean importing/reading entries from an existing journaling app, exporting Hold data into one, or something else entirely. Tier (free/Hold+) undecided. Needs actual scoping (which app(s), what data, what direction) before it's more than a name on a list.
+
+## "Connected Accounts" naming collision
+
+**Logged 2026-08-31.** The optional lightweight sign-in for Hold+ restore/multi-device sync (already an open question above re: exact mechanism — Sign in with Apple likely) creates a naming problem not yet resolved: "Connected Accounts" already exists as a Settings-drawer row (currently a "Coming later" stub, originally meant for Wider World's email/Gmail-Outlook out-of-office linking — see `04-ux-content/04-navigation-architecture.md`'s Settings panel structure). These are two different kinds of "connection" — one is external-service linking for a feature, the other is an account/identity mechanism for sync/restore. Reusing "Connected Accounts" for both risks real user confusion. **Not decided:** rename one of them, keep both under one row with sub-sections, or something else. Needs resolving before either feature is built, not after.
