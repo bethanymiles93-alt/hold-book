@@ -419,3 +419,15 @@ Three genuinely open sub-questions, not decided:
 (a) **Hide specific articles/topics.** Research section: allow hiding specific articles/topics a user finds unhelpful or triggering, rather than only a blanket on/off — mirrors Calm Harm's per-activity hide option, adapted to Hold's content model.
 
 (b) **A lighter protection step for one sensitive area only.** Consider whether any specific sensitive area (e.g. health notes within Patterns) warrants its own lighter protection step, separate from the rest of the app staying frictionless — mirrors Calm Harm's approach of removing the app-wide passcode but keeping one on its most sensitive section only. Not yet scoped as a decision, flagging the pattern for consideration.
+
+## "Bridge person" / trusted intermediary
+
+**Logged 2026-08-31**, from an extended external design/research session (2026-08-19 onward) — see `08-decisions/01-decision-log.md`, 2026-08-31. A designated contact who can reassure a person's wider circle ("they're safe but very low capacity, they still care, they'll reconnect when able") without the absent person having to communicate individually. Real potential value, but sits in direct tension with the existing privacy model (metadata only, no third-party sharing by default) — a bridge person necessarily knows more than the people they're reassuring don't. Needs its own scoped decision on who can hold this role, what exactly they're permitted to know versus relay, and how it's revoked. **Constrained directly by `06-privacy-security/07-reconnection-safety-requirements.md`, sub-requirement 6:** mutual contacts or "bridge people" must not be recruited without explicit, specific consent — this requirement governs the feature's eventual design, not the reverse. Not to be folded into the main Reconnect flow as a quick addition.
+
+## A dedicated "recipient view"
+
+**Logged 2026-08-31**, same source as above. Designing for the person waiting, not just the person withdrawing (what silence means, when to worry, whether an emoji reply is enough, permission to protect their own emotional boundaries). A genuine scope expansion beyond everything currently built, which is entirely oriented around the withdrawing person. Log as a deliberate future-phase decision requiring its own product scoping, not an assumed extension of Reconnect. Governed by `06-privacy-security/07-reconnection-safety-requirements.md` throughout — a recipient view is exactly the kind of surface that could leak a safety decision if not audited against it carefully.
+
+## A lightweight, proactive "relationship understanding" exchange
+
+**Logged 2026-08-31**, same source as above. Letting two people establish, before distress fills the silence with interpretation, what silence means for each of them, how long is comfortable, whether contact during Taking Time is welcome. Interesting preventative idea, unscoped.

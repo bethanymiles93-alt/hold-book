@@ -89,3 +89,79 @@ This is a starting-point default per Circle type, surfaced as a suggestion — s
 
 ### Acknowledge time
 > I know I’ve been quiet. I cared even when I couldn’t reply. I’d like to reconnect gently.
+
+## Core vocabulary — decided, not open for casual variation
+
+**Added 2026-08-31, from an extended external design/research session (2026-08-19 onward). See `08-decisions/01-decision-log.md`, 2026-08-31.** Checked against this file's existing content first — none of these terms previously appeared here; nothing below overrides prior decisions in this file.
+
+| Term | Meaning | Register |
+|---|---|---|
+| **On Hold** | The user's own communication status, stated plainly. | Public, outward-facing. |
+| **Held** | A recipient's wordless acknowledgement: "received, I respect this, no response needed." | Private, contextual only — see "The 'Held' acknowledgement" below; this must never become a dashboard status. |
+| **Holding** | Internal description of a relationship state — this connection is being held without active conversation. | Internal/backend concept only. **Never used publicly to describe a person** ("Bethany is being held") — reads as controlling or clinical, like someone else has authority over them. |
+| **Reconnecting** | The user has chosen to open a particular connection at a level that feels possible. | Public to the specific people involved only. |
+| **Connection held** | Recipient-facing confirmation after they acknowledge. | Contextual, per-person. |
+
+**"Holding space" may be used once, explained plainly, and then dropped** — a real therapeutic concept (keeping someone in mind without demanding performance or trying to fix them), but it sounds vague or overly therapeutic if used repeatedly without explanation. Suggested one-time explanation: *"Holding a connection means keeping someone in mind without asking them to respond, explain, or return before they're ready."*
+
+This vocabulary, and everything below in this section, is governed by the same reconnection-must-never-be-compulsory requirement as the rest of Reconnect — see `06-privacy-security/07-reconnection-safety-requirements.md`.
+
+## The "Held" acknowledgement — a specific, non-negotiable constraint
+
+**Psychology grounding (Research panel candidate):** the reciprocity norm — unsolicited gestures create a felt pressure to respond, operating below conscious awareness, even when nothing is explicitly requested in return. This risk runs in both directions: a recipient may feel quiet pressure to send "Held" even though it's optional, and the sender must never be able to see acknowledgement status as an aggregated, checkable list.
+
+**Contextual only, never a dashboard.** Acknowledgement status is only ever shown when the user opens that one specific person's connection — never as a list, count, or dashboard. This is the same no-dashboard, no-tally principle already governing the rest of the app (no percentages, no completion rings, no "12 people left") — see `04-ux-content/06-state-architecture-and-memory.md` for the full memory-model rule this belongs to.
+
+**Additional requirements:**
+- The user must be able to disable receiving "Held" acknowledgements entirely, if even receiving them creates pressure.
+- Acknowledging must never generate a push notification to the sender unless the sender explicitly opted in to that.
+- A recipient's failure to send "Held" must carry zero visible consequence anywhere in the sender's experience.
+
+## Language the product should never use
+
+Avoid entirely, in any default/ordinary-return copy: "Make amends." / "Repair the harm." / "Ask for forgiveness." / "Take responsibility." / "People have been waiting." / "Clear your communication debt."
+
+Apology-appropriate language of this kind belongs only in an explicitly opt-in repair pathway, never the default return path — see `02-research/08-cross-cultural-withdrawal-and-repair.md`'s "Formal Reconnect-phase architecture" section for the full Pathway 1 (ordinary return, no wrongdoing presumed) vs. Pathway 2 (optional repair) structure.
+
+## Metaphor families — optional, user-selected, never the only vocabulary
+
+Literal language must always be available as a non-metaphor default. Optional metaphor families a user can select for their own status wording:
+
+- **Weather:** "I'm moving through heavy weather."
+- **Seasonal:** "I'm in a quieter season."
+- **Tide:** "My social energy is at low tide."
+- **Fallow:** "I'm taking a fallow period. I'm not storing up replies for later." (Agriculture grounding: fallow land is deliberately left uncultivated to allow soil fertility to recover — the useful transfer is that a field left fallow isn't *failing* to produce, it's temporarily outside production. Metaphor only, not a scientific claim that human capacity works identically to soil.)
+- **Shelter:** "I'm taking shelter for a while."
+- **Signal:** "My signal is weak. My care hasn't disappeared."
+- **Hearth:** "I'm keeping the connection warm."
+- **Orbit:** "I'm further away, but still connected."
+
+A user should be able to save a preferred metaphor family during setup, so Hold can offer language that already feels like theirs when they have little capacity to write something from scratch.
+
+**Choice-load check, per the standing low-capacity design principle (`02-research/02-low-capacity-design.md`):** eight metaphor families is a lot of options to present at once. Present metaphor selection as a low-priority, optional setup step the user can skip entirely (defaulting to literal language), not as a required decision — consider a shorter default subset with "see more" progressive disclosure rather than all eight at once.
+
+**Accessibility:** any interactive element built for this system (the "Held" acknowledgement button, the metaphor-family selector) needs an explicit screen-reader label, not just visible text — particularly the metaphor selector, since metaphor names alone ("Fallow," "Tide") may not be self-explanatory to a screen-reader user without their accompanying description also being announced. All copy in this system supports dynamic text sizing per the existing type-scale rule (`05-design-system/02-colour-and-typography.md`) — no hardcoded text containers that clip or truncate at larger accessibility text sizes.
+
+## "Different clocks"
+
+The absent person may experience an absence as survival compressed into a blur; the waiting person may experience each day as new evidence requiring interpretation. Neither experience is wrong — they're on different relational clocks. Suggested standalone copy, usable on the universal web page (`04-ux-content/07-universal-web-page.md`) or in onboarding:
+
+> "Time can feel different on each side of a pause. A long silence may pass quickly for someone surviving low capacity, and slowly for someone waiting without information."
+
+**Design consequences, apply globally:**
+- Never display absence duration as an accusation ("you have kept Sam waiting for 47 days" — do not build anything resembling this).
+- Let users hide exact elapsed-time dates if they choose.
+- Default return option is always "start from today," never a forced accounting of elapsed time — see `04-ux-content/06-state-architecture-and-memory.md`'s "start from now" principle.
+
+## Research panel candidates — for Settings → Research
+
+Per the existing Settings panel structure (`04-navigation-architecture.md`), suggested short entries (1–2 sentences, not full citations):
+
+- **On the "Held" acknowledgement being contextual-only, never a dashboard:** *"Even a friendly 'received' can create quiet pressure to respond — research on the reciprocity norm shows this happens below conscious awareness, even when nothing is explicitly asked for. Hold never shows who has or hasn't acknowledged, so nobody feels watched or counted."*
+- **On avoiding duration/accusation language:** *"Time can feel different on each side of a pause — Hold doesn't display how long you've been away, or how long someone's been waiting, as a number to be judged against."*
+
+Full academic citations stay in `02-research/08-cross-cultural-withdrawal-and-repair.md`; the app only needs the plain-language version.
+
+## Status
+
+Not built in `hold-app` yet — vocabulary, "Held" mechanism, metaphor families, and "different clocks" copy are all reference/spec material for future scoped feature work.
