@@ -164,7 +164,7 @@ Logged 2026-08-11, alongside the current pricing decision (`01-decision-log.md`)
 - **Gift-a-year:** a one-time purchase generating a redemption code for 12 months of Hold+, since Apple/Google don't support native subscription gifting directly.
 - **Charity partnerships:** distributing free Hold+ access via charity-vetted eligibility, so Hold itself never has to build or judge a means-testing system.
 
-All three serve the same underlying goal already stated in `07-business/02-pricing-principles.md`'s "Ethical access options" (scholarship/sponsored access, regional pricing) — these are three concrete mechanisms for that principle, not a new principle. **Not yet decided:** whether to build any of them, which one(s) first, or how they'd interact with the current pricing structure (£17.99/year, £4.99/3-month — the earlier Founding Member/Standard split referenced here has since been removed, see `08-decisions/01-decision-log.md`, 2026-08-11 correction).
+All three serve the same underlying goal already stated in `07-business/02-pricing-principles.md`'s "Ethical access options" (scholarship/sponsored access, regional pricing) — these are three concrete mechanisms for that principle, not a new principle. **Not yet decided:** whether to build any of them, which one(s) first, or how they'd interact with the current pricing structure (£4.50 one-time intro for the first 3 months, converting to £3.49/month or £19.99/year — corrected 2026-08-20, superseding the £17.99/year, £4.99/3-month figures this note previously cited; the earlier Founding Member/Standard split is a further generation back, removed 2026-08-11; see `08-decisions/01-decision-log.md`).
 
 ## Additional Wider World channels — two future-spec ideas, none built
 
