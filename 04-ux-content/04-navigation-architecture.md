@@ -157,6 +157,12 @@ One drawer row — **"Accessibility & Display"** — opens one merged page, orga
 
 Bottom nav stays at three items — Home, Library, History. Settings deliberately does not become a fourth bottom tab, even though some reference apps (e.g. Balance) use an Account tab. Circles were already moved out of the bottom nav specifically because they're occasional maintenance rather than a reason someone opens the app; Settings sits in that same category, so it stays behind the corner icon rather than gaining equal billing with Home, Library and History.
 
+### Standing convention: swipe-back disabled on every settings/* and Research-style screen
+
+**Applies automatically to any new screen in this category — not something to add screen-by-screen after the fact.** Every `settings/*` route and `research/[slug]` has `gestureEnabled: false` (`app/_layout.tsx`) — swipe-back-to-previous is disabled; the explicit Back button (`SettingsBackButton`, in every one of these screens' header) is the only way back. This matches the flow screens' own already-established precedent (Going Quiet, Reconnect, Transition, Welcome — see `08-decisions/01-decision-log.md`, 2026-08-13), extended to this whole second category for the same underlying reason: nothing on these screens should be reachable by an accidental or hijacked gesture, only a deliberate tap.
+
+Found via a real on-device bug (2026-08-31): Accessibility & Display's warmth slider sits at the standard left padding, close enough to the screen edge that a rightward drag on it could win gesture arbitration against the Stack's own edge-swipe-back recognizer, pulling the whole page back toward Home mid-drag. Rather than patch that one screen, swipe-back was disabled across the whole category — any screen built under `settings/*` (or an equivalent standalone-page category added later, e.g. a future Research-style index/subpage set) should have `gestureEnabled: false` set as part of how that category of screen is built, the same way a Tier-1 route automatically hides the bottom nav bar (see `navTier.ts` above) without needing to be re-flagged per screen. A drawer (Settings' own hamburger panel, any bottom-sheet) is a separate case with its own close gesture, unaffected by this.
+
 ## Hold+ visibility
 
 **Revised: no persistent top-bar element.** A standing visual element in the top bar — even styled quietly — reads as ongoing pressure/visual noise, inconsistent with Hold's "held, not managed" tone. Supersedes the earlier two-access-point wording (see `08-decisions/01-decision-log.md`).
