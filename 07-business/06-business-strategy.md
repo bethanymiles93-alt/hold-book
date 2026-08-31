@@ -23,7 +23,7 @@ Budget roughly **£400–700** to get everything registered and live, before ong
 | 500 | £80–180 |
 | 1,000 | £150–300 |
 
-Hold isn't video- or media-heavy, so infrastructure costs should stay comparatively low relative to user count. AI drafting cost is the main variable to watch as usage scales — this is part of why Free-tier AI replies are capped rather than unlimited (see `02-pricing-principles.md`).
+Hold isn't video- or media-heavy, so infrastructure costs should stay comparatively low relative to user count. AI drafting cost is the main variable to watch as usage scales — this is part of why AI drafting is gated behind Hold+ entirely, with no free-tier allowance, rather than offered free and capped (see `02-pricing-principles.md`).
 
 ## Revenue scenarios
 
