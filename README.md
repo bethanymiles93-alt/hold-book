@@ -60,3 +60,14 @@ Each page should distinguish:
 - **Hypothesis** — plausible but not yet validated
 - **Decision** — what Hold will do now
 - **Test** — what must be learned from users
+
+## Keeping this book in sync with what's built
+
+**A decision-log entry and a hold-book documentation update are two separate questions — answering one never answers the other.** Added 2026-09-01, after an audit found real, shipped features (Going Quiet/Reconnect's per-Circle last-sent-message preview, Conversations' own per-person version) with zero mentions anywhere in this book, months after being built — both had been correctly judged as "not a new product decision, just implementing a given spec," which is a true answer to the wrong question.
+
+Before considering a build task finished, check both, separately:
+
+1. **Does this need a new `08-decisions/01-decision-log.md` row?** Only if it's a new or revised product/design decision — not every implementation detail needs one.
+2. **Does the feature itself need documenting somewhere in this book, findable later?** Almost always yes, for anything that's a real user-facing feature or screen behaviour — regardless of whether it was a "new decision" or "just building an already-given spec." A feature can be a correct, spec-following build and still be completely undocumented; those are two separate gaps, and "it was just implementing spec" only ever answers the first question, never the second.
+
+When in doubt about (2), document it — a page that's slightly more detailed than strictly necessary costs a future reader a few seconds; a real feature with no page describing it costs a future reader (or a future session working from this book) having to rediscover it from the code, or worse, treating on-device confirmation of it as confusion, forgotten work, or a regression when it was neither.
