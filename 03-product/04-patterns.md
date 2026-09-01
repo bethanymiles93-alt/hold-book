@@ -6,7 +6,7 @@
 
 ## Where it lives
 
-Not a separate bottom-nav tab. Patterns sits inside **History**, reached via a segmented control at the top of the screen: **History | Patterns**. History is where someone naturally goes to review previous quiet periods; Patterns is something checked occasionally, not a reason to open the app on its own — same logic already applied to keeping Circles and About off the bottom nav.
+Not a separate bottom-nav tab. Patterns sits inside **History**, reached via a segmented control at the top of the screen: **Your History | Your Patterns** (renamed 2026-09-01, matching the existing possessive convention already used for Your Circles and Your Wider World — found no rule scoping that convention to Settings specifically). History is where someone naturally goes to review previous quiet periods; Patterns is something checked occasionally, not a reason to open the app on its own — same logic already applied to keeping Circles and About off the bottom nav. Each segment's own eyebrow/title header text was removed the same day (2026-09-01) — both duplicated the tab label directly above; a dedicated History subtitle ("evidence of your effort and care," reframing the record as proof of effort rather than hard times) is planned separately, wording not yet confirmed.
 
 ## History
 
@@ -21,13 +21,14 @@ Reconnected
 
 Tap a card for more detail if the user wants it — the card itself is the calm, glanceable version; nothing is forced open.
 
-**Calendar and list merged into one page, decided 30 August (this section was stale until 2026-09-01 — described a separate List/Calendar toggle that was never the real decision).** No toggle between them: a compact calendar strip sits at the top, collapsed by default (tap to expand — reusing the app's existing collapsed-by-default/tap-to-expand accordion convention, the same one Wider World's own sections and a sent-message pill already use), and the card list stays always visible below it regardless of whether the strip is expanded. Full calendar interactivity once expanded, matching standard calendar-app conventions:
+**Calendar and list merged into one page, decided 30 August (this section was stale until 2026-09-01 — described a separate List/Calendar toggle that was never the real decision).** No toggle between them: a calendar sits at the top, the card list always visible below it. **Always visible, not collapsible** (corrected same day, 2026-09-01, superseding an initial "collapsed by default, tap to expand" build — History's calendar is primary navigation here, not a secondary aid, so it stays open the same way the list below it always is). Header reads a plain "Calendar," no date repeated in it — the month/year are already visible in the calendar itself. Full calendar interactivity, matching standard calendar-app conventions:
 
-- Tap a date with activity on it jumps/anchors the list below to that entry, with a brief accent border marking which card it landed on. Widens the list's own default 6-month window first if the date's period is older than that, so there's always something to actually scroll to.
+- Only days with an actual logged period are tappable — an empty-day tap led nowhere before, pure friction for no benefit. Logged days carry a solid dark-green fill, reusing `AdaptiveCircleChip`'s own established sent-state colour pairing (not a separate calendar-only convention) — "this day has something" reads the same way "sent" does everywhere else in the app.
+- Tap a date with activity jumps/anchors the list below to that entry, with a brief accent border marking which card it landed on. Widens the list's own default 6-month window first if the date's period is older than that, so there's always something to actually scroll to — confirmed 2026-09-01: History's own scrollback is genuinely unlimited/all-time for everyone, free and Hold+ alike (the underlying store has no cap or pagination), never gated.
 - Tap the month name opens a month picker; tap the year opens a year picker, same row-of-pills mechanism used throughout the app.
 - Picking a year reveals that year's twelve months as collapsed accordions underneath the calendar (not one long scrollable list) — tap a month to expand just its own entries inline, with one more control to expand or collapse every month in that year at once.
 
-**Explicitly distinct from Patterns' own calendar, not merged into it:** History's calendar is the all-time record (every quiet period, any year); Patterns' own monthly calendar (below) stays a separate, monthly-scoped view of gentle observations. This is only about merging History's own internal list/calendar presentation into one page — the top-level History | Patterns segmented control above is unaffected.
+**Explicitly distinct from Patterns' own calendar, not merged into it:** History's calendar is the all-time record (every quiet period, any year) — a lookup tool, find a specific day and jump to what happened. Patterns' own monthly calendar (below) stays a separate, monthly-scoped view — a pattern-display in its own right, seeing the shape of a month's quiet periods at a glance, which is exactly why the same sent-state green marking matters there too. They're not redundant with each other. This is only about merging History's own internal list/calendar presentation into one page — the top-level Your History | Your Patterns segmented control above is unaffected.
 
 ## Patterns
 
@@ -38,7 +39,7 @@ Sits on the same underlying History data, but surfaces gentle observations rathe
 - Number of quiet periods
 - Average duration
 - Time since last quiet period
-- A single month's calendar view (current or a selected month), a basic grid with quiet days visually marked — no comparison across months, no trend detection, just what one month looked like
+- A single month's calendar view (current or a selected month), always visible — not collapsible, confirmed 2026-09-01, core to this screen's own value rather than a secondary aid. A basic grid with quiet days marked using the same solid dark-green sent-state fill as History's own calendar (not a separate lighter convention) — no comparison across months, no trend detection, just what one month looked like. Only logged days are tappable, same reasoning as History's own calendar. Free tier is locked to the current month only (prev/next/month/year navigation disabled); Hold+ unlocks genuine full-range browsing back to the earliest recorded period, same mechanism History's own calendar uses — confirmed 2026-09-01, though Hold+ itself isn't purchasable yet (dev/test flag only), so no real user can reach this range today regardless of tier
 - Days spent Taking Time
 
 ### Hold+ — richer Patterns
