@@ -21,6 +21,14 @@ Reconnected
 
 Tap a card for more detail if the user wants it — the card itself is the calm, glanceable version; nothing is forced open.
 
+**Calendar and list merged into one page, decided 30 August (this section was stale until 2026-09-01 — described a separate List/Calendar toggle that was never the real decision).** No toggle between them: a compact calendar strip sits at the top, collapsed by default (tap to expand — reusing the app's existing collapsed-by-default/tap-to-expand accordion convention, the same one Wider World's own sections and a sent-message pill already use), and the card list stays always visible below it regardless of whether the strip is expanded. Full calendar interactivity once expanded, matching standard calendar-app conventions:
+
+- Tap a date with activity on it jumps/anchors the list below to that entry, with a brief accent border marking which card it landed on. Widens the list's own default 6-month window first if the date's period is older than that, so there's always something to actually scroll to.
+- Tap the month name opens a month picker; tap the year opens a year picker, same row-of-pills mechanism used throughout the app.
+- Picking a year reveals that year's twelve months as collapsed accordions underneath the calendar (not one long scrollable list) — tap a month to expand just its own entries inline, with one more control to expand or collapse every month in that year at once.
+
+**Explicitly distinct from Patterns' own calendar, not merged into it:** History's calendar is the all-time record (every quiet period, any year); Patterns' own monthly calendar (below) stays a separate, monthly-scoped view of gentle observations. This is only about merging History's own internal list/calendar presentation into one page — the top-level History | Patterns segmented control above is unaffected.
+
 ## Patterns
 
 Sits on the same underlying History data, but surfaces gentle observations rather than just a factual timeline.
